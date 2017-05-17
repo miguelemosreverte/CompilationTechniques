@@ -12,9 +12,13 @@
 
     Which is achieved by having said symbols table implemented along with sintax rules that ANTLR can work with: ANTLR only provides rulesContexts for each of the sintax rules, leaving the specifics of the lexical tokenization behind, and obscuring the nature of a digit, whether or not it is a floating-point number, by saying that it is just a digit.
     That is if using a syntax rule like the following:
-      digit : FLOAT | INT;
+    
+     ``` digit : FLOAT | INT;```
+     
     When it would be necessary for the third warning to have not 1, but 3 rulesContexts like this:
-      digit : float | INT;
+    
+   ```   digit : float | INT;```
+   
     where the uppercase words represent lexical rules and the lowercase ones represent sintax rules.
 
 More on that on the documentation, found at /documentation.pdf
