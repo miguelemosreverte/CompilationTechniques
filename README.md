@@ -17,7 +17,7 @@
      
     When it would be necessary for the third warning to have not 1, but 3 rulesContexts like this:
     
-   ```   digit : float | INT;```
+   ```   digit : float | int;```
    
     where the uppercase words represent lexical rules and the lowercase ones represent sintax rules.
 
