@@ -1,4 +1,4 @@
-int _x = 0;
+int _x = 'this is a string';
 double exec (double);
 
 int main (void) {
