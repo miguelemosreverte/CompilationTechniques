@@ -1,0 +1,416 @@
+\documentclass[tikz,border=10pt]{standalone}
+\usepackage[linguistics]{forest}
+
+\newcommand*{\equal}{=}
+\newcommand*{\comma}{,}
+
+\begin{document}
+
+\phantom \\
+\phantom \\
+\phantom \\
+tp1\_lemos.CErrorException: Undeclared variable a at line 10 \\
+\indent at tp1\_lemos.Visitor.checkVarName(Visitor.java:110) \\
+\indent	at tp1\_lemos.Visitor.enterTo\_value(Visitor.java:84) \\
+\indent	at tp1\_lemos.CParser\$To\_valueContext.enterRule(CParser.java:1315) \\
+\indent	at org.antlr.v4.runtime.tree.ParseTreeWalker.enterRule(ParseTreeWalker.java:66) \\
+\indent	at org.antlr.v4.runtime.tree.ParseTreeWalker.walk(ParseTreeWalker.java:49) \\
+\indent	at org.antlr.v4.runtime.tree.ParseTreeWalker.walk(ParseTreeWalker.java:52) \\
+\indent	at org.antlr.v4.runtime.tree.ParseTreeWalker.walk(ParseTreeWalker.java:52) \\
+\indent	at org.antlr.v4.runtime.tree.ParseTreeWalker.walk(ParseTreeWalker.java:52) \\
+\indent	at org.antlr.v4.runtime.tree.ParseTreeWalker.walk(ParseTreeWalker.java:52)\\
+\indent	at org.antlr.v4.runtime.tree.ParseTreeWalker.walk(ParseTreeWalker.java:52)\\ 
+\indent	at org.antlr.v4.runtime.tree.ParseTreeWalker.walk(ParseTreeWalker.java:52)\\
+\indent	at org.antlr.v4.runtime.tree.ParseTreeWalker.walk(ParseTreeWalker.java:52)\\
+\indent	at org.antlr.v4.runtime.tree.ParseTreeWalker.walk(ParseTreeWalker.java:52)\\
+\indent	at org.antlr.v4.runtime.tree.ParseTreeWalker.walk(ParseTreeWalker.java:52)\\
+\indent	at org.antlr.v4.runtime.tree.ParseTreeWalker.walk(ParseTreeWalker.java:52)\\
+\indent	at org.antlr.v4.runtime.tree.ParseTreeWalker.walk(ParseTreeWalker.java:52)\\
+\indent	at tp1\_lemos.TP1\_Lemos.main(TP1\_Lemos.java:50)\\
+
+\\
+\\
+
+int \_x = 0;\\
+
+double exec (double);\\
+
+int main (void) \{\\
+
+\ \ \ \ \ \    double y = 1, z = 3.5;\\
+
+\ \ \ \ \ \    for (\_x = 5; \_x \textless 10; \_x = \_x + 1)\\
+
+\ \ \ \ \ \    \ \ \ \ \ \    y = exec(y) + exec(z);\\
+
+\ \ \ \ \ \    if (y \textless 100) \{\\
+
+\ \ \ \ \ \    \ \ \ \ \ \    y = y / 2;\\
+
+\ \ \ \ \ \      \ \ \ \ \ \  if (a == 0)\{\}\\
+
+\ \ \ \ \ \   \}\\
+
+ \ \ \ \ \ \   else\\
+
+ \ \ \ \ \ \  \ \ \ \ \ \     z = y + 5.5;\\
+
+\ \ \ \ \ \    return 0;\\
+
+\} \\
+
+double exec (double asd)\{\\
+
+\ \ \ \ \ \ double exec (double valor) \{\\
+
+ \ \ \ \ \ \    int i = 10;\\
+
+\ \ \ \ \ \     while (i \textgreater = 5)\\
+
+\ \ \ \ \ \         valor -= \_x - i;\\
+
+\ \ \ \ \ \     return valor;\\
+
+\ \ \ \ \ \  \}\\
+
+\}\\
+
+
+
+\begin{forest}
+ [prog
+    [stat
+      [variable\_declaration
+        [int]
+        [\_x]
+        [\equal]
+        [to\_value
+          [digit
+            [0]
+          ]
+        ]
+      ]
+      [;]
+    ]	
+    [stat
+      [f\_p
+        [
+          [double]
+          [exec]
+          [(]
+          [parametersList
+            [double]
+          ]
+          [)]
+        ]
+      ]	
+      [;]
+    ]
+    [stat
+      [f\_d
+        [int]
+        [main]
+        [(]
+        [parametersList
+          [void]
+        ]
+        [)]
+        [codeblock
+          [\{]
+          [stat
+            [variable\_declaration
+              [double]
+              [y]
+              [\equal]
+              [to\_value
+                [digit
+                  [1]
+                ]
+              ]
+              [\comma]
+              [z]
+              [\equal]
+              [to\_value
+                [digit]
+                [3.5]
+              ]
+            ]
+            [;]
+          ]           
+          [stat
+            [for\_loop
+              [for]
+              [(]
+              [\_x]
+              [\equal]
+              [5]
+              [;]
+              [comparation
+                [to\_value
+                  [x]
+                ]
+                [\textless]
+                [to\_value
+                  [digit
+                    [10]
+                  ]
+                ]
+              ]
+              [;]
+              [assignation
+                [\_x]
+                [assign\_op
+                  [\equal]
+                ]
+                [to\_value
+                  [math\_operation
+                    [\_x]
+                    [+]
+                    [digit
+                      [1]
+                    ]
+                  ]
+                ] 
+              ]
+              [)]
+              [stat
+                [assignation
+                  [y]
+                  [assign\_op
+                    [\equal]
+                  ]
+                  [to\_value
+                    [math\_operation
+                      [
+                        [f\_c
+                          [exec]
+                          [(]
+                          [inputParametersList
+                            [to\_value
+                              [y]
+                            ]
+                          ]
+                          [)]
+                        ]
+                        [+]
+                        [f\_c
+                          [exec]
+                          [(]
+                          [inputParametersList
+                            [to\_value
+                              [z]
+                            ]
+                          ]
+                          [)]
+                        ]
+                      ]
+                    ]
+                  ]
+                ]
+                [;]
+              ]
+            ]
+          ]
+          [stat
+            [if\_condition
+              [if]
+              [(]
+              [logic\_op
+                [comparation
+                  [to\_value
+                    [y]
+                  ]
+                  [\textless]
+                  [to\_value
+                    [
+                      digit[
+                        100
+                      ]
+                    ]
+                  ]
+                ]
+              ]
+              [)]
+              [codeblock
+                [\{]
+                [stat
+                  [assignation
+                    [y]
+                    [assign\_op
+                      [\equal]
+                    ]
+                    [to\_value
+                      [math\_operation
+                        [y]
+                        [/]
+                        [digit
+                          [2]
+                        ]
+                      ]                        
+                    ]
+                  ]
+                  [;]
+                ]
+                [stat
+                  [
+                    [if\_condition
+                      [
+                        [if]
+                        [(]
+                        [logic\_op
+                          [comparation
+                            [to\_value
+                              [a]
+                            ]
+                            [\equal\equal]
+                            [to\_value
+                              [digit
+                               [0]
+                              ]
+                            ]
+                          ]
+                        ]
+                        [)]
+                        [codeblock
+                          [\{]
+                          [\}]
+                        ]
+                      ]
+                    ]
+                  ]
+                ]
+                [\}]
+              ]
+              [else\_condition
+                [else]
+                [stat
+                  [assignation
+                    [z]
+                    [assign\_op
+                      [\equal]
+                    ]
+                    [to\_value
+                     [math\_operation
+                      [y]
+                      [+]
+                      [digit
+                        [5.5]
+                      ]
+                     ]
+                    ]
+                  ]
+                ]     
+              ]    
+            ]
+          ]    
+          [stat
+            [ret
+              [return]
+              [to\_value
+                [digit
+                  [0]
+                ]
+              ]
+            ]
+            [;]
+          ]         
+          [\}]
+        ]
+      ]
+    ]
+    [stat
+      [f\_d
+        [double]
+        [exec]
+        [(]
+        [parametersList
+          [double]
+          [asd]
+        ]
+        [)]
+        [codeblock
+          [\{]
+          [stat
+            [f\_d
+              [double]
+              [exec]
+              [(]
+              [parametersList
+                [double]
+                [valor]
+              ]
+              [)]
+              [codeblock
+                [\{]
+                [stat
+                  [variable\_declaration
+                    [int]
+                    [i]
+                    [\equal]
+                    [to\_value
+                      [digit
+                        [10]
+                      ]
+                    ]
+                  ]
+                  [;]
+                ]
+                [stat
+                  [while\_loop
+                    [
+                      [while]
+                      [(]
+                      [logic\_op
+                        [(]
+                        [comparation
+                          [to\_value
+                            [i]
+                          ]
+                          [\textgreater\equal]
+                          [to\_value
+                            [digit
+                              [5]
+                            ]
+                          ]
+                        ]
+                        [)]
+                      ]
+                      [)]
+                      [stat
+                        [assignation
+                          [valor]
+                          [assign\_op
+                            [\equal]
+                          ]
+                          [to\_value
+                            [math\_operation
+                             [\_x]
+                             [-]
+                             [1]
+                            ]
+                          ]
+                        ]
+                      ]
+                    ]
+                  ]
+                ]
+                [stat
+                  [ret
+                    [return]
+                    [to\_value
+                      [valor]
+                    ]
+                  ]
+                  [;]
+                ]
+                [\}]
+              ]
+            ]
+          ]
+          [\}]
+        ]
+      ]
+    ]
+  ]
+\end{forest}
+\end{document}
