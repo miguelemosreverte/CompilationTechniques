@@ -9,12 +9,12 @@ package Symbol;
  *
  * @author Migue
  */
-public class Symbol extends AbstractSymbol{
+public class VariableSymbol extends AbstractSymbol{
 
     private String value;
     
     
-    public Symbol(String in_ID, String in_type, String in_value, String in_line_number) {
+    public VariableSymbol(String in_ID, String in_type, String in_value, String in_line_number) {
         super(in_ID, in_type, in_line_number);
         value = in_value;
     }

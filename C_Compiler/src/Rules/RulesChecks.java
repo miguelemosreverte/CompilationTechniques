@@ -6,6 +6,8 @@
 package Rules;
 
 import Scope.Scope;
+import Symbol.VariableSymbol;
+import java.util.List;
 
 /**
  *
@@ -13,10 +15,25 @@ import Scope.Scope;
  */
 public class RulesChecks {
 
+    protected static void checkDangerousCastings(List<String> IDs, String lineNumber, Scope scope) throws CErrorException {
+
+    }
+
     protected static void checkVarName(String varName, String lineNumber, Scope scope) throws CErrorException {
         if (!scope.isVariableDeclared(varName)) {
             throw new CErrorException(
                     "Undeclared variable " + varName + " at line " + lineNumber);
+        }
+    }
+
+    protected static void checkVarInitialization(VariableSymbol currentSymbol, int declaredAtLine) {
+        if (((VariableSymbol) currentSymbol).getValue().isEmpty()) {
+            throw new CErrorException(
+                    "Use of uninitialized identifier \""
+                    + currentSymbol.getID()
+                    + "\" at line number "
+                    + declaredAtLine
+            );
         }
     }
 

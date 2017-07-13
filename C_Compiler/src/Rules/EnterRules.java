@@ -6,20 +6,17 @@
 package Rules;
 
 import C_ANTLR.CParser;
+import static Rules.Utils.getChildrensID_from_ParseTree;
+import static Rules.Utils.getParentFromParameterList;
 import Scope.Scope;
-import Scope.ScopeUtils;
 import Scope.ScopeUtilsDependencyInjector;
 import Symbol.AbstractSymbol;
 import Symbol.FunctionSymbol;
-import Symbol.Symbol;
-import java.util.ArrayList;
+import Symbol.VariableSymbol;
 import java.util.HashSet;
 import java.util.List;
 import java.util.NavigableMap;
 import java.util.Stack;
-import java.util.stream.Collectors;
-import org.antlr.v4.runtime.RuleContext;
-import org.antlr.v4.runtime.tree.ParseTree;
 
 /**
  *
@@ -56,8 +53,12 @@ public class EnterRules extends RulesChecks {
         checkFunctionPrototype(functionName, Integer.toString(ctx.start.getLine()), currentScope);
 
         Scope correspondingScope = ScopeUtilsDependencyInjector.getCorrespondingScope(functionName);
-        FunctionSymbol functionSymbol = ((FunctionSymbol) correspondingScope.symbols.get(functionName));
-        correspondingScope.symbols.get(functionName).toString();
+        FunctionSymbol functionSymbol = ((FunctionSymbol) currentScope.symbols.get(functionName));
+
+        if (functionSymbol == null) {
+            System.out.println("function name is " + functionName);
+            System.out.println(currentScope.symbols);
+        }
 
         if (!Utils.getParametersTypesList(ctx.parametersList().children).equals(functionSymbol.getParameters())) {
             throw new CErrorException(
@@ -89,7 +90,7 @@ public class EnterRules extends RulesChecks {
 
         Scope currentScope = symbolsTable.floorEntry(ctx.start.getLine()).getValue();
         try {
-            ((Symbol) currentScope.symbols.get(ctx.ID().getText())).setValue("initialized");
+            ((VariableSymbol) currentScope.symbols.get(ctx.ID().getText())).setValue("initialized");
 
             checkVarName(ctx.ID().getText(), Integer.toString(ctx.start.getLine()), currentScope);
         } catch (NullPointerException e) {
@@ -102,7 +103,7 @@ public class EnterRules extends RulesChecks {
         //first we get the current scope
         Scope currentScope = symbolsTable.floorEntry(ctx.start.getLine()).getValue();
 
-        List<String> childrensID = Utils.getChildrensID_from_ToValue(ctx);
+        List<String> childrensID = Utils.getChildrensID_from_ParseTree(ctx);
         childrensID.forEach(ID
                 -> {
             Integer declaredAtLine = currentScope.declaredAtLineNumber(ID);
@@ -113,82 +114,51 @@ public class EnterRules extends RulesChecks {
 
             correspondingScope.unused_symbols.remove(currentSymbol);
 
-            if (((Symbol) currentSymbol).getValue().isEmpty()) {
-                throw new CErrorException(
-                        "Use of uninitialized identifier \""
-                        + currentSymbol.getID()
-                        + "\" at line number "
-                        + declaredAtLine
-                );
+            if (currentSymbol instanceof VariableSymbol) {
+                checkVarInitialization((VariableSymbol) currentSymbol, declaredAtLine);
             }
+
         });
 
     }
 
     public static void enterVariable_declaration(CParser.Variable_declarationContext ctx) {
 
-        Scope currentScope = symbolsTable.floorEntry(ctx.start.getLine()).getValue();
-        List<String> values = ctx.to_value().isEmpty()
-                ? new ArrayList<>()
-                : ctx.to_value().stream().map(i -> i.getText()).collect(Collectors.toList());
-
-        List<String> valuesTypes = ctx.to_value().isEmpty()
-                ? new ArrayList<>()
-                : ctx.to_value().stream().map(i -> i.getClass().getName())
-                .collect(Collectors.toList());
-
-        //check for each of the values used that their returned type matches the one
-        //used in the variable declaration
-        boolean allValuesHaveCorrectType = true;
-        for (CParser.To_valueContext toValue : ctx.to_value()) {
-            allValuesHaveCorrectType = allValuesHaveCorrectType && ScopeUtilsDependencyInjector.hasDifferentTypes(ctx.VALID_C_TYPES(0).getText(), toValue);
-            if (!allValuesHaveCorrectType) {
-                break;
-            }
-        }
-
-        //Release warnings in case of truncations or char to int initializations
-        ctx.to_value().forEach(id -> {
-            id.children.forEach((ParseTree children) -> {
-                String simpleClassname = children.getClass().getSimpleName();
-                if ("DigitContext".equals(simpleClassname)) {
-                    //specify the type of digit to be either float or int
-                    simpleClassname = children.getChild(0).getClass().getSimpleName();
-                }
-                String type = ctx.VALID_C_TYPES().toString().replace("[", "").replace("]", "");
-                String newValueType = ScopeUtils.rulesContextsToType.get(simpleClassname);
-
-                if (ScopeUtils.dangerousTransformations.containsKey(newValueType)
-                        && ScopeUtils.dangerousTransformations.get(newValueType).equals(type)) {
-                    System.out.println("Warning: Converting from  " + newValueType
-                            + " to " + type + " at line " + id.start.getLine());
-
-                }
-            });
-        });
+        Scope currentScope = temporal_scopes.peek();
 
         for (int i = 0; i < ctx.ID().size(); i++) {
-            //And finally add the complete symbol to the symbols table
-            Symbol newSymbol = new Symbol(ctx.ID(i).getText(),
+            //add the complete symbol to the symbols table
+            VariableSymbol newSymbol = new VariableSymbol(ctx.ID(i).getText(),
                     (ctx.VALID_C_TYPES(i) != null) ? ctx.VALID_C_TYPES(i).toString() : "",
-                    (ctx.to_value(i) != null) ? values.get(i) : "",
+                    (ctx.to_value(i) != null) ? ctx.to_value(i).getText() : "",
                     Integer.toString(ctx.start.getLine())
             );
 
-            RuleContext parentCtx = ctx.parent;
-            //go up until the context is no longer ParametersListContext
-            while ("ParametersListContext".equals(parentCtx.getClass().getSimpleName())) {
-                parentCtx = parentCtx.parent;
-            }
+            if (ctx.parent instanceof CParser.ParametersListContext) {
+                newSymbol.setValue("MaybeWasParametrized");
+                CParser.ParametersListContext parent = (CParser.ParametersListContext) ctx.parent;
+                if (!"F_pContext".equals(getParentFromParameterList(parent))) {
+                    currentScope.addSymbol(newSymbol);
+                } else {
 
-            if (!"F_pContext".equals(parentCtx.getClass().getSimpleName())) {
+                    currentScope.addSymbol(newSymbol);
+                }
+            } else {
                 currentScope.addSymbol(newSymbol);
             }
-
             if (!"ParametersListContext".equals(ctx.parent.getClass().getSimpleName())) {
                 currentScope.unused_symbols.add(newSymbol);
             }
         }
+
+        List<String> IDs = getChildrensID_from_ParseTree(ctx);
+        //Release warnings in case of truncations or char to int initializations
+        /*if (ScopeUtils.TYPES_TO_CONVERSION_RANK.get(newValueType).compareTo(ScopeUtils.TYPES_TO_CONVERSION_RANK.get(type))
+                        < 0) {
+                    System.out.println("Warning: Converting from  " + newValueType
+                            + " to " + type + " at line " + id.start.getLine());
+
+                }*/
     }
 
     static public void enterScopeAtLineNumber(Integer lineNumber) {

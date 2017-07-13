@@ -5,7 +5,6 @@
  */
 package Scope;
 
-import C_ANTLR.CParser;
 import Symbol.AbstractSymbol;
 import java.util.HashSet;
 import java.util.NavigableMap;
@@ -20,12 +19,6 @@ public class ScopeUtilsDependencyInjector {
     private static Stack<Scope> temporal_scopes;
     private static NavigableMap<Integer, Scope> symbolsTable;
     private static HashSet<AbstractSymbol> all_unusedSymbols;
-
-    public static boolean hasDifferentTypes(String originalType, CParser.To_valueContext toValue) {
-
-        return ScopeUtils.hasDifferentTypes(originalType, toValue, symbolsTable);
-
-    }
 
     public static Scope getCorrespondingScope(String varName) {
 

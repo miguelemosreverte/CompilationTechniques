@@ -12,6 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import org.antlr.v4.runtime.RuleContext;
 import org.antlr.v4.runtime.tree.ParseTree;
 
 /**
@@ -70,16 +71,27 @@ public class Utils {
 
     }
 
-    public static List<String> getChildrensID_from_ToValue(ParseTree ctx) {
+    public static String getParentFromParameterList(CParser.ParametersListContext parameterList) {
+
+        RuleContext parentCtx = parameterList.parent;
+        //go up until the context is no longer ParametersListContext
+        while ("ParametersListContext".equals(parentCtx.getClass().getSimpleName())) {
+            parentCtx = parentCtx.parent;
+        }
+        return parentCtx.getClass().getSimpleName();
+    }
+
+    public static List<String> getChildrensID_from_ParseTree(ParseTree ctx) {
 
         List<String> ToValueChildren = new ArrayList<>();
 
         for (int index = 0; index < ctx.getChildCount(); index++) {
             try {
                 ParseTree child = ctx.getChild(index);
-                ToValueChildren.addAll(getChildrensID_from_ToValue(child));
+                ToValueChildren.addAll(getChildrensID_from_ParseTree(child));
                 if ("ID".equals(getLexerRule(child))) {
                     String varName = ((org.antlr.v4.runtime.tree.TerminalNodeImpl) child).getSymbol().getText();
+
                     ToValueChildren.add(varName);
                 }
             } catch (java.lang.ClassCastException e) {
