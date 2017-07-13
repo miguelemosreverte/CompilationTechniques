@@ -45,9 +45,10 @@ public class EnterRules extends RulesChecks {
 
     }
 
-    public static void enterF_d(CParser.F_dContext ctx) {
+    public static void enterF_d(CParser.F_dContext ctx, Runnable function) {
 
         Scope currentScope = temporal_scopes.peek();
+        function.run();
         String functionName = ctx.ID().getText();
 
         checkFunctionPrototype(functionName, Integer.toString(ctx.start.getLine()), currentScope);
@@ -59,7 +60,7 @@ public class EnterRules extends RulesChecks {
             System.out.println("function name is " + functionName);
             System.out.println(currentScope.symbols);
         }
-
+        System.out.println(symbolsTable);
         if (!Utils.getParametersTypesList(ctx.parametersList().children).equals(functionSymbol.getParameters())) {
             throw new CErrorException(
                     "The parameters from the function declaration \""

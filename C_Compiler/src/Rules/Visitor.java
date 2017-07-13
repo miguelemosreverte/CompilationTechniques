@@ -56,8 +56,7 @@ public class Visitor extends CBaseListener {
 
     @Override
     public void enterF_d(CParser.F_dContext ctx) {
-        EnterRules.enterF_d(ctx);
-        enterScope(ctx);
+        EnterRules.enterF_d(ctx, () -> enterScope(ctx));
     }
 
     @Override

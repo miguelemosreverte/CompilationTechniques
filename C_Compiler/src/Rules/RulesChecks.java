@@ -38,6 +38,7 @@ public class RulesChecks {
     }
 
     protected static void checkFunctionPrototype(String functionName, String lineNumber, Scope scope) throws CErrorException {
+
         if (!scope.isFunctionPrototyped(functionName)) {
             throw new CErrorException(
                     "Function has not been prototyped: " + functionName + " at line " + lineNumber);
