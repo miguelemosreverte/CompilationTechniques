@@ -53,7 +53,7 @@ code_block : '{' stat* '}' ;
     //   ie.: using specifically INT for the type of the FOR indexes
     //        or DIGIT for math operations)
     assign_op  :   EQUAL|OTHER_ASSIGN_OPS;
-    string : CHARS       
+    string : CHAR    
                | string '+' to_value;
     digit : integer | floating_point;    
     integer : INT;    
@@ -93,13 +93,13 @@ INCR_DECR : '--'|'++';
 COMPARACION  : '=='|'>''='?|'<''='?;
 MATH_OP : '*'|'-'|'+'|'/';
 LOGIC_OP : '||'|'&&'|'!';
-VALID_C_TYPES : 'int'|'INT'|'float'|'FLOAT'|'double'|'DOUBLE'|'char'|'CHAR'|'void'|'VOID';   
-
+VALID_C_TYPES : 'int'|'INT'|'float'|'FLOAT'|'double'|'DOUBLE'|'char'|'CHAR'|'void'|'VOID';  
 ID  :   (ALPHABET|VALID_ID_SIMBOLS)+; 
+
 INT :   [0-9]+ ;      
-FLOAT :   ([0-9]+) '.' ([0-9]+) ;
- 
-CHARS : '"' CHARS_ '"' | '\'' CHARS_ '\'';
+FLOAT :   ([0-9]+) '.' ([0-9]+) ; 
+CHAR : '"' CHARS_ '"' | '\'' CHARS_ '\'';
+
 fragment CHARS_ : (ALPHABET | VALID_ID_SIMBOLS | INT | FLOAT | ' ' )*;
 fragment ALPHABET : [a-zA-Z]+;
 fragment VALID_ID_SIMBOLS : '_'; 

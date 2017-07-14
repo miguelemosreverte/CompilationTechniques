@@ -6,7 +6,6 @@
 package Rules;
 
 import C_ANTLR.CParser;
-import static Rules.Utils.getChildrensID_from_ParseTree;
 import static Rules.Utils.getParentFromParameterList;
 import Scope.Scope;
 import Scope.ScopeUtilsDependencyInjector;
@@ -56,11 +55,6 @@ public class EnterRules extends RulesChecks {
         Scope correspondingScope = ScopeUtilsDependencyInjector.getCorrespondingScope(functionName);
         FunctionSymbol functionSymbol = ((FunctionSymbol) currentScope.symbols.get(functionName));
 
-        if (functionSymbol == null) {
-            System.out.println("function name is " + functionName);
-            System.out.println(currentScope.symbols);
-        }
-        System.out.println(symbolsTable);
         if (!Utils.getParametersTypesList(ctx.parametersList().children).equals(functionSymbol.getParameters())) {
             throw new CErrorException(
                     "The parameters from the function declaration \""
@@ -85,6 +79,9 @@ public class EnterRules extends RulesChecks {
         checkFunctionPrototype(ctx.ID().getText(), Integer.toString(ctx.start.getLine()), temporal_scopes.peek());
         checkFunctionDeclaration(ctx.ID().getText(), Integer.toString(ctx.start.getLine()), temporal_scopes.peek());
 
+        List<String> inputParametersType = Utils.getChildrensType(ctx);
+        System.out.println(inputParametersType);
+
     }
 
     public static void enterAssignation(CParser.AssignationContext ctx) {
@@ -104,7 +101,8 @@ public class EnterRules extends RulesChecks {
         //first we get the current scope
         Scope currentScope = symbolsTable.floorEntry(ctx.start.getLine()).getValue();
 
-        List<String> childrensID = Utils.getChildrensID_from_ParseTree(ctx);
+        List<String> childrensID = Utils.getChildrensID(ctx);
+
         childrensID.forEach(ID
                 -> {
             Integer declaredAtLine = currentScope.declaredAtLineNumber(ID);
@@ -152,7 +150,7 @@ public class EnterRules extends RulesChecks {
             }
         }
 
-        List<String> IDs = getChildrensID_from_ParseTree(ctx);
+        List<String> childrensID = Utils.getChildrensID(ctx);
         //Release warnings in case of truncations or char to int initializations
         /*if (ScopeUtils.TYPES_TO_CONVERSION_RANK.get(newValueType).compareTo(ScopeUtils.TYPES_TO_CONVERSION_RANK.get(type))
                         < 0) {

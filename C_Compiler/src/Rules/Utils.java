@@ -10,6 +10,7 @@ import C_ANTLR.CParser;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.antlr.v4.runtime.RuleContext;
@@ -66,8 +67,11 @@ public class Utils {
     }
 
     public static String getLexerRule(ParseTree child) {
-
-        return CLexer.VOCABULARY.getSymbolicName(((org.antlr.v4.runtime.tree.TerminalNodeImpl) child).getSymbol().getType());
+        try {
+            return CLexer.VOCABULARY.getSymbolicName(((org.antlr.v4.runtime.tree.TerminalNodeImpl) child).getSymbol().getType());
+        } catch (ClassCastException e) {
+            return "";
+        }
 
     }
 
@@ -81,24 +85,55 @@ public class Utils {
         return parentCtx.getClass().getSimpleName();
     }
 
-    public static List<String> getChildrensID_from_ParseTree(ParseTree ctx) {
+    public static List<String> applyToParseTreeChildren(ParseTree ctx, Function<ParseTree, String> lambdaFunction) {
 
         List<String> ToValueChildren = new ArrayList<>();
 
         for (int index = 0; index < ctx.getChildCount(); index++) {
-            try {
-                ParseTree child = ctx.getChild(index);
-                ToValueChildren.addAll(getChildrensID_from_ParseTree(child));
-                if ("ID".equals(getLexerRule(child))) {
-                    String varName = ((org.antlr.v4.runtime.tree.TerminalNodeImpl) child).getSymbol().getText();
 
-                    ToValueChildren.add(varName);
-                }
-            } catch (java.lang.ClassCastException e) {
+            ParseTree child = ctx.getChild(index);
+            ToValueChildren.addAll(applyToParseTreeChildren(child, lambdaFunction));
+            if (!lambdaFunction.apply(child).isEmpty()) {
+                ToValueChildren.add(lambdaFunction.apply(child));
             }
+
         }
 
         return ToValueChildren;
+    }
+
+    public static List<String> getChildrensID(ParseTree ctx) {
+        List<String> childrensID;
+        childrensID = Utils.applyToParseTreeChildren(ctx, l -> {
+            if ("ID".equals(Utils.getLexerRule(l))) {
+                return l.getText();
+            }
+            return "";
+        }
+        );
+        return childrensID;
+    }
+
+    public static List<String> getChildrensType(ParseTree ctx) {
+        List<String> childrensTypes;
+        childrensTypes = Utils.applyToParseTreeChildren(ctx, l -> {
+            if ("ID".equals(Utils.getLexerRule(l))) {
+                return l.getText();
+            } else if ("To_valueContext".equals(l.getParent().getClass().getSimpleName())) {
+                return getTypeFromAnonymusTo_value(l);
+            } else {
+                return "";
+            }
+        }
+        );
+        return childrensTypes;
+    }
+
+    public static String getTypeFromAnonymusTo_value(ParseTree ctx) {
+        while (ctx.getChildCount() > 0) {
+            ctx = ctx.getChild(0);
+        }
+        return getLexerRule(ctx).toLowerCase();
     }
 
 }

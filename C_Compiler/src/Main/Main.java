@@ -27,8 +27,8 @@ public class Main {
 
     public static void main(String args[]) {
         JFileChooser fc = new JFileChooser();
-        fc.showDialog(null, "Attach");
-        File path = fc.getSelectedFile();
+        //fc.showDialog(null, "Attach");
+        File path = new File("C:\\Users\\Migue\\Documents\\test.txt");//fc.getSelectedFile();
 
         try {
             //levantamos el archivo a procesar

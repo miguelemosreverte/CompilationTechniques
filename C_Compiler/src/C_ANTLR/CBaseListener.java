@@ -1,4 +1,4 @@
-// Generated from C:\Users\Migue\Documents\NetBeansProjects\TP2_Lemos\src\tp1_lemos\C.g4 by ANTLR 4.5.3
+// Generated from C:\Users\Migue\Documents\NetBeansProjects\TP2_Lemos\src\C_ANTLR\C.g4 by ANTLR 4.5.3
 package C_ANTLR;
 
 import org.antlr.v4.runtime.ParserRuleContext;
