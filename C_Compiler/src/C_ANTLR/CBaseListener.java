@@ -1,4 +1,4 @@
-// Generated from C:\Users\Migue\Documents\NetBeansProjects\TP2_Lemos\src\C_ANTLR\C.g4 by ANTLR 4.5.3
+// Generated from /home/miguel/Desktop/CompilationTechniques/C_Compiler/src/C_ANTLR/C.g4 by ANTLR 4.5.3
 package C_ANTLR;
 
 import org.antlr.v4.runtime.ParserRuleContext;
@@ -275,6 +275,18 @@ public class CBaseListener implements CListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitAssignation(CParser.AssignationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterId(CParser.IdContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitId(CParser.IdContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

@@ -1,4 +1,4 @@
-// Generated from C:\Users\Migue\Documents\NetBeansProjects\TP2_Lemos\src\C_ANTLR\C.g4 by ANTLR 4.5.3
+// Generated from /home/miguel/Desktop/CompilationTechniques/C_Compiler/src/C_ANTLR/C.g4 by ANTLR 4.5.3
 package C_ANTLR;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
@@ -227,6 +227,16 @@ public interface CListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitAssignation(CParser.AssignationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link CParser#id}.
+	 * @param ctx the parse tree
+	 */
+	void enterId(CParser.IdContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CParser#id}.
+	 * @param ctx the parse tree
+	 */
+	void exitId(CParser.IdContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link CParser#parametersList}.
 	 * @param ctx the parse tree
