@@ -28,8 +28,9 @@ public class Main {
     public static void main(String args[]) {
         JFileChooser fc = new JFileChooser();
         //fc.showDialog(null, "Attach");
-        File path = new File("C:\\Users\\Migue\\Documents\\test.txt");//fc.getSelectedFile();
+        File path = new File("/home/miguel/Desktop/CompilationTechniques/code examples/test.c");//fc.getSelectedFile();
 
+        
         try {
             //levantamos el archivo a procesar
             FileInputStream stream = new FileInputStream(path);

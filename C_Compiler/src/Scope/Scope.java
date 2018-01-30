@@ -27,6 +27,13 @@ public class Scope {
         this.parent = parent;
     }
 
+    public Scope getScope(String identificator) {
+        if (identificators.contains(identificator)) {
+            return this;
+        }
+        return parent == null ? null : parent.getScope(identificator);
+    }
+    
     public boolean inScope(String identificator) {
         if (identificators.contains(identificator)) {
             return true;
@@ -41,8 +48,9 @@ public class Scope {
 
     public boolean isFunctionPrototyped(String functionName) {
 
-        if (inScope(functionName)) {
-            return ((FunctionSymbol) symbols.get(functionName)).isPrototyped();
+        Scope functionScope = getScope(functionName);
+        if (functionScope != null){
+            return ((FunctionSymbol) functionScope.symbols.get(functionName)).isPrototyped();
         }
         return false;
 
@@ -50,8 +58,9 @@ public class Scope {
 
     public boolean isFunctionDeclared(String functionName) {
 
-        if (inScope(functionName)) {
-            return ((FunctionSymbol) symbols.get(functionName)).isDeclared();
+        Scope functionScope = getScope(functionName);
+        if (functionScope != null){
+            return ((FunctionSymbol) functionScope.symbols.get(functionName)).isDeclared();
         }
         return false;
 

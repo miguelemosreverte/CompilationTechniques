@@ -80,7 +80,6 @@ public class EnterRules extends RulesChecks {
         checkFunctionDeclaration(ctx.ID().getText(), Integer.toString(ctx.start.getLine()), temporal_scopes.peek());
 
         List<String> inputParametersType = Utils.getChildrensType(ctx);
-        System.out.println(inputParametersType);
 
     }
 
