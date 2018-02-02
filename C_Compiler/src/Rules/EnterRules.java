@@ -16,6 +16,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.NavigableMap;
 import java.util.Stack;
+import SymbolsTable.SymbolsTable;
 
 /**
  *
@@ -28,7 +29,9 @@ public class EnterRules extends RulesChecks {
     static public HashSet<AbstractSymbol> all_unusedSymbols;
 
     public static void enterF_p(CParser.F_pContext ctx) {
-
+        
+                
+                
         Scope currentScope = temporal_scopes.peek();
         String functionName = ctx.ID().getText();
 
@@ -86,13 +89,12 @@ public class EnterRules extends RulesChecks {
     public static void enterAssignation(CParser.AssignationContext ctx) {
 
         Scope currentScope = symbolsTable.floorEntry(ctx.start.getLine()).getValue();
-        try {
-            ((VariableSymbol) currentScope.symbols.get(ctx.ID().getText())).setValue("initialized");
-
-            checkVarName(ctx.ID().getText(), Integer.toString(ctx.start.getLine()), currentScope);
-        } catch (NullPointerException e) {
-        }
-
+        
+        VariableSymbol currentVariable =  ((VariableSymbol) currentScope.symbols.get(ctx.ID().getText()));
+        currentVariable.setValue("initialized");
+            
+        checkVarName(ctx.ID().getText(), Integer.toString(ctx.start.getLine()), currentScope);
+        
     }
 
     public static void enterTo_value(CParser.To_valueContext ctx) throws CErrorException {
@@ -175,6 +177,11 @@ public class EnterRules extends RulesChecks {
         EnterRules.symbolsTable = symbolsTable;
         EnterRules.all_unusedSymbols = all_unusedSymbols;
         EnterRules.temporal_scopes = temporal_scopes;
+
+    }
+    
+    public static String printSymbolsTable() {
+        return symbolsTable.toString();
 
     }
 

@@ -8,7 +8,8 @@ package Main;
 import C_ANTLR.CBaseListener;
 import C_ANTLR.CLexer;
 import C_ANTLR.CParser;
-import Rules.Visitor;
+import IntermediateCodeGeneration.IntermediateCodeGenerator;
+import Visitor.Visitor;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -21,7 +22,7 @@ import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
 /**
  *
- * @author ramiro
+ * @author miguel
  */
 public class Main {
 
@@ -56,9 +57,12 @@ public class Main {
             ParseTreeWalker.DEFAULT.walk(visitor, tree);
 
             visitor.printUnusedSymbols();
-
+            visitor.printSymbolsTable();
+            visitor.printIntermediateCode();
+            
         } catch (IOException | RecognitionException e) {
             //cualquier error, capturamos la exception.
+            System.out.println(e.toString());
         }
     }
 

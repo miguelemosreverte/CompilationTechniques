@@ -65,14 +65,13 @@ variable_declaration : VALID_C_TYPES ID (EQUAL to_value)? (',' VALID_C_TYPES? ID
 
 //=======================================================
 //THINGS that are really reusable (they don't end with semicolon either)
-to_value : id | digit | string | f_c | math_operation; 
+to_value : ID | digit | string | f_c | math_operation; 
 math_operation : '('? (digit|ID|f_c) (MATH_OP (digit|ID|f_c))+ ')'?;
 comparation : to_value COMPARACION to_value;
 logic_op : '('? comparation ')'? (LOGIC_OP logic_op)?;
-assignation : ID (assign_op to_value)+ | ID INCR_DECR;
+assignation : ID (assign_op to_value) | ID INCR_DECR;
 
 
-id : ID;
 
 
 //=======================================================

@@ -41,22 +41,22 @@ public class AbstractSymbol {
     public String toString(){ 
         
         Field[] fields = this.getClass().getDeclaredFields();//REFLECTION AT LAST!
-        String message= type + " " + ID +  " ";
+        String message= type + " " + ID;
         
         for (Field field : fields){            
             field.setAccessible(true);
             try {
                 Object value = field.get(this);
 
-                if (! field.getName().equals("line_number")) {
-                    message += field.getName() + value.toString() + " ";
+                if (!value.toString().isEmpty()) {
+                    message += "; " + field.getName() + " " + value.toString();
                 }
             
             } catch (IllegalArgumentException | IllegalAccessException ex) {
                 Logger.getLogger(AbstractSymbol.class.getName()).log(Level.SEVERE, null, ex);
             }            
         }
-        return message + "declared at line "+line_number;  
+        return message + "; declared at line " + line_number;  
     } 
     
     

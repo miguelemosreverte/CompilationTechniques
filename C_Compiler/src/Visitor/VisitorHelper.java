@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Rules;
+package Visitor;
 
+import SymbolsTable.SymbolsTable;
+import Rules.EnterRules;
 import Scope.Scope;
 import Scope.ScopeUtilsDependencyInjector;
 import Symbol.AbstractSymbol;
@@ -19,12 +21,17 @@ import java.util.TreeMap;
  */
 public class VisitorHelper {
 
-    private final Stack<Scope> temporal_scopes = new Stack<>();
-    private final NavigableMap<Integer, Scope> symbolsTable = new TreeMap<>();
-    private final HashSet<AbstractSymbol> all_unusedSymbols = new HashSet<>();
+    private final Stack<Scope> temporal_scopes;
+    private final HashSet<AbstractSymbol> all_unusedSymbols;
+    private final NavigableMap<Integer, Scope> symbolsTable;
+
 
     public VisitorHelper() {
-
+        this.temporal_scopes = SymbolsTable.INSTANCE.temporal_scopes;
+        this.all_unusedSymbols = SymbolsTable.INSTANCE.all_unusedSymbols;
+        this.symbolsTable = SymbolsTable.INSTANCE.symbolsTable;
+        
+                
         temporal_scopes.push(new Scope(null));
         symbolsTable.put(0, temporal_scopes.peek());
 

@@ -3,10 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Rules;
+package Visitor;
 
 import C_ANTLR.CBaseListener;
 import C_ANTLR.CParser;
+import IntermediateCodeGeneration.IntermediateCodeGenerator;
+import Rules.CErrorException;
+import Rules.EnterRules;
 
 /**
  *
@@ -23,6 +26,7 @@ public class Visitor extends CBaseListener {
     public void enterVariable_declaration(CParser.Variable_declarationContext ctx) {
 
         EnterRules.enterVariable_declaration(ctx);
+        IntermediateCodeGenerator.enterVariable_declaration(ctx);
 
     }
 
@@ -51,6 +55,7 @@ public class Visitor extends CBaseListener {
     public void enterAssignation(CParser.AssignationContext ctx) throws CErrorException {
 
         EnterRules.enterAssignation(ctx);
+        IntermediateCodeGenerator.enterAssignation(ctx);
 
     }
 
@@ -119,6 +124,17 @@ public class Visitor extends CBaseListener {
             System.out.println("Warning: Unused symbols \n   "
                     + EnterRules.all_unusedSymbols.toString().replace(", ", "\n   ").replace("[", "").replace("]", ""));
         }
+    }
+    
+    public void printSymbolsTable() {
+        System.out.println(EnterRules.printSymbolsTable());
+
+    }
+    
+    
+    public void printIntermediateCode() {
+        IntermediateCodeGenerator.printIntermediateCode();
+
     }
 
 }
