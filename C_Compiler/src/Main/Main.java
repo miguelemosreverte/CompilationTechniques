@@ -57,7 +57,7 @@ public class Main {
             ParseTreeWalker.DEFAULT.walk(visitor, tree);
 
             visitor.printUnusedSymbols();
-            visitor.printSymbolsTable();
+            //visitor.printSymbolsTable();
             visitor.printIntermediateCode();
             
         } catch (IOException | RecognitionException e) {
