@@ -26,29 +26,9 @@ public class IntermediateCodeGenerator{
     
     
     
-    /*
+   
     
-    
-    mathPass(x, b*b + 2 * f(b))
-    
-    t4:= f(b)
-    t3:= 2 * t4       
-    t2:= b * b
-    t1:= t2 + t3 
-    x:= t0
-    
-    
-    
-    
-                        
-    
-    
-    
-    
-    
-    
-    
-    */
+    static private Integer globalIdentifier = 0;
     static private NavigableMap<Integer, String> intermediateCode_fromLinesToCode= new TreeMap<>();
     static private String intermediateCode = "";
     
@@ -62,115 +42,159 @@ public class IntermediateCodeGenerator{
         
     }
     
-    public static void enterF_p(CParser.F_pContext ctx) {
+    public static void enterF_p(CParser.F_pContext ct) {
         
                 
 
     }
 
-    public static void enterF_d(CParser.F_dContext ctx, Runnable function) {
+    public static void enterF_d(CParser.F_dContext ct, Runnable function) {
 
     }
 
     
-    public static void enterF_c(CParser.F_cContext ctx) {
+    public static void enterF_c(CParser.F_cContext ct) {
 
         
     }
 
-    public static void enterAssignation(CParser.AssignationContext ctx) {
-        Integer lineNumber = ctx.start.getLine();
-        String prefix = ctx.ID() + " := ";
-        String code = to_value_TAC(prefix, ctx.to_value());
+    public static void enterAssignation(CParser.AssignationContext ct) {
+        Integer lineNumber = ct.start.getLine();
+        String prefix = ct.ID() + " := ";
+        String code = to_value_TAC("", ct.to_value());
         intermediateCode_fromLinesToCode.put(lineNumber, code);
         intermediateCode += code + "\n";
+        
     }
 
-    public static void enterTo_value(CParser.To_valueContext ctx) {
-        Integer lineNumber = ctx.start.getLine();
-        String code = ctx.getText();
+    public static void enterTo_value(CParser.To_valueContext ct) {
+        /*
+        Integer lineNumber = ct.start.getLine();
+        String code = ct.getText();
         intermediateCode_fromLinesToCode.put(lineNumber, code);
         intermediateCode += code + "\n";
+        */
 
     }
     
-    public static String math_operation_TAC(CParser.Math_operationContext ctx){
+    
+    public static String parseUnappliedMath(CParser.Math_operandContext operand, CParser.UnappliedContext unapplied){
         String result = "";
         
-        result += "\n---math_operation_TAC\n";
-        
-       
-        
-        List<String> names = new ArrayList();
-        names.add("operand1");
-        names.add("operation");
-        names.add("operand2");
-        
-        List<Quad> quads = new ArrayList();
-        
-        
-        int identifier = 1;
-        Quad quad = new Quad();
-                        
-
-        quad.addByIndex(0, "t_0" + ":=");        
-        for (int i = 0; i < 3; i++){
-            quad.addByIndex(i + 1, ctx.children.get(i).getText());
-        }
-        quads.add(quad);
-        quad = new Quad();
-                
-        
-        int ammountOfElementsToAddPerQuad = 2;
-        for (int i = 3; i < ctx.children.size(); i++){
+        //TODO prepare for future op categories, ie.: tiny_op() 
+        //low priority: That's not going to be needed in the future
+        if (unapplied.low_op() != null) {
             
-            int offset = (i-1) % ammountOfElementsToAddPerQuad;
-          
-            quad.addByIndex(offset + 2, ctx.children.get(i).getText());
-                
-            if (offset == ammountOfElementsToAddPerQuad - 1){
-                quad.addByIndex(0, "t_" + identifier + ":=");
-                quad.addByIndex(1, "t_" + String.valueOf(identifier - 1));
-                
-                
-                quads.add(quad);
-                quad = new Quad();
-                
-                identifier += 1;        
+            
+            result += math_operation_TAC(unapplied.low_op().math_operation());
+            
+            
+            
+            String operand2 = "t"+(globalIdentifier-1);
+            if (unapplied.low_op().math_operation().unapplied() == null
+                    && unapplied.low_op().math_operation().math_operand().grouped() == null){
+                operand2 = unapplied.low_op().math_operation().math_operand().getText();
             }
             
             
+            
+            String operand1 = "";
+            if (operand.children.get(0) instanceof CParser.DigitContext)
+                operand1 = operand.getText();// + operand.children.get(0).getClass().getSimpleName();
+            else operand1 = "t"+(globalIdentifier-1);
+            
+            
+            
+            result += "t" +globalIdentifier+":=" + operand1 + unapplied.low_op().MATH_OP_LOW_PRIORITY().getText() 
+                    + operand2;
+            
+            
+            
+            globalIdentifier += 1;
+            
+            
+            String splittedResult[] = result.split("\\r?\\n");
+            System.out.println("low_op:\n" + splittedResult[splittedResult.length-1] + "\n");
+       
         }
         
-        for (Quad q : quads){
-            result += q.toString() + "\n"; 
-        
+        if (unapplied.medium_op()!= null) {
+            result += math_operation_TAC(unapplied.medium_op().math_operation());
+            
+            
+            
+            String operand2 = "t"+(globalIdentifier-1);
+            if (unapplied.medium_op().math_operation().unapplied() == null){
+                operand2 = unapplied.medium_op().math_operation().math_operand().getText();
+            }
+            
+            
+            result += "t"+globalIdentifier+":=" + operand.getText() + unapplied.medium_op().MATH_OP_MEDIUM_PRIORITY().getText() 
+                    + operand2;
+            globalIdentifier += 1;
+            
+            String splittedResult[] = result.split("\\r?\\n");
+            System.out.println("medium_op:\n" + splittedResult[splittedResult.length-1] + "\n");
         }
-        result += "---";
+        
+        
+     
+        return result + "\n";
+    }
+    
+    public static String parseGroupedMath(CParser.GroupedContext grouped){
+        
+        return math_operation_TAC(grouped.math_operation());
+    }
+    
+    public static String parseMathOperand(CParser.Math_operandContext operand){
+        String result = "";
+        if (operand.grouped() != null){
+            System.out.println("parseGroupedMath");
+            result += parseGroupedMath(operand.grouped());
+        }
+        else{            
+            //System.out.println(operand.getText() + "???");
+        }
         return result;
     }
     
-    public static String to_value_TAC(String return_to, CParser.To_valueContext ctx) {
+    public static String math_operation_TAC(CParser.Math_operationContext ct){
+        String result = "";
+        
+        
+        //result += child.getText() + child.getClass().getSimpleName() + ",";
+        result += parseMathOperand(ct.math_operand());
+        System.out.println("parseMathOperand was called");
+        
+        if (ct.unapplied() != null){
+            result += parseUnappliedMath(ct.math_operand(), ct.unapplied());
+            System.out.println("parseUnappliedMath was called");
+        }
+        return result;
+    }
+    
+    public static String to_value_TAC(String return_to, CParser.To_valueContext ct) {
         
         List<String> TAC_array = new ArrayList <>();
-        if (ctx.math_operation() != null){
+        if (ct.math_operation()!= null){
             
             
-            TAC_array.add(math_operation_TAC(ctx.math_operation()));
+            TAC_array.add(math_operation_TAC(ct.math_operation()));
         
         }
-        if (ctx.f_c()!= null){
+        if (ct.f_c()!= null){
             
             
-            TAC_array.add("fc" + ctx.f_c().toString());
+            TAC_array.add("fc" + ct.f_c().toString());
         
         }
-        if (ctx.digit() != null){
-            TAC_array.add("digit " + ctx.getText());
+        if (ct.digit() != null){
+            TAC_array.add("digit " + ct.getText());
         }
         
-        if (ctx.ID()!= null){
-            TAC_array.add("ID " + ctx.getText());
+        if (ct.ID()!= null){
+            TAC_array.add("ID " + ct.getText());
         }
         
         
@@ -180,16 +204,16 @@ public class IntermediateCodeGenerator{
         return String.join("\n", TAC_array);
     }
 
-    public static void enterVariable_declaration(CParser.Variable_declarationContext ctx) {
+    public static void enterVariable_declaration(CParser.Variable_declarationContext ct) {
         List<String> codeList = new ArrayList<>() ;
-        for (int i = 0; i < ctx.ID().size(); i++) {
-            String prefix = ctx.ID(i) + " := ";
-            String code = to_value_TAC(prefix, ctx.to_value(i));
+        for (int i = 0; i < ct.ID().size(); i++) {
+            String prefix = ct.ID(i) + " := ";
+            String code = to_value_TAC(prefix, ct.to_value(i));
             codeList.add(code);
             
         }
         
-        Integer lineNumber = ctx.start.getLine();
+        Integer lineNumber = ct.start.getLine();
         intermediateCode_fromLinesToCode.put(lineNumber, String.join("\n", codeList));
         intermediateCode += String.join("\n", codeList) + "\n";
         

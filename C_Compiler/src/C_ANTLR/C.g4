@@ -47,16 +47,13 @@ f_d : VALID_C_TYPES ID '(' parametersList? ')' code_block ;
 code_block : '{' stat* '}' ;
 
 
-    //=======================================================
-    //COMPOSED EXPRESSIONS
-    // (compositing to parse rules allows for a finer granularity,
-    //   ie.: using specifically INT for the type of the FOR indexes
-    //        or DIGIT for math operations)
-    assign_op  :   EQUAL|OTHER_ASSIGN_OPS;
-    string : CHAR;
-    digit : integer | floating_point;    
-    integer : INT;    
-    floating_point : FLOAT;      
+//=======================================================
+//COMPOSED EXPRESSIONS
+// (compositing to parse rules allows for a finer granularity,
+//   ie.: using specifically INT for the type of the FOR indexes
+//        or DIGIT for math operations)
+assign_op  :   EQUAL|OTHER_ASSIGN_OPS;
+string : CHAR;    
 
 // f_c <-- function_call
 f_c : ID '(' inputParametersList ')';  
@@ -66,10 +63,55 @@ variable_declaration : VALID_C_TYPES ID (EQUAL to_value)? (',' VALID_C_TYPES? ID
 //=======================================================
 //THINGS that are really reusable (they don't end with semicolon either)
 to_value : ID | digit | string | f_c | math_operation; 
-math_operation : '('? (digit|ID|f_c) (MATH_OP (digit|ID|f_c))+ ')'?;
 comparation : to_value COMPARACION to_value;
 logic_op : '('? comparation ')'? (LOGIC_OP logic_op)?;
 assignation : ID (assign_op to_value) | ID INCR_DECR;
+
+//=======================================================
+//and here comes math, it was neccesary to improve the grammar to
+//make priorities among the operators
+/*
+
+math_operation : '('? math_operator (math_operation_high | math_operation_medium | math_operation_low)+ ')'? ;
+math_operation_high :  (MATH_OP_HIGH_PRIORITY math_operator)+;
+math_operation_medium :  (MATH_OP_HIGH_PRIORITY math_operator)+;
+math_operation_low :  (MATH_OP_HIGH_PRIORITY math_operator)+;
+math_operator: digit|ID|f_c;
+
+MATH_OP_HIGH_PRIORITY : '*'| '/';
+MATH_OP_MEDIUM_PRIORITY : '^';
+MATH_OP_LOW_PRIORITY : '-'|'+';
+
+
+*/
+
+
+
+
+
+unapplied : (low_op|medium_op|high_op) ;
+
+low_op :  (MATH_OP_LOW_PRIORITY math_operation);
+medium_op :  (MATH_OP_MEDIUM_PRIORITY math_operation);
+high_op :  (MATH_OP_HIGH_PRIORITY math_operation);
+
+
+math_operation : math_operand unapplied?;
+math_operand : digit|ID|f_c|grouped ;
+grouped : '(' math_operation ')';
+
+
+MATH_OP_MEDIUM_PRIORITY : '*'| '/';
+MATH_OP_HIGH_PRIORITY : '^';
+MATH_OP_LOW_PRIORITY : '-'|'+';
+
+
+
+digit : integer | floating_point;    
+integer : INT;    
+floating_point : FLOAT;  
+
+
 
 
 
@@ -92,7 +134,6 @@ EQUAL : '=';
 OTHER_ASSIGN_OPS : '*='|'+='|'-='|'/=';
 INCR_DECR : '--'|'++';
 COMPARACION  : '=='|'>''='?|'<''='?;
-MATH_OP : '*'|'-'|'+'|'/';
 LOGIC_OP : '||'|'&&'|'!';
 VALID_C_TYPES : 'int'|'INT'|'float'|'FLOAT'|'double'|'DOUBLE'|'char'|'CHAR'|'void'|'VOID';  
 ID  :   (ALPHABET|VALID_ID_SIMBOLS)+; 

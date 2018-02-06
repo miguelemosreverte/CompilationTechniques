@@ -1,12 +1,7 @@
+double y = 0;
 
-int main (void);
-
-int main (void) {
-    double y = 1, x = 2;
-    
-    y = (1 + 2 * 2 * 2 + 2);
+y = (1 + 2 * 3) 
+    + 4 * 5
+    + (6+7*8);
 
 
-
-    return 0;
-}

@@ -128,36 +128,6 @@ public interface CListener extends ParseTreeListener {
 	 */
 	void exitString(CParser.StringContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link CParser#digit}.
-	 * @param ctx the parse tree
-	 */
-	void enterDigit(CParser.DigitContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link CParser#digit}.
-	 * @param ctx the parse tree
-	 */
-	void exitDigit(CParser.DigitContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link CParser#integer}.
-	 * @param ctx the parse tree
-	 */
-	void enterInteger(CParser.IntegerContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link CParser#integer}.
-	 * @param ctx the parse tree
-	 */
-	void exitInteger(CParser.IntegerContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link CParser#floating_point}.
-	 * @param ctx the parse tree
-	 */
-	void enterFloating_point(CParser.Floating_pointContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link CParser#floating_point}.
-	 * @param ctx the parse tree
-	 */
-	void exitFloating_point(CParser.Floating_pointContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link CParser#f_c}.
 	 * @param ctx the parse tree
 	 */
@@ -188,16 +158,6 @@ public interface CListener extends ParseTreeListener {
 	 */
 	void exitTo_value(CParser.To_valueContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link CParser#math_operation}.
-	 * @param ctx the parse tree
-	 */
-	void enterMath_operation(CParser.Math_operationContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link CParser#math_operation}.
-	 * @param ctx the parse tree
-	 */
-	void exitMath_operation(CParser.Math_operationContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link CParser#comparation}.
 	 * @param ctx the parse tree
 	 */
@@ -227,6 +187,106 @@ public interface CListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitAssignation(CParser.AssignationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link CParser#unapplied}.
+	 * @param ctx the parse tree
+	 */
+	void enterUnapplied(CParser.UnappliedContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CParser#unapplied}.
+	 * @param ctx the parse tree
+	 */
+	void exitUnapplied(CParser.UnappliedContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link CParser#low_op}.
+	 * @param ctx the parse tree
+	 */
+	void enterLow_op(CParser.Low_opContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CParser#low_op}.
+	 * @param ctx the parse tree
+	 */
+	void exitLow_op(CParser.Low_opContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link CParser#medium_op}.
+	 * @param ctx the parse tree
+	 */
+	void enterMedium_op(CParser.Medium_opContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CParser#medium_op}.
+	 * @param ctx the parse tree
+	 */
+	void exitMedium_op(CParser.Medium_opContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link CParser#high_op}.
+	 * @param ctx the parse tree
+	 */
+	void enterHigh_op(CParser.High_opContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CParser#high_op}.
+	 * @param ctx the parse tree
+	 */
+	void exitHigh_op(CParser.High_opContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link CParser#math_operation}.
+	 * @param ctx the parse tree
+	 */
+	void enterMath_operation(CParser.Math_operationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CParser#math_operation}.
+	 * @param ctx the parse tree
+	 */
+	void exitMath_operation(CParser.Math_operationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link CParser#math_operand}.
+	 * @param ctx the parse tree
+	 */
+	void enterMath_operand(CParser.Math_operandContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CParser#math_operand}.
+	 * @param ctx the parse tree
+	 */
+	void exitMath_operand(CParser.Math_operandContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link CParser#grouped}.
+	 * @param ctx the parse tree
+	 */
+	void enterGrouped(CParser.GroupedContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CParser#grouped}.
+	 * @param ctx the parse tree
+	 */
+	void exitGrouped(CParser.GroupedContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link CParser#digit}.
+	 * @param ctx the parse tree
+	 */
+	void enterDigit(CParser.DigitContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CParser#digit}.
+	 * @param ctx the parse tree
+	 */
+	void exitDigit(CParser.DigitContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link CParser#integer}.
+	 * @param ctx the parse tree
+	 */
+	void enterInteger(CParser.IntegerContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CParser#integer}.
+	 * @param ctx the parse tree
+	 */
+	void exitInteger(CParser.IntegerContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link CParser#floating_point}.
+	 * @param ctx the parse tree
+	 */
+	void enterFloating_point(CParser.Floating_pointContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CParser#floating_point}.
+	 * @param ctx the parse tree
+	 */
+	void exitFloating_point(CParser.Floating_pointContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link CParser#parametersList}.
 	 * @param ctx the parse tree
