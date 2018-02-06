@@ -89,17 +89,21 @@ MATH_OP_LOW_PRIORITY : '-'|'+';
 
 
 
-unapplied : (low_op|medium_op|high_op) ;
-
-low_op :  (MATH_OP_LOW_PRIORITY math_operation);
-medium_op :  (MATH_OP_MEDIUM_PRIORITY math_operation);
-high_op :  (MATH_OP_HIGH_PRIORITY math_operation);
 
 
-math_operation : math_operand unapplied?;
+math_operation : sum;
+sum : product unapplied_low_op*;
+product : factor unapplied_medium_op*;
+factor : math_operand unapplied_high_op*;
+
 math_operand : digit|ID|f_c|grouped ;
 grouped : '(' math_operation ')';
 
+
+
+unapplied_low_op :  (MATH_OP_LOW_PRIORITY product);
+unapplied_medium_op :  (MATH_OP_MEDIUM_PRIORITY factor);
+unapplied_high_op :  (MATH_OP_HIGH_PRIORITY math_operand);
 
 MATH_OP_MEDIUM_PRIORITY : '*'| '/';
 MATH_OP_HIGH_PRIORITY : '^';

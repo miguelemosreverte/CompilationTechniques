@@ -188,46 +188,6 @@ public interface CListener extends ParseTreeListener {
 	 */
 	void exitAssignation(CParser.AssignationContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link CParser#unapplied}.
-	 * @param ctx the parse tree
-	 */
-	void enterUnapplied(CParser.UnappliedContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link CParser#unapplied}.
-	 * @param ctx the parse tree
-	 */
-	void exitUnapplied(CParser.UnappliedContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link CParser#low_op}.
-	 * @param ctx the parse tree
-	 */
-	void enterLow_op(CParser.Low_opContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link CParser#low_op}.
-	 * @param ctx the parse tree
-	 */
-	void exitLow_op(CParser.Low_opContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link CParser#medium_op}.
-	 * @param ctx the parse tree
-	 */
-	void enterMedium_op(CParser.Medium_opContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link CParser#medium_op}.
-	 * @param ctx the parse tree
-	 */
-	void exitMedium_op(CParser.Medium_opContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link CParser#high_op}.
-	 * @param ctx the parse tree
-	 */
-	void enterHigh_op(CParser.High_opContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link CParser#high_op}.
-	 * @param ctx the parse tree
-	 */
-	void exitHigh_op(CParser.High_opContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link CParser#math_operation}.
 	 * @param ctx the parse tree
 	 */
@@ -237,6 +197,36 @@ public interface CListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitMath_operation(CParser.Math_operationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link CParser#sum}.
+	 * @param ctx the parse tree
+	 */
+	void enterSum(CParser.SumContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CParser#sum}.
+	 * @param ctx the parse tree
+	 */
+	void exitSum(CParser.SumContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link CParser#product}.
+	 * @param ctx the parse tree
+	 */
+	void enterProduct(CParser.ProductContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CParser#product}.
+	 * @param ctx the parse tree
+	 */
+	void exitProduct(CParser.ProductContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link CParser#factor}.
+	 * @param ctx the parse tree
+	 */
+	void enterFactor(CParser.FactorContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CParser#factor}.
+	 * @param ctx the parse tree
+	 */
+	void exitFactor(CParser.FactorContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link CParser#math_operand}.
 	 * @param ctx the parse tree
@@ -257,6 +247,36 @@ public interface CListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitGrouped(CParser.GroupedContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link CParser#unapplied_low_op}.
+	 * @param ctx the parse tree
+	 */
+	void enterUnapplied_low_op(CParser.Unapplied_low_opContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CParser#unapplied_low_op}.
+	 * @param ctx the parse tree
+	 */
+	void exitUnapplied_low_op(CParser.Unapplied_low_opContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link CParser#unapplied_medium_op}.
+	 * @param ctx the parse tree
+	 */
+	void enterUnapplied_medium_op(CParser.Unapplied_medium_opContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CParser#unapplied_medium_op}.
+	 * @param ctx the parse tree
+	 */
+	void exitUnapplied_medium_op(CParser.Unapplied_medium_opContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link CParser#unapplied_high_op}.
+	 * @param ctx the parse tree
+	 */
+	void enterUnapplied_high_op(CParser.Unapplied_high_opContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CParser#unapplied_high_op}.
+	 * @param ctx the parse tree
+	 */
+	void exitUnapplied_high_op(CParser.Unapplied_high_opContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link CParser#digit}.
 	 * @param ctx the parse tree
