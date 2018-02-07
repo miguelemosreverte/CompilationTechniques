@@ -12,24 +12,24 @@ package IntermediateCodeGeneration;
 public class MathTuple<T0, T1> {
 
     public final String acumulatedIntermediateCode;
-    public final Integer nextID;
+    public final Integer ID;
 
-    public MathTuple(String acumulatedIntermediateCode, Integer nextID) {
+    public MathTuple(String acumulatedIntermediateCode, Integer ID) {
         this.acumulatedIntermediateCode = acumulatedIntermediateCode;
-        this.nextID = nextID;
+        this.ID = ID;
     }
 
     MathTuple() {
         this.acumulatedIntermediateCode = "";
-        this.nextID = 0;
+        this.ID = 0;
     }
     
     MathTuple set_acumulatedIntermediateCode(String code){
-        return new MathTuple(this.acumulatedIntermediateCode + code, this.nextID);
+        return new MathTuple(this.acumulatedIntermediateCode + code, this.ID);
     }
     
-    MathTuple set_nextID(Integer nextID){
-        return new MathTuple(this.acumulatedIntermediateCode, nextID);
+    MathTuple set_ID(Integer ID){
+        return new MathTuple(this.acumulatedIntermediateCode, ID);
     }
     
 }

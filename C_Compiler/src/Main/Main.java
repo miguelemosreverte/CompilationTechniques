@@ -8,7 +8,6 @@ package Main;
 import C_ANTLR.CBaseListener;
 import C_ANTLR.CLexer;
 import C_ANTLR.CParser;
-import IntermediateCodeGeneration.IntermediateCodeGenerator;
 import Visitor.Visitor;
 import java.io.File;
 import java.io.FileInputStream;
@@ -72,7 +71,7 @@ public class Main {
             frame.add(panel);
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setSize(800,800);
-            frame.setVisible(true);
+            //frame.setVisible(true);
         
         
         

@@ -7,16 +7,10 @@ package IntermediateCodeGeneration;
 
 import C_ANTLR.CParser;
 import static IntermediateCodeGeneration.MathExpressionParsers.parseMath;
-import Scope.Scope;
-import Symbol.AbstractSymbol;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.NavigableMap;
-import java.util.Stack;
 import java.util.TreeMap;
-import org.antlr.v4.runtime.ParserRuleContext;
-import org.antlr.v4.runtime.tree.ParseTree;
 
 /**
  *

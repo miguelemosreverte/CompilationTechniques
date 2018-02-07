@@ -21,10 +21,7 @@ public class MathExpressionParsers {
             MathTuple<String,Integer>  tuple, 
             CParser.Unapplied_low_opContext low){
         
-        tuple = tuple.set_acumulatedIntermediateCode(low.MATH_OP_LOW_PRIORITY().getText());
-        
         tuple = parseProduct(tuple, low.product());
-        
         return tuple;
     }
     
@@ -58,7 +55,6 @@ public class MathExpressionParsers {
         parseGroupedMath(
             MathTuple<String,Integer>  tuple, 
             CParser.GroupedContext grouped){
-        
         return parseMath(tuple, grouped.math_operation());
     }
     
@@ -72,7 +68,7 @@ public class MathExpressionParsers {
             tuple = parseGroupedMath(tuple, operand.grouped());
         }
         else{
-            tuple = tuple.set_acumulatedIntermediateCode(operand.getText() + "\n");
+            tuple = tuple.set_acumulatedIntermediateCode(operand.getText());
         }
         
         return tuple;
@@ -95,38 +91,76 @@ public class MathExpressionParsers {
             MathTuple<String,Integer>  tuple, 
             CParser.ProductContext product){
         
-        tuple = parseFactor(tuple, product.factor());
+       
+        Integer medium_op_counter = 0;
+        
         
         for (CParser.Unapplied_medium_opContext medium_op : product.unapplied_medium_op()){
             
-            tuple = tuple.set_nextID(tuple.nextID + 1);
-            String oldID = "t" + String.valueOf(tuple.nextID - 1);
-            tuple = tuple.set_acumulatedIntermediateCode("t" + tuple.nextID + ":=" + oldID);
-            tuple = parseUnapplied_Medium_Op(tuple, medium_op);
-        }
+            if (medium_op_counter == 0){
+                tuple = tuple.set_ID(tuple.ID + 1);
+                tuple = tuple.set_acumulatedIntermediateCode("\nt" + tuple.ID + ":=");
+                
+
+                tuple = parseFactor(tuple, product.factor());
+                Integer givenID = tuple.ID;
         
+        
+                tuple = parseUnapplied_Medium_Op(tuple, medium_op);
+                givenID = tuple.ID;
+            }
+            else{
+                Integer givenID = tuple.ID;
+                tuple = tuple.set_ID(tuple.ID + 1);
+                tuple = tuple.set_acumulatedIntermediateCode("\nt" + tuple.ID + ":=t" + givenID);
+                tuple = parseUnapplied_Medium_Op(tuple, medium_op);
+                givenID = tuple.ID;
+            }        
+            medium_op_counter += 1;
+            
+        }
         return tuple;
-    }
+    }    
     
-    
+        
     public static MathTuple<String,Integer> 
         parseSum(
             MathTuple<String,Integer> tuple, 
             CParser.SumContext sum){
         
-        tuple = parseProduct(tuple, sum.product());
+        //leaving this for later.
+        //tuple = parseProduct(tuple, sum.product());  
         
         
         
+        Integer low_op_counter = 0;
         for (CParser.Unapplied_low_opContext low_op : sum.unapplied_low_op()){
             
-            tuple = tuple.set_nextID(tuple.nextID + 1);
-            String oldID = "t" + String.valueOf(tuple.nextID - 1);
-            tuple = tuple.set_acumulatedIntermediateCode("t" + tuple.nextID + ":=" + oldID);
+            Integer beforeID = tuple.ID;
             tuple = parseUnapplied_Low_Op(tuple, low_op);
+            Integer givenID = tuple.ID;
+                
+            if (low_op_counter == 0){
+                
+                tuple = tuple.set_ID(tuple.ID + 1);
+                tuple = tuple.set_acumulatedIntermediateCode("\nt" + tuple.ID + ":=" + sum.product().getText());
+                
+            }
+            else{
+                
+                tuple = tuple.set_ID(tuple.ID + 1);
+                tuple = tuple.set_acumulatedIntermediateCode("\nt" + tuple.ID + ":=t" + beforeID);
+                
+            }
+            low_op_counter += 1;
+            
+            
+            String TAD = low_op.MATH_OP_LOW_PRIORITY().getText() + "t"+givenID;
+            tuple = tuple.set_acumulatedIntermediateCode(TAD);
+        
         }
         
-        
+        //tuple = parseProduct(tuple, sum.product());  
         return tuple;
     }
     
