@@ -128,8 +128,6 @@ public class MathExpressionParsers {
             MathTuple<String,Integer> tuple, 
             CParser.SumContext sum){
         
-        //leaving this for later.
-        //tuple = parseProduct(tuple, sum.product());  
         
         
         
@@ -142,21 +140,32 @@ public class MathExpressionParsers {
                 
             if (low_op_counter == 0){
                 
-                tuple = tuple.set_ID(tuple.ID + 1);
-                tuple = tuple.set_acumulatedIntermediateCode("\nt" + tuple.ID + ":=" + sum.product().getText());
+                if (sum.product().unapplied_medium_op().isEmpty()){
+
+                    tuple = tuple.set_ID(tuple.ID + 1);
+                    tuple = tuple.set_acumulatedIntermediateCode("\nt" + tuple.ID + ":=" + sum.product().getText());
+                }
+                else{
+                    Integer beforeID2 = tuple.ID;
+                    tuple = parseProduct(tuple, sum.product());
+                    tuple = tuple.set_ID(tuple.ID + 1);
+                    tuple = tuple.set_acumulatedIntermediateCode("\nt" + tuple.ID + ":=t" + (tuple.ID - 1));
+                    String TAD = low_op.MATH_OP_LOW_PRIORITY().getText() + "t"+beforeID2;
+                    tuple = tuple.set_acumulatedIntermediateCode(TAD);
+                }
+                
+                
                 
             }
             else{
                 
                 tuple = tuple.set_ID(tuple.ID + 1);
                 tuple = tuple.set_acumulatedIntermediateCode("\nt" + tuple.ID + ":=t" + beforeID);
+                String TAD = low_op.MATH_OP_LOW_PRIORITY().getText() + "t"+givenID;
+                tuple = tuple.set_acumulatedIntermediateCode(TAD);
                 
             }
             low_op_counter += 1;
-            
-            
-            String TAD = low_op.MATH_OP_LOW_PRIORITY().getText() + "t"+givenID;
-            tuple = tuple.set_acumulatedIntermediateCode(TAD);
         
         }
         
