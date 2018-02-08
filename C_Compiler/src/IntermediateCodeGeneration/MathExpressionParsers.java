@@ -95,6 +95,10 @@ public class MathExpressionParsers {
         Integer medium_op_counter = 0;
         
         
+        if (product.unapplied_medium_op().isEmpty()){
+            tuple = parseFactor(tuple, product.factor());
+        }
+        
         for (CParser.Unapplied_medium_opContext medium_op : product.unapplied_medium_op()){
             
             if (medium_op_counter == 0){
@@ -129,6 +133,13 @@ public class MathExpressionParsers {
             CParser.SumContext sum){
         
         
+        //unlike parseProduct, I dont have to worry here about having an empty sum.unapplied_low_op()
+        //so I do not need to make that case. 
+        //HOLD ON... A number without sums operators around it is not a math op???
+        
+        if (sum.unapplied_low_op().isEmpty()){
+            tuple = parseProduct(tuple, sum.product());
+        }
         
         
         Integer low_op_counter = 0;
@@ -140,19 +151,13 @@ public class MathExpressionParsers {
                 
             if (low_op_counter == 0){
                 
-                if (sum.product().unapplied_medium_op().isEmpty()){
-
-                    tuple = tuple.set_ID(tuple.ID + 1);
-                    tuple = tuple.set_acumulatedIntermediateCode("\nt" + tuple.ID + ":=" + sum.product().getText());
-                }
-                else{
                     Integer beforeID2 = tuple.ID;
                     tuple = parseProduct(tuple, sum.product());
                     tuple = tuple.set_ID(tuple.ID + 1);
                     tuple = tuple.set_acumulatedIntermediateCode("\nt" + tuple.ID + ":=t" + (tuple.ID - 1));
                     String TAD = low_op.MATH_OP_LOW_PRIORITY().getText() + "t"+beforeID2;
                     tuple = tuple.set_acumulatedIntermediateCode(TAD);
-                }
+                
                 
                 
                 
