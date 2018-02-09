@@ -12,7 +12,9 @@ package IntermediateCodeGeneration;
 public class MathTuple<T0, T1> {
 
     public final String acumulatedIntermediateCode;
+    public Quad currentTAD = new Quad();
     public final Integer ID;
+    public boolean initialized = false;
 
     public MathTuple(String acumulatedIntermediateCode, Integer ID) {
         this.acumulatedIntermediateCode = acumulatedIntermediateCode;

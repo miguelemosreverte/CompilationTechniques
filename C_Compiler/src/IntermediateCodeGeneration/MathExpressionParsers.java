@@ -6,6 +6,8 @@
 package IntermediateCodeGeneration;
 
 import C_ANTLR.CParser;
+import C_ANTLR.CParser.ProductContext;
+import org.antlr.v4.runtime.tree.TerminalNode;
 
 /**
  *
@@ -97,15 +99,21 @@ public class MathExpressionParsers {
         
         if (product.unapplied_medium_op().isEmpty()){
             tuple = parseFactor(tuple, product.factor());
+            return tuple; // not really necessary, but helps posterior analisis
         }
         
         for (CParser.Unapplied_medium_opContext medium_op : product.unapplied_medium_op()){
             
             if (medium_op_counter == 0){
-                tuple = tuple.set_ID(tuple.ID + 1);
-                tuple = tuple.set_acumulatedIntermediateCode("\nt" + tuple.ID + ":=");
                 
-
+                if (product.factor().math_operand().grouped() == null){
+                    //if it is a group we are going to be back here in a minute, 
+                    //so no need to print this twice. 
+                    // grouped is the only recursive math operand.
+                    tuple = tuple.set_ID(tuple.ID + 1);
+                    tuple = tuple.set_acumulatedIntermediateCode("\nt" + tuple.ID + ":=");
+                }
+                
                 tuple = parseFactor(tuple, product.factor());
                 Integer givenID = tuple.ID;
         
@@ -126,6 +134,9 @@ public class MathExpressionParsers {
         return tuple;
     }    
     
+    public static boolean willRequireExtraCalculations(CParser.ProductContext product){        
+        return product.factor().math_operand().grouped() == null || product.unapplied_medium_op().isEmpty();
+    } 
         
     public static MathTuple<String,Integer> 
         parseSum(
@@ -133,48 +144,75 @@ public class MathExpressionParsers {
             CParser.SumContext sum){
         
         
-        //unlike parseProduct, I dont have to worry here about having an empty sum.unapplied_low_op()
-        //so I do not need to make that case. 
-        //HOLD ON... A number without sums operators around it is not a math op???
-        
         if (sum.unapplied_low_op().isEmpty()){
+            System.out.println("Oops");
             tuple = parseProduct(tuple, sum.product());
+            return tuple; //not really necessary, but helps posterior analysis
         }
         
         
-        Integer low_op_counter = 0;
+        
+        if (! willRequireExtraCalculations(sum.product())){               
+                tuple = tuple.set_acumulatedIntermediateCode("\ntaa" + tuple.ID + ":=");
+        }
+        else{
+
+            if (sum.product().factor().math_operand().grouped() == null){
+                //if it is a group we are going to be back here in a minute, 
+                //so no need to print this twice. 
+                // grouped is the only recursive math operand.
+
+                tuple = tuple.set_ID(tuple.ID + 1);
+                tuple = tuple.set_acumulatedIntermediateCode("\ntbb" + tuple.ID + ":=");
+            }
+            tuple = parseProduct(tuple, sum.product());
+        }
+            
+        TerminalNode groupLowOperand = null;
+        
+        
+        boolean needs_prefix = willRequireExtraCalculations(sum.product());
         for (CParser.Unapplied_low_opContext low_op : sum.unapplied_low_op()){
             
-            Integer beforeID = tuple.ID;
-            tuple = parseUnapplied_Low_Op(tuple, low_op);
-            Integer givenID = tuple.ID;
-                
-            if (low_op_counter == 0){
-                
-                    Integer beforeID2 = tuple.ID;
-                    tuple = parseProduct(tuple, sum.product());
-                    tuple = tuple.set_ID(tuple.ID + 1);
-                    tuple = tuple.set_acumulatedIntermediateCode("\nt" + tuple.ID + ":=t" + (tuple.ID - 1));
-                    String TAD = low_op.MATH_OP_LOW_PRIORITY().getText() + "t"+beforeID2;
-                    tuple = tuple.set_acumulatedIntermediateCode(TAD);
-                
-                
-                
-                
+            
+           
+          
+            
+            
+            
+            
+            Integer pepe = 0;
+            
+            if (! willRequireExtraCalculations(low_op.product())){                
+                tuple = tuple.set_acumulatedIntermediateCode("\ntd" + tuple.ID + ":=");
             }
             else{
                 
-                tuple = tuple.set_ID(tuple.ID + 1);
-                tuple = tuple.set_acumulatedIntermediateCode("\nt" + tuple.ID + ":=t" + beforeID);
-                String TAD = low_op.MATH_OP_LOW_PRIORITY().getText() + "t"+givenID;
-                tuple = tuple.set_acumulatedIntermediateCode(TAD);
                 
+                if (low_op.product().factor().math_operand().grouped() != null)  {
+                    groupLowOperand = low_op.MATH_OP_LOW_PRIORITY();
+                    tuple = parseProduct(tuple, low_op.product());
+                    pepe = tuple.ID;
+                }
+                else{
+                     if (!needs_prefix){
+                        needs_prefix = true;
+                    }
+                    else{
+                        tuple = tuple.set_ID(tuple.ID + 1);
+                        tuple = tuple.set_acumulatedIntermediateCode("\ntc" + tuple.ID + ":=t" + (tuple.ID - 1));
+                        // tc is waiting for a unnaplied. And that may not happen. It is waiting for a resolved product on the right.
+                    }
+                    tuple = tuple.set_acumulatedIntermediateCode(low_op.MATH_OP_LOW_PRIORITY().getText());
+                    tuple = parseProduct(tuple, low_op.product());
+                    
+                }
             }
-            low_op_counter += 1;
+            
+             
         
         }
         
-        //tuple = parseProduct(tuple, sum.product());  
         return tuple;
     }
     
