@@ -12,12 +12,12 @@ import java.util.NavigableMap;
 
 public class ScopeUtils {
 
-    public static enum CONVERSIONS_RANK {
+    public enum CONVERSIONS_RANK {
         CHAR,
         SHORT,
         INT,
         LONG,
-        LONGLONG;
+        LONGLONG
     }
 
     public static final Map<String, CONVERSIONS_RANK> TYPES_TO_CONVERSION_RANK = new HashMap<String, CONVERSIONS_RANK>() {
@@ -59,7 +59,7 @@ public class ScopeUtils {
 
     }
 
-    public static enum typesHierarchy {
+    public enum typesHierarchy {
         INT, LONG, FLOAT, DOUBLE, LONGDOUBLE
     }
 

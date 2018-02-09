@@ -17,28 +17,28 @@ import java.util.HashSet;
  */
 public class Scope {
 
-    public HashSet<String> identificators = new HashSet<>();
+    private HashSet<String> identifications = new HashSet<>();
 
     public HashMap<String, AbstractSymbol> symbols = new HashMap<>();
     public HashSet<AbstractSymbol> unused_symbols = new HashSet<>();
-    final Scope parent;
+    final private Scope parent;
 
     public Scope(Scope parent) {
         this.parent = parent;
     }
 
-    public Scope getScope(String identificator) {
-        if (identificators.contains(identificator)) {
+    private Scope getScope(String identification) {
+        if (identifications.contains(identification)) {
             return this;
         }
-        return parent == null ? null : parent.getScope(identificator);
+        return parent == null ? null : parent.getScope(identification);
     }
-    
-    public boolean inScope(String identificator) {
-        if (identificators.contains(identificator)) {
+
+    private boolean inScope(String identification) {
+        if (identifications.contains(identification)) {
             return true;
         }
-        return parent == null ? false : parent.inScope(identificator);
+        return parent != null && parent.inScope(identification);
     }
 
     public boolean isVariableDeclared(String varName) {
@@ -67,7 +67,7 @@ public class Scope {
     }
 
     public int declaredAtLineNumber(String varName) {
-        if (identificators.contains(varName)) {
+        if (identifications.contains(varName)) {
             if (!"".equals(symbols.get(varName).getLineNumber())) {
                 return Integer.parseInt(symbols.get(varName).getLineNumber());
             } else {
@@ -94,7 +94,7 @@ public class Scope {
                     + " at line " + newSymbol.getLineNumber()
             );
         } else {
-            identificators.add(newSymbol.getID());
+            identifications.add(newSymbol.getID());
             symbols.put(newSymbol.getID(), newSymbol);
         }
     }

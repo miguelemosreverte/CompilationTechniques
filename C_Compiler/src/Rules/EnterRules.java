@@ -16,7 +16,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.NavigableMap;
 import java.util.Stack;
-import SymbolsTable.SymbolsTable;
 
 /**
  *
@@ -82,7 +81,7 @@ public class EnterRules extends RulesChecks {
         checkFunctionPrototype(ctx.ID().getText(), Integer.toString(ctx.start.getLine()), temporal_scopes.peek());
         checkFunctionDeclaration(ctx.ID().getText(), Integer.toString(ctx.start.getLine()), temporal_scopes.peek());
 
-        List<String> inputParametersType = Utils.getChildrensType(ctx);
+        List<String> inputParametersType = Utils.getChildrenType(ctx);
 
     }
 
@@ -102,9 +101,9 @@ public class EnterRules extends RulesChecks {
         //first we get the current scope
         Scope currentScope = symbolsTable.floorEntry(ctx.start.getLine()).getValue();
 
-        List<String> childrensID = Utils.getChildrensID(ctx);
+        List<String> childrenID = Utils.getChildrenID(ctx);
 
-        childrensID.forEach(ID
+        childrenID.forEach(ID
                 -> {
             Integer declaredAtLine = currentScope.declaredAtLineNumber(ID);
 
@@ -151,7 +150,7 @@ public class EnterRules extends RulesChecks {
             }
         }
 
-        List<String> childrensID = Utils.getChildrensID(ctx);
+        List<String> childrenID = Utils.getChildrenID(ctx);
         //Release warnings in case of truncations or char to int initializations
         /*if (ScopeUtils.TYPES_TO_CONVERSION_RANK.get(newValueType).compareTo(ScopeUtils.TYPES_TO_CONVERSION_RANK.get(type))
                         < 0) {

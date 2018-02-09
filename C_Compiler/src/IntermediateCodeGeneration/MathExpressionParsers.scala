@@ -1,9 +1,5 @@
 package IntermediateCodeGeneration
 
-import C_ANTLR.CParser
-import C_ANTLR.CParser.ProductContext
-import java.util
-import java.util
 
 @FunctionalInterface trait parseGeneric[GenericCParser] {
   def parse(tuple: MathTuple, parser: GenericCParser): MathTuple
@@ -13,8 +9,6 @@ object MathExpressionParsers {
 
 
   import C_ANTLR.CParser
-  import C_ANTLR.CParser.ProductContext
-  import IntermediateCodeGeneration.MathTuple
   import java.util
 
 
@@ -49,7 +43,6 @@ object MathExpressionParsers {
 
 
   def parseProduct(tuple: MathTuple, product: CParser.ProductContext): MathTuple = {
-    var medium_op_counter = 0
     if (product.unapplied_medium_op.isEmpty) {
       return parseFactor(tuple, product.factor) // not really necessary, but helps posterior analisis
 
@@ -94,10 +87,8 @@ object MathExpressionParsers {
       tuple = tuple.set_ID(tuple.ID + 1)
       tuple = tuple.set_acumulatedIntermediateCode("\nt" + tuple.ID + ":=")
       tuple = parseProduct(tuple, operand1)
-      val operand1_ID = tuple.ID
       tuple = tuple.set_acumulatedIntermediateCode(operation)
       tuple = parseProduct(tuple, operand2)
-      val operand2_ID = tuple.ID
     }
     //case 2
     // there is a sum of a left group and a right final
@@ -108,7 +99,6 @@ object MathExpressionParsers {
       tuple = tuple.set_acumulatedIntermediateCode("\nt" + tuple.ID + ":=" + "t" + operand1_ID)
       tuple = tuple.set_acumulatedIntermediateCode(operation)
       tuple = parseProduct(tuple, operand2)
-      val operand2_ID = tuple.ID
     }
     //case 3
     // there is a sum of a left final and a right group

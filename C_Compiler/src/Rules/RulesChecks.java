@@ -27,7 +27,7 @@ public class RulesChecks {
     }
 
     protected static void checkVarInitialization(VariableSymbol currentSymbol, int declaredAtLine) {
-        if (((VariableSymbol) currentSymbol).getValue().isEmpty()) {
+        if (currentSymbol.getValue().isEmpty()) {
             throw new CErrorException(
                     "Use of uninitialized identifier \""
                     + currentSymbol.getID()

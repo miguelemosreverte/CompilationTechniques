@@ -102,34 +102,34 @@ public class Utils {
         return ToValueChildren;
     }
 
-    public static List<String> getChildrensID(ParseTree ctx) {
-        List<String> childrensID;
-        childrensID = Utils.applyToParseTreeChildren(ctx, l -> {
+    public static List<String> getChildrenID(ParseTree ctx) {
+        List<String> childrenID;
+        childrenID = Utils.applyToParseTreeChildren(ctx, l -> {
             if ("ID".equals(Utils.getLexerRule(l))) {
                 return l.getText();
             }
             return "";
         }
         );
-        return childrensID;
+        return childrenID;
     }
 
-    public static List<String> getChildrensType(ParseTree ctx) {
-        List<String> childrensTypes;
-        childrensTypes = Utils.applyToParseTreeChildren(ctx, l -> {
+    public static List<String> getChildrenType(ParseTree ctx) {
+        List<String> childrenTypes;
+        childrenTypes = Utils.applyToParseTreeChildren(ctx, l -> {
             if ("ID".equals(Utils.getLexerRule(l))) {
                 return l.getText();
             } else if ("To_valueContext".equals(l.getParent().getClass().getSimpleName())) {
-                return getTypeFromAnonymusTo_value(l);
+                return getTypeFromAnonymousTo_value(l);
             } else {
                 return "";
             }
         }
         );
-        return childrensTypes;
+        return childrenTypes;
     }
 
-    public static String getTypeFromAnonymusTo_value(ParseTree ctx) {
+    public static String getTypeFromAnonymousTo_value(ParseTree ctx) {
         while (ctx.getChildCount() > 0) {
             ctx = ctx.getChild(0);
         }
