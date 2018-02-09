@@ -144,7 +144,8 @@ public class MathExpressionParsers {
         parseSum(
             MathTuple<String,Integer> tuple, 
             CParser.SumContext sum,
-            List<CParser.Unapplied_low_opContext>shrinkableList){
+            List<CParser.Unapplied_low_opContext>shrinkableList,
+            Integer nextID){
         
         
             
@@ -197,10 +198,19 @@ public class MathExpressionParsers {
         
             
             tuple = tuple.set_ID(tuple.ID + 1);
-            tuple = tuple.set_acumulatedIntermediateCode("\nt" + tuple.ID + ":=");
+            tuple = tuple.set_acumulatedIntermediateCode("\nt1" + tuple.ID + ":=");
             
-            tuple = parseProduct(tuple, operand1);
-            Integer operand1_ID = tuple.ID;
+            
+            if (nextID != 0){
+                
+                tuple = tuple.set_acumulatedIntermediateCode("t1" + nextID);
+                nextID = tuple.ID;
+            }
+            else{    
+                tuple = parseProduct(tuple, operand1);
+                Integer operand1_ID = tuple.ID;
+                nextID = operand1_ID;
+            }
             
             tuple = tuple.set_acumulatedIntermediateCode(operation);
             
@@ -226,7 +236,7 @@ public class MathExpressionParsers {
             
             
             tuple = tuple.set_ID(tuple.ID + 1);
-            tuple = tuple.set_acumulatedIntermediateCode("\nt" + tuple.ID + ":=" + "t" + operand1_ID);
+            tuple = tuple.set_acumulatedIntermediateCode("\nt2" + tuple.ID + ":=" + "t" + operand1_ID);
             
             tuple = tuple.set_acumulatedIntermediateCode(operation);
             
@@ -254,14 +264,22 @@ public class MathExpressionParsers {
             
             
             tuple = tuple.set_ID(tuple.ID + 1);
-            tuple = tuple.set_acumulatedIntermediateCode("\nt" + tuple.ID + ":=");
+            tuple = tuple.set_acumulatedIntermediateCode("\nt3" + tuple.ID + ":=");
             
-            tuple = parseProduct(tuple, operand1);
-            Integer operand1_ID = tuple.ID;
+            if (nextID != 0){
+                
+                tuple = tuple.set_acumulatedIntermediateCode("t3" + nextID);
+                nextID = tuple.ID;
+            }
+            else{                
+                tuple = parseProduct(tuple, operand1);
+                Integer operand1_ID = tuple.ID;
+                nextID = operand1_ID;
+            }
             
             tuple = tuple.set_acumulatedIntermediateCode(operation);
             
-            tuple = tuple.set_acumulatedIntermediateCode("t" + operand2_ID);
+            tuple = tuple.set_acumulatedIntermediateCode("t3" + operand2_ID);
         
         }
         
@@ -288,17 +306,17 @@ public class MathExpressionParsers {
             tuple = tuple.set_ID(tuple.ID + 1);
             tuple = tuple.set_acumulatedIntermediateCode("\nt" + tuple.ID + ":=");
             
-            tuple = tuple.set_acumulatedIntermediateCode("t" + operand1_ID);            
+            tuple = tuple.set_acumulatedIntermediateCode("t4" + operand1_ID);            
             
             tuple = tuple.set_acumulatedIntermediateCode(operation);
             
-            tuple = tuple.set_acumulatedIntermediateCode("t" + operand2_ID);
+            tuple = tuple.set_acumulatedIntermediateCode("t4" + operand2_ID);
         
         }
         
         if (!shrinkableList.isEmpty()){
             System.out.println(sum.unapplied_low_op().get(0).getText());
-            tuple = parseSum(tuple, sum, shrinkableList);
+            tuple = parseSum(tuple, sum, shrinkableList, nextID);
         }
         
         
@@ -312,7 +330,7 @@ public class MathExpressionParsers {
             CParser.Math_operationContext math_expression){       
         
             List shrinkableList = new ArrayList<>();
-        return parseSum(tuple, math_expression.sum(), shrinkableList);
+        return parseSum(tuple, math_expression.sum(), shrinkableList, 0);
     }
     
 }
