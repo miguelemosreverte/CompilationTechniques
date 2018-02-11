@@ -1,17 +1,22 @@
 package IntermediateCodeGeneration
 
-import C_ANTLR.CParser.ProductContext
+import C_ANTLR.CParser._
+import org.antlr.v4.runtime.ParserRuleContext
+
+
 
 
 @FunctionalInterface trait parseGeneric[GenericCParser] {
   def parse(tuple: MathTuple, parser: GenericCParser): MathTuple
 }
 
+
 object MathExpressionParsers {
 
 
   import C_ANTLR.CParser
   import java.util
+
 
 
   def parseUnapplied_Low_Op(tuple: MathTuple, low: CParser.Unapplied_low_opContext): MathTuple = {
@@ -45,9 +50,7 @@ object MathExpressionParsers {
 
   import C_ANTLR.CParser
 
-  def parseProduct(tuple_original: MathTuple, product_original: ProductContext): MathTuple = {
-    val product = product_original.asInstanceOf[CParser.ProductContext]
-
+  def parseProduct(tuple_original: MathTuple, product: ProductContext): MathTuple = {
     var tuple = tuple_original
     var medium_op_counter = 0
     if (product.unapplied_medium_op.isEmpty) {
@@ -55,7 +58,7 @@ object MathExpressionParsers {
       return tuple // not really necessary, but helps posterior analisis
 
     }
-    import scala.collection.JavaConverters._
+    import scala.collection.JavaConversions._
     for (medium_op <- product.unapplied_medium_op) {
       if (medium_op_counter == 0) {
         if (product.factor.math_operand.grouped == null) { //if it is a group we are going to be back here in a minute,
@@ -81,29 +84,156 @@ object MathExpressionParsers {
     tuple
   }
 
-  def willRequireExtraCalculations(product: CParser.ProductContext): Boolean = product.factor.math_operand.grouped != null || !product.unapplied_medium_op.isEmpty
+  def willRequireExtraCalculations(context: ParserRuleContext): Boolean = {
+    import MyContext._
+    toMyContext(context) match {
 
-  def parseSum(original_tuple: MathTuple,
-               sum: CParser.SumContext,
-               shrinkableList: util.List[CParser.Unapplied_low_opContext],
-               given_nextID : Integer,
-              ): MathTuple = {
-    val operand1 = sum.product
+      case MySumContext(initialOperand, map) =>
+        initialOperand.factor.math_operand.grouped != null || !map.isEmpty
+
+
+      case MyProductContext(initialOperand, map) =>
+        initialOperand.math_operand.grouped != null || !map.isEmpty
+    }
+
+  }
+
+
+
+
+
+
+  def parseGeneric(original_tuple: MathTuple,
+               context: ParserRuleContext, // context
+               shrinkableList: scala.collection.immutable.List[Unapplied_low_opContext],
+               given_nextID : Integer)
+  : MathTuple = {
+
+    import scala.collection.JavaConverters._
+
+
     var tuple = original_tuple
     var nextID = given_nextID
-    //case 0
-    // there is just a product
-    if (sum.unapplied_low_op.isEmpty) {
-      return parseProduct(tuple, sum.product)
+
+
+    import Parseable.syntax._
+
+    //case 1
+    // there is a sum of two non-groups.
+    def CASOUNO[Expr <: ParserRuleContext]
+    (operand1: Expr, operation: String, operand2: Expr)
+    (implicit p: Parseable[Expr]) = {
+
+      tuple = tuple.set_ID(tuple.ID + 1)
+      tuple = tuple.set_acumulatedIntermediateCode("\nt" + tuple.ID + ":=")
+      if (nextID != 0) {
+        tuple = tuple.set_acumulatedIntermediateCode("t" + nextID)
+        nextID = tuple.ID
+      }
+      else {
+        tuple = operand1 ¬>> tuple
+        val operand1_ID = tuple.ID
+        nextID = operand1_ID
+      }
+      tuple = tuple.set_acumulatedIntermediateCode(operation)
+      tuple = operand2 ¬>> tuple
+      val operand2_ID = tuple.ID
     }
+
+
+    //case 2
+    // there is a sum of a left group and a right final
+    def CASODOS[Expr <: ParserRuleContext]
+    (operand1: Expr, operation: String, operand2: Expr)
+    (implicit p: Parseable[Expr])= {
+      tuple = operand1 ¬>> tuple
+      val operand1_ID = tuple.ID
+      tuple = tuple.set_ID(tuple.ID + 1)
+      tuple = tuple.set_acumulatedIntermediateCode("\nt" + tuple.ID + ":=" + "t" + operand1_ID)
+      tuple = tuple.set_acumulatedIntermediateCode(operation)
+      tuple = operand2 ¬>> tuple
+      val operand2_ID = tuple.ID
+    }
+
+
+    //case 3
+    // there is a sum of a left final and a right group
+
+    def CASOTRES[Expr <: ParserRuleContext]
+    (operand1: Expr, operation: String, operand2: Expr)
+    (implicit p: Parseable[Expr])= {
+      tuple = operand2 ¬>> tuple
+      val operand2_ID = tuple.ID
+      tuple = tuple.set_ID(tuple.ID + 1)
+      tuple = tuple.set_acumulatedIntermediateCode("\nt" + tuple.ID + ":=")
+      if (nextID != 0) {
+        tuple = tuple.set_acumulatedIntermediateCode("t" + nextID)
+        nextID = tuple.ID
+      }
+      else {
+        tuple = operand1 ¬>> tuple
+        val operand1_ID = tuple.ID
+        nextID = operand1_ID
+      }
+      tuple = tuple.set_acumulatedIntermediateCode(operation)
+      tuple = tuple.set_acumulatedIntermediateCode("t" + operand2_ID)
+    }
+
+
+    //case 4
+    // there is a sum of a left group and a right group
+
+    def CASOCUATRO[Expr <: ParserRuleContext]
+    (operand1: Expr, operation: String, operand2: Expr)
+    (implicit p: Parseable[Expr])= {
+      tuple = operand2 ¬>> tuple
+      val operand2_ID = tuple.ID
+      tuple = operand1 ¬>> tuple
+      val operand1_ID = tuple.ID
+      tuple = tuple.set_ID(tuple.ID + 1)
+      tuple = tuple.set_acumulatedIntermediateCode("\nt" + tuple.ID + ":=")
+      tuple = tuple.set_acumulatedIntermediateCode("t" + operand1_ID)
+      tuple = tuple.set_acumulatedIntermediateCode(operation)
+      tuple = tuple.set_acumulatedIntermediateCode("t" + operand2_ID)
+    }
+
+
+    def workLoad[Expr <: ParserRuleContext]
+        (op1: Expr, op: String, op2: Expr)
+        (implicit p: Parseable[Expr])= {
+      if (!willRequireExtraCalculations(op1) && !willRequireExtraCalculations(op2)) {
+        CASOUNO(op1, op, op2)
+      }
+      if (willRequireExtraCalculations(op1) && !willRequireExtraCalculations(op2)) {
+        CASODOS(op1, op, op2)
+      }
+      if (!willRequireExtraCalculations(op1) && willRequireExtraCalculations(op2)) {
+        CASOTRES(op1, op, op2)
+      }
+      if (willRequireExtraCalculations(op1) && willRequireExtraCalculations(op2)) {
+        CASOCUATRO(op1, op, op2)
+      }
+    }
+
+
+    // interpret
+    /*
+    def exprParser[A](mathExpr: MathExpr[A]) =
+      mathExpr match {
+        case SumExpr(op1, op, op2) =>
+          workLoad(op1, op, op2)
+        case ProdExpr(op1, op, op2) =>
+          workLoad(op1, op, op2)
+      }
+    */
+
+
+
+
     //from here on we can assume there are unapplied low operations to work with
     //after taking what we are going to use, we remove it from the list
     //for this I needed a shrinkable list because sum.unapplied_low_op()
     //would return a constant value.
-    val mod_shrinkableList = if (shrinkableList.isEmpty) sum.unapplied_low_op else shrinkableList
-    val unapplied_low_op = mod_shrinkableList.remove(0)
-    val operand2 = unapplied_low_op.product
-    val operation = unapplied_low_op.MATH_OP_LOW_PRIORITY.getText
     /*
 
             Just a bit of trivia, before continuing:
@@ -117,100 +247,43 @@ object MathExpressionParsers {
             */
 
 
-    //case 1
-    // there is a sum of two non-groups.
 
-    if (!willRequireExtraCalculations(operand1) && !willRequireExtraCalculations(operand2)) {
-      tuple = tuple.set_ID(tuple.ID + 1)
-      tuple = tuple.set_acumulatedIntermediateCode("\nt" + tuple.ID + ":=")
-      if (nextID != 0) {
-        tuple = tuple.set_acumulatedIntermediateCode("t" + nextID)
-        nextID = tuple.ID
-      }
-      else {
-        tuple = parseProduct(tuple, operand1)
-        val operand1_ID = tuple.ID
-        nextID = operand1_ID
-      }
-      tuple = tuple.set_acumulatedIntermediateCode(operation)
-      tuple = parseProduct(tuple, operand2)
-      val operand2_ID = tuple.ID
+    // prog
+    import MyContext._
+    import Parseable._
+    import Parseable.syntax._
+    val mathExpr = toMyContext(context) match {
+      case MySumContext(initialOperand, map) =>
+        //case 0
+        // there is just a product
+        if (map.isEmpty) {
+          return initialOperand ¬>> tuple
+        }
+        val operand1 = initialOperand
+        val (operator: String, operand2: ProductContext) = map.head
+
+        workLoad(operand1, operator, operand2)
+      case MyProductContext(initialOperand, map) =>
+        if (map.isEmpty) {
+          return initialOperand ¬>> tuple
+        }
+        val operand1: FactorContext = initialOperand
+        val (operator: String, operand2: FactorContext) = map.head
+        workLoad(operand1, operator, operand2)
     }
 
-
-
-
-    //case 2
-    // there is a sum of a left group and a right final
-
-    if (willRequireExtraCalculations(operand1) && !willRequireExtraCalculations(operand2)) {
-      tuple = parseProduct(tuple, operand1)
-      val operand1_ID = tuple.ID
-      tuple = tuple.set_ID(tuple.ID + 1)
-      tuple = tuple.set_acumulatedIntermediateCode("\nt" + tuple.ID + ":=" + "t" + operand1_ID)
-      tuple = tuple.set_acumulatedIntermediateCode(operation)
-      tuple = parseProduct(tuple, operand2)
-      val operand2_ID = tuple.ID
-    }
-
-
-
-
-
-    //case 3
-    // there is a sum of a left final and a right group
-
-    if (!willRequireExtraCalculations(operand1) && willRequireExtraCalculations(operand2)) {
-      tuple = parseProduct(tuple, operand2)
-      val operand2_ID = tuple.ID
-      tuple = tuple.set_ID(tuple.ID + 1)
-      tuple = tuple.set_acumulatedIntermediateCode("\nt" + tuple.ID + ":=")
-      if (nextID != 0) {
-        tuple = tuple.set_acumulatedIntermediateCode("t" + nextID)
-        nextID = tuple.ID
-      }
-      else {
-        tuple = parseProduct(tuple, operand1)
-        val operand1_ID = tuple.ID
-        nextID = operand1_ID
-      }
-      tuple = tuple.set_acumulatedIntermediateCode(operation)
-      tuple = tuple.set_acumulatedIntermediateCode("t" + operand2_ID)
-    }
-
-
-
-
-
-    //case 4
-    // there is a sum of a left group and a right group
-
-    if (willRequireExtraCalculations(operand1) && willRequireExtraCalculations(operand2)) {
-      tuple = parseProduct(tuple, operand2)
-      val operand2_ID = tuple.ID
-      tuple = parseProduct(tuple, operand1)
-      val operand1_ID = tuple.ID
-      tuple = tuple.set_ID(tuple.ID + 1)
-      tuple = tuple.set_acumulatedIntermediateCode("\nt" + tuple.ID + ":=")
-      tuple = tuple.set_acumulatedIntermediateCode("t" + operand1_ID)
-      tuple = tuple.set_acumulatedIntermediateCode(operation)
-      tuple = tuple.set_acumulatedIntermediateCode("t" + operand2_ID)
-    }
-
-
-
-
-    if (!mod_shrinkableList.isEmpty) {
-      System.out.println(mod_shrinkableList.get(0).getText)
-      tuple = parseSum(tuple, sum, mod_shrinkableList, nextID)
+    if (!shrinkableList.isEmpty) {
+      tuple = parseGeneric(tuple, context, shrinkableList.tail, nextID)
     }
     tuple
+
   }
 
 
   def parseMath(tuple: MathTuple, math_expression: CParser.Math_operationContext): MathTuple = {
-    val emptyList = new util.ArrayList[CParser.Unapplied_low_opContext]
-    parseSum(tuple, math_expression.sum, emptyList, 0)
+    import collection.JavaConverters._
+    val unapliedOps: List[Unapplied_low_opContext] = math_expression.sum().unapplied_low_op().asScala.toList
+    parseGeneric(tuple, math_expression.sum, unapliedOps, 0)
   }
 
 }
