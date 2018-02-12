@@ -2,17 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="19dac47c-8abf-47ec-9a32-9f86d820737f" name="Default" comment="Even though the migration had been successfull, not the last version was migrated, but an older one.&#10;&#10;This version can transform this:&#10;&#10;500 + 9 + ((1 * 3) + (2* 3)) + 5 *11 * 12 + 100 + 120 + 300&#10;&#10;into this:&#10;&#10;&#10;t1:=500+9&#10;t2:=2*3&#10;t3:=1*3&#10;t4:=t3+t2&#10;t5:=t1+t4&#10;t6:=5*11&#10;t7:=t6*12&#10;t8:=t5+t7&#10;t9:=t8+100&#10;t10:=t9+120&#10;t11:=t10+300">
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/sbt__org_scala_lang_scala_library_2_12_4_jar.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/sbt.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/scala_compiler.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/C_Compiler/.idea/modules/c_compiler-build.iml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/C_Compiler/.idea/modules/c_compiler.iml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/MathExpr.scala" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/MyContext.scala" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/Parseable.scala" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/package.scala" />
-      <change beforePath="$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/IntermediateCodeGenerator.scala" afterPath="" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/FourCases.scala" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/IntermediateCodeGeneration.scala" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/MathExpressionParsers.scala" afterPath="$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/MathExpressionParsers.scala" />
+      <change beforePath="$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/MathTuple.scala" afterPath="$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/MathTuple.scala" />
+      <change beforePath="$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/MyContext.scala" afterPath="$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/MyContext.scala" />
+      <change beforePath="$PROJECT_DIR$/code examples/test.c" afterPath="$PROJECT_DIR$/code examples/test.c" />
+      <change beforePath="$PROJECT_DIR$/out/production/C_Compiler/IntermediateCodeGeneration/MathExpressionParsers$.class" afterPath="$PROJECT_DIR$/out/production/C_Compiler/IntermediateCodeGeneration/MathExpressionParsers$.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/C_Compiler/IntermediateCodeGeneration/MathExpressionParsers.class" afterPath="$PROJECT_DIR$/out/production/C_Compiler/IntermediateCodeGeneration/MathExpressionParsers.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/C_Compiler/IntermediateCodeGeneration/MathTuple.class" afterPath="$PROJECT_DIR$/out/production/C_Compiler/IntermediateCodeGeneration/MathTuple.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/C_Compiler/IntermediateCodeGeneration/MyContext$.class" afterPath="$PROJECT_DIR$/out/production/C_Compiler/IntermediateCodeGeneration/MyContext$.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/C_Compiler/IntermediateCodeGeneration/MyContext.class" afterPath="$PROJECT_DIR$/out/production/C_Compiler/IntermediateCodeGeneration/MyContext.class" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/target/" />
@@ -45,93 +46,38 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MathExpressionParsers.scala" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MathExpressionParsers.scala" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/MathExpressionParsers.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="582">
-              <caret line="269" column="52" lean-forward="true" selection-start-line="269" selection-start-column="52" selection-end-line="269" selection-end-column="52" />
+            <state relative-caret-position="174">
+              <caret line="72" column="48" lean-forward="false" selection-start-line="72" selection-start-column="48" selection-end-line="72" selection-end-column="48" />
               <folding>
                 <element signature="e#36#60#0" expanded="true" />
-                <element signature="e#273#295#0" expanded="true" />
-                <element signature="e#1430#2736#0" expanded="false" />
-                <element signature="e#3525#3533#0" expanded="false" />
-                <element signature="e#3525#4209#0" expanded="false" />
-                <element signature="e#4216#4753#0" expanded="false" />
-                <element signature="e#4830#5529#0" expanded="false" />
-                <element signature="e#5606#6197#0" expanded="false" />
-                <element signature="e#6204#6829#0" expanded="false" />
-                <element signature="e#7355#7695#0" expanded="false" />
-                <element signature="e#7715#7733#0" expanded="true" />
+                <element signature="e#368#390#0" expanded="true" />
+                <element signature="e#3007#3025#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CParser.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/C_Compiler/src/C_ANTLR/CParser.java">
+      <file leaf-file-name="FourCases.scala" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/FourCases.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="197">
-              <caret line="1460" column="64" lean-forward="false" selection-start-line="1460" selection-start-column="47" selection-end-line="1460" selection-end-column="64" />
+            <state relative-caret-position="111">
+              <caret line="57" column="46" lean-forward="false" selection-start-line="57" selection-start-column="46" selection-end-line="57" selection-end-column="46" />
               <folding>
-                <element signature="e#35673#35674#0" expanded="true" />
-                <element signature="e#35723#35724#0" expanded="true" />
+                <element signature="e#35#101#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ParserRuleContext.class" pinned="false" current-in-tab="false">
-        <entry file="jar://$PROJECT_DIR$/C_Compiler/dist/lib/antlr-4.5-complete.jar!/org/antlr/v4/runtime/ParserRuleContext.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Parseable.scala" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/Parseable.scala">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="236">
-              <caret line="23" column="54" lean-forward="false" selection-start-line="23" selection-start-column="54" selection-end-line="23" selection-end-column="54" />
-              <folding>
-                <element signature="e#36#90#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Visitor.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/C_Compiler/src/Visitor/Visitor.java">
+      <file leaf-file-name="test.c" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/code examples/test.c">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="36">
-              <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="60" />
+              <caret line="2" column="50" lean-forward="false" selection-start-line="2" selection-start-column="50" selection-end-line="2" selection-end-column="50" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MyContext.scala" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/MyContext.scala">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="197">
-              <caret line="15" column="15" lean-forward="false" selection-start-line="15" selection-start-column="15" selection-end-line="15" selection-end-column="15" />
-              <folding>
-                <element signature="e#36#102#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MathExpr.scala" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/MathExpr.scala">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="12" column="46" lean-forward="false" selection-start-line="10" selection-start-column="18" selection-end-line="12" selection-end-column="46" />
-              <folding>
-                <element signature="e#36#90#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -151,16 +97,20 @@
       <find>MathTuple[String, Integer]</find>
       <find>shrinkableList</find>
       <find>nextID == 0</find>
-      <find>t4</find>
       <find>CParser.</find>
       <find>Parseable</find>
       <find>product</find>
+      <find>tuple =</find>
+      <find>operand22</find>
+      <find>t1</find>
+      <find>t4</find>
     </findStrings>
     <replaceStrings>
       <replace>MathTuple</replace>
       <replace>nextID != 0</replace>
-      <replace>t</replace>
       <replace>unappliedOp</replace>
+      <replace>operand1</replace>
+      <replace>t</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -179,23 +129,25 @@
         <option value="$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/MathTupleScala.scala" />
         <option value="$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/MathExpressionParsersScala.scala" />
         <option value="$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/IntermediateCodeGenerator.scala" />
-        <option value="$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/MathTuple.scala" />
         <option value="$PROJECT_DIR$/C_Compiler/src/Rules/EnterRules.java" />
         <option value="$PROJECT_DIR$/C_Compiler/src/Rules/Utils.java" />
         <option value="$PROJECT_DIR$/C_Compiler/src/Scope/ScopeUtils.java" />
         <option value="$PROJECT_DIR$/C_Compiler/src/Scope/Scope.java" />
-        <option value="$PROJECT_DIR$/code examples/test.c" />
         <option value="$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/build.sbt" />
         <option value="$PROJECT_DIR$/C_Compiler/build.sbt" />
         <option value="$PROJECT_DIR$/C_Compiler/project/build.sbt" />
         <option value="$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/parseGeneric.scala" />
         <option value="$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/unappliedOp.scala" />
         <option value="$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/MathExpr.scala" />
-        <option value="$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/MyContext.scala" />
         <option value="$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/package.scala" />
-        <option value="$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/MathExpressionParsers.scala" />
         <option value="$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/Parseable.scala" />
+        <option value="$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/IntermediateCodeGeneration.scala" />
         <option value="$PROJECT_DIR$/C_Compiler/src/Visitor/Visitor.java" />
+        <option value="$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/MyContext.scala" />
+        <option value="$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/MathTuple.scala" />
+        <option value="$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/MathExpressionParsers.scala" />
+        <option value="$PROJECT_DIR$/code examples/test.c" />
+        <option value="$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/FourCases.scala" />
       </list>
     </option>
   </component>
@@ -236,18 +188,7 @@
             <path>
               <item name="CompilationTechniques" type="b2602c69:ProjectViewProjectNode" />
               <item name="C_Compiler" type="462c0819:PsiDirectoryNode" />
-              <item name="project" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CompilationTechniques" type="b2602c69:ProjectViewProjectNode" />
-              <item name="C_Compiler" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CompilationTechniques" type="b2602c69:ProjectViewProjectNode" />
-              <item name="C_Compiler" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="C_ANTLR" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="CompilationTechniques" type="b2602c69:ProjectViewProjectNode" />
@@ -284,7 +225,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Scala Console.Scala Console">
+  <component name="RunManager" selected="Application.Main">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="HTML_USED" value="false" />
       <option name="WIDTH" value="400" />
@@ -397,8 +338,8 @@
     </list>
     <recent_temporary>
       <list size="2">
-        <item index="0" class="java.lang.String" itemvalue="Scala Console.Scala Console" />
-        <item index="1" class="java.lang.String" itemvalue="Application.Main" />
+        <item index="0" class="java.lang.String" itemvalue="Application.Main" />
+        <item index="1" class="java.lang.String" itemvalue="Scala Console.Scala Console" />
       </list>
     </recent_temporary>
   </component>
@@ -501,68 +442,78 @@
     <option name="localTasksCounter" value="4" />
     <servers />
   </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1301" height="772" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.48989114" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32970452" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2690513" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="sbt" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32970452" sideWeight="0.50278884" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32970452" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32970452" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.7013997" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30326593" sideWeight="0.49721116" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32970452" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.7013997" sideWeight="0.49402392" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="sbt-shell-toolwindow" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="sbt-shell-toolwindow" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32970452" sideWeight="0.49721116" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24940239" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24940239" sideWeight="0.5" order="7" side_tool="false" content_ui="combo" />
-      <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32970452" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32970452" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="sbt" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32970452" sideWeight="0.50278884" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24940239" sideWeight="0.5" order="8" side_tool="false" content_ui="combo" />
-      <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32970452" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24940239" sideWeight="0.5" order="7" side_tool="false" content_ui="combo" />
+      <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32970452" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24940239" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24940239" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32970452" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32970452" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.48989114" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32970452" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32970452" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32970452" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.09163347" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="sbt-shell-toolwindow" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14900398" sideWeight="0.49721116" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32970452" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.7013997" sideWeight="0.49402392" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="sbt-shell-toolwindow" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32970452" sideWeight="0.49721116" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
@@ -580,7 +531,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="1" />
+      <option name="time" value="2" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -595,16 +546,8 @@
           <caret line="4" column="7" lean-forward="false" selection-start-line="4" selection-start-column="7" selection-end-line="4" selection-end-column="7" />
           <folding>
             <element signature="e#36#60#0" expanded="true" />
-            <element signature="e#273#295#0" expanded="true" />
-            <element signature="e#1430#2736#0" expanded="false" />
-            <element signature="e#3525#3533#0" expanded="false" />
-            <element signature="e#3525#4209#0" expanded="false" />
-            <element signature="e#4216#4753#0" expanded="false" />
-            <element signature="e#4830#5529#0" expanded="false" />
-            <element signature="e#5606#6197#0" expanded="false" />
-            <element signature="e#6204#6829#0" expanded="false" />
-            <element signature="e#7355#7695#0" expanded="false" />
-            <element signature="e#7715#7733#0" expanded="true" />
+            <element signature="e#368#390#0" expanded="true" />
+            <element signature="e#3007#3025#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -687,13 +630,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/code examples/test.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="4" lean-forward="false" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/build.sbt" />
     <entry file="file://$PROJECT_DIR$/C_Compiler/build.sbt" />
     <entry file="file://$PROJECT_DIR$/C_Compiler/project/build.sbt">
@@ -760,35 +696,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/C_Compiler/src/C_ANTLR/CParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="1460" column="64" lean-forward="false" selection-start-line="1460" selection-start-column="47" selection-end-line="1460" selection-end-column="64" />
-          <folding>
-            <element signature="e#35673#35674#0" expanded="true" />
-            <element signature="e#35723#35724#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/MathTuple.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="6" lean-forward="false" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/MathExpr.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="12" column="46" lean-forward="false" selection-start-line="10" selection-start-column="18" selection-end-line="12" selection-end-column="46" />
-          <folding>
-            <element signature="e#36#90#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/unappliedOp.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="163">
@@ -805,51 +712,100 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/MyContext.scala">
+    <entry file="file://$PROJECT_DIR$/C_Compiler/src/Visitor/Visitor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="15" column="15" lean-forward="false" selection-start-line="15" selection-start-column="15" selection-end-line="15" selection-end-column="15" />
+        <state relative-caret-position="324">
+          <caret line="22" column="5" lean-forward="true" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
           <folding>
-            <element signature="e#36#102#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/Parseable.scala">
+    <entry file="file://$PROJECT_DIR$/C_Compiler/src/C_ANTLR/CParser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="23" column="54" lean-forward="false" selection-start-line="23" selection-start-column="54" selection-end-line="23" selection-end-column="54" />
+        <state relative-caret-position="150">
+          <caret line="1700" column="73" lean-forward="false" selection-start-line="1700" selection-start-column="56" selection-end-line="1700" selection-end-column="73" />
+          <folding>
+            <element signature="e#35673#35674#0" expanded="false" />
+            <element signature="e#35723#35724#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/MathExpr.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="5" column="22" lean-forward="true" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="44" />
           <folding>
             <element signature="e#36#90#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/C_Compiler/src/Visitor/Visitor.java">
+    <entry file="file://$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/IntermediateCodeGeneration.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="60" />
+        <state relative-caret-position="-950">
+          <caret line="8" column="57" lean-forward="true" selection-start-line="8" selection-start-column="57" selection-end-line="8" selection-end-column="57" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/Parseable.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-181">
+          <caret line="6" column="6" lean-forward="false" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+          <folding>
+            <element signature="e#36#90#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/MathTuple.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="6" column="16" lean-forward="false" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/MyContext.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5">
+          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding>
+            <element signature="e#36#60#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/FourCases.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="111">
+          <caret line="57" column="46" lean-forward="false" selection-start-line="57" selection-start-column="46" selection-end-line="57" selection-end-column="46" />
+          <folding>
+            <element signature="e#35#101#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/MathExpressionParsers.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="582">
-          <caret line="269" column="52" lean-forward="true" selection-start-line="269" selection-start-column="52" selection-end-line="269" selection-end-column="52" />
+        <state relative-caret-position="174">
+          <caret line="72" column="48" lean-forward="false" selection-start-line="72" selection-start-column="48" selection-end-line="72" selection-end-column="48" />
           <folding>
             <element signature="e#36#60#0" expanded="true" />
-            <element signature="e#273#295#0" expanded="true" />
-            <element signature="e#1430#2736#0" expanded="false" />
-            <element signature="e#3525#3533#0" expanded="false" />
-            <element signature="e#3525#4209#0" expanded="false" />
-            <element signature="e#4216#4753#0" expanded="false" />
-            <element signature="e#4830#5529#0" expanded="false" />
-            <element signature="e#5606#6197#0" expanded="false" />
-            <element signature="e#6204#6829#0" expanded="false" />
-            <element signature="e#7355#7695#0" expanded="false" />
-            <element signature="e#7715#7733#0" expanded="true" />
+            <element signature="e#368#390#0" expanded="true" />
+            <element signature="e#3007#3025#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code examples/test.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="50" lean-forward="false" selection-start-line="2" selection-start-column="50" selection-end-line="2" selection-end-column="50" />
+          <folding />
         </state>
       </provider>
     </entry>

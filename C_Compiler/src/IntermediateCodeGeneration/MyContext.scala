@@ -1,6 +1,6 @@
 package IntermediateCodeGeneration
 
-import C_ANTLR.CParser.{FactorContext, ProductContext, SumContext}
+import C_ANTLR.CParser._
 import org.antlr.v4.runtime.ParserRuleContext
 import org.antlr.v4.runtime.tree.TerminalNode
 
@@ -13,25 +13,28 @@ case class MySumContext(val initialOperand: ProductContext
                         , val unappliedList: Map[String, ProductContext]) extends MyContext
 
 object MyContext {
-  implicit def toMyContext(context: ParserRuleContext): MyContext  = {
+  implicit def toMyContext
+  (context: ParserRuleContext,
+   shrinkableList: scala.collection.immutable.List[ParserRuleContext],
+  ): MathExpr[_ >: ProductContext with FactorContext <: ParserRuleContext] = {
+
+
     if(context.isInstanceOf[SumContext]) {
-      val sum = context.asInstanceOf[SumContext]
-      val unappliedList: Map[String, ProductContext] = sum.unapplied_low_op.asScala.toList.map { ul =>
-        val mathOperator = ul.MATH_OP_LOW_PRIORITY().getText()
-        val product = ul.product()
-        (mathOperator, product)
-      }.toMap
-      val initialOperand: ProductContext = sum.product()
-      MySumContext(initialOperand, unappliedList)
+      val specificContext = context.asInstanceOf[SumContext]
+      val operand1 = specificContext.product()
+      val unappliedOp = shrinkableList.head.asInstanceOf[Unapplied_low_opContext]
+      val operation = unappliedOp.MATH_OP_LOW_PRIORITY().getText
+      val operand2 = unappliedOp.product()
+      SumExpr(operand1, operation, operand2)
+
+
     } else{
-      val product = context.asInstanceOf[ProductContext]
-      val unappliedList: Map[String, FactorContext] = product.unapplied_medium_op().asScala.toList.map { ul =>
-        val mathOperator = ul.MATH_OP_MEDIUM_PRIORITY().getText()
-        val factor = ul.factor()
-        (mathOperator, factor)
-      }.toMap
-      val initialOperand: FactorContext = product.factor()
-      MyProductContext(initialOperand, unappliedList)
+      val specificContext = context.asInstanceOf[ProductContext]
+      val operand1 = specificContext.factor()
+      val unappliedOp = shrinkableList.head.asInstanceOf[Unapplied_medium_opContext]
+      val operation = unappliedOp.MATH_OP_MEDIUM_PRIORITY().getText
+      val operand2 = unappliedOp.factor()
+      ProdExpr(operand1, operation, operand2)
     }//TODO add factorContext here
   }
 }
