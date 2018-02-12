@@ -2,3 +2,4 @@ C_Compiler/dist/*
 C_Compiler/build/
 C_Compiler/nbproject/*
 C_Compiler/src/C_ANTLR/*
+out/*
