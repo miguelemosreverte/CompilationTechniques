@@ -12,15 +12,11 @@ import IntermediateCodeGeneration.MathExpressionParsers.parseMath
 
 object IntermediateCodeGenerator {
 
-  private val globalIdentifier = 0
+  private var globalIdentifier = 0
   private val intermediateCode_fromLinesToCode = new util.TreeMap[Integer, String]
   private var intermediateCode = ""
 
-  def printIntermediateCode(): Unit = {
-    /*intermediateCode_fromLinesToCode.forEach((lineNumber, code) -> {
-               System.out.println(code);
-           });*/ System.out.println(intermediateCode)
-  }
+  def printIntermediateCode(): Unit = Console.println(intermediateCode)
 
   def enterF_p(ct: CParser.F_pContext): Unit = {
   }
@@ -34,8 +30,11 @@ object IntermediateCodeGenerator {
 
   def enterAssignation(ct: CParser.AssignationContext): Unit = {
     val lineNumber = ct.start.getLine
-    val prefix = ct.ID + " := "
-    val code = to_value_TAC("", ct.to_value)
+    globalIdentifier += 1
+    val prefix = ct.ID() + " := "
+    var code : String = ""
+    if (ct.to_value() != null) code = to_value_TAC(prefix, ct.to_value)
+    else code = prefix + ct.ID() + (if (ct.INCR_DECR().toString() == "++") "+1" else "-1")
     intermediateCode_fromLinesToCode.put(lineNumber, code)
     intermediateCode += code + "\n"
   }
@@ -53,9 +52,11 @@ object IntermediateCodeGenerator {
   def to_value_TAC(return_to: String, ct: CParser.To_valueContext): String = {
     val TAC_array = new util.ArrayList[String]
     if (ct.math_operation != null) {
-      var mathTuple = new MathTuple("", 0)
+      var mathTuple = new MathTuple("", globalIdentifier)
       mathTuple = parseMath(mathTuple, ct.math_operation)
       TAC_array.add(mathTuple.acumulatedIntermediateCode)
+      globalIdentifier = mathTuple.ID
+      TAC_array.add("t" + globalIdentifier)
     }
     if (ct.f_c != null) TAC_array.add("fc" + ct.f_c.toString)
     if (ct.digit != null) TAC_array.add("digit " + ct.getText)
@@ -68,20 +69,18 @@ object IntermediateCodeGenerator {
   def enterVariable_declaration(ct: CParser.Variable_declarationContext): Unit = {
     val codeList = new util.ArrayList[String]
     var i = 0
-    while ( {
-      i < ct.ID.size
-    }) {
+    while ( i < ct.ID.size) {
       val prefix = ct.ID(i) + " := "
       val code = to_value_TAC(prefix, ct.to_value(i))
       codeList.add(code)
 
-      {
+
         i += 1; i - 1
-      }
+
     }
     val lineNumber = ct.start.getLine
     intermediateCode_fromLinesToCode.put(lineNumber, String.join("\n", codeList))
-    intermediateCode += String.join("\n", codeList) + "\n"
+    intermediateCode += String.join("\n", codeList)
   }
 
 

@@ -133,9 +133,14 @@ object MathExpressionParsers {
 
       }
 
-    val pepe = toMyContext(context, shrinkableList)
-    exprParser(pepe)
-
+    if (shrinkableList.isEmpty){
+      if (context.isInstanceOf[ProductContext])
+        return parseProduct(original_tuple, context.asInstanceOf[ProductContext])
+      else return original_tuple
+    }else{
+      val pepe = toMyContext(context, shrinkableList)
+      return exprParser(pepe)
+    }
   }
 
 

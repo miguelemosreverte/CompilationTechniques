@@ -12,6 +12,8 @@ import Scope.ScopeUtilsDependencyInjector;
 import Symbol.AbstractSymbol;
 import Symbol.FunctionSymbol;
 import Symbol.VariableSymbol;
+import scala.Console;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.NavigableMap;
@@ -88,8 +90,11 @@ public class EnterRules extends RulesChecks {
     public static void enterAssignation(CParser.AssignationContext ctx) {
 
         Scope currentScope = symbolsTable.floorEntry(ctx.start.getLine()).getValue();
-        
-        VariableSymbol currentVariable =  ((VariableSymbol) currentScope.symbols.get(ctx.ID().getText()));
+
+        //scopeAtWhichTheVariableIsDeclared
+        Scope scope = currentScope.getScope(ctx.ID().getText());
+
+        VariableSymbol currentVariable = (VariableSymbol) scope.symbols.get(ctx.ID().getText());
         currentVariable.setValue("initialized");
             
         checkVarName(ctx.ID().getText(), Integer.toString(ctx.start.getLine()), currentScope);
