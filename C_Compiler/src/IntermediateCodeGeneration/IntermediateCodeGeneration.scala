@@ -12,7 +12,6 @@ import Rules.Utils
 import org.antlr.v4.runtime.tree.{ParseTree, TerminalNode}
 
 import scala.collection.mutable.ListBuffer
-
 object IntermediateCodeGenerator {
 
   private var globalIdentifier = 0
@@ -24,67 +23,14 @@ object IntermediateCodeGenerator {
   private var TADs = new ListBuffer[Statement]
 
   def printIntermediateCode(): Unit = {
+    val optimizedTADs = Optimization.contantPropagation(TADs)
 
+    def cleanOfAnnotations(tads : Seq[Statement]) = optimizedTADs.filter(tad => !tad.toString.contains("#"))
 
-    def contantPropagation(tads : Seq[Statement]) : Seq[Statement] = {
-
-      val untouchables = ListBuffer[Statement]()
-      var last_tad : Statement= SimpleStatement("fictional beggining");
-      for (tad <- tads){
-        if (last_tad.toString == "#function return below. do not touch.")
-          untouchables += tad
-        last_tad = tad
-      }
-
-      val nonPropagatedconstants =
-        tads.filter(tad =>
-          tad match {
-            case Copy(a,b) => !(b forall Character.isDigit) && !b.contains("<") && !untouchables.contains(Copy(a,b))
-            case _ => false
-          })
-
-      val constants =
-        tads.filter(tad =>
-          tad match {
-            case Copy(_,b) => b forall Character.isDigit
-            case _ => false
-          })
-
-      Console.println("nonPropagatedconstants are " + nonPropagatedconstants)
-      Console.println("constants are " + constants)
-
-      val pepe = tads.map(tad => tad match {
-        case Copy(a,b) => {
-                            var result = Copy(a,b);
-                            if (nonPropagatedconstants.contains(result)){
-                              for (constant <- constants){
-                                val casted = constant.asInstanceOf[Copy]
-                                if (casted.Asignee == b) {
-                                  if (!untouchables.contains(result))
-                                    result = Copy(a, casted.Asignor)
-                                }
-                              }
-
-                            }
-
-                            result
-
-                          }
-        case other => other
-      })
-
-      Console.println("--------------------")
-      if (!nonPropagatedconstants.isEmpty)
-        return contantPropagation(pepe)
-      pepe
-    }
-
-    val optimizedTADs = contantPropagation(TADs)
-
-    val cleaned = optimizedTADs.filter(tad => !tad.toString.contains("#"))
+    val cleaned = cleanOfAnnotations(optimizedTADs)
     //Console.println(intermediateCode)
     for (tad: Statement <- cleaned)
-      Console.print(tad)
+      Console.println(tad)
 
   }
 
@@ -195,7 +141,7 @@ object IntermediateCodeGenerator {
         for (parameter <- parameters){
           if (parameter.f_c() != null) {
 
-            //code += "\nevaluating parameter "+parameter.getText+" of function " + functionName
+            //code += "evaluating parameter "+parameter.getText+" of function " + functionName
             code.++=(to_value_TAC(assignment = -1, parameter))
           }
           //code += to_value_TAC(parameter)
@@ -286,11 +232,11 @@ object IntermediateCodeGenerator {
         globalIdentifier += 1
         //TODO parse logic_op to 3 address code
         val conditionID = "condition"+globalIdentifier
-        code += Copy(Asignee = "\n"+conditionID, Asignor = context.logic_op().getText)
+        code += Copy(Asignee = ""+conditionID, Asignor = context.logic_op().getText)
 
 
         labelIdentifier += 1
-        code += SimpleStatement(statement = "\nifNot("+conditionID+") goto L" + labelIdentifier+"\n")
+        code += SimpleStatement(statement = "ifNot("+conditionID+") goto L" + labelIdentifier+"")
         if(context.code_block() != null){
 
 
@@ -300,7 +246,7 @@ object IntermediateCodeGenerator {
         }
         else
           code ++= stat_TAC(context.stat())
-        code += SimpleStatement(statement = "\nL"+labelIdentifier+":")
+        code += SimpleStatement(statement = "L"+labelIdentifier+":")
 
 
         if (context.else_condition() != null){

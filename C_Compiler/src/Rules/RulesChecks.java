@@ -52,7 +52,6 @@ public class RulesChecks {
         }
     }
 
-    public RulesChecks() {
-    }
+    public RulesChecks() {}
 
 }
