@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="19dac47c-8abf-47ec-9a32-9f86d820737f" name="Default" comment="Nested calls are now supported.&#10;&#10;&#10;int main(void);&#10;int plusOne(int);&#10;&#10;int plusOne(int a){&#10;    return a + 1;&#10;}&#10;&#10;int byTwo(int);&#10;int byTwo(int f){&#10;    return f + 2;&#10;}&#10;int main(int z){&#10;&#10;    double insideMain = 1;&#10;&#10;&#10;    plusOne(plusOne(byTwo(z)));&#10;&#10;&#10;}&#10;&#10;int z = 0;&#10;z = main(z);&#10;&#10;&#10;becomes THIS:">
+    <list default="true" id="19dac47c-8abf-47ec-9a32-9f86d820737f" name="Default" comment="A simple mistake was causing functions with multiple parameter not to work correctly. Now that's been fixed.&#10;&#10;Their code was multiplied by the ammount of parameters, each time with one variable name correctly replaced.&#10;&#10;Now all the replacement are made and only then the line is added.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/IntermediateCodeGeneration.scala" afterPath="$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/IntermediateCodeGeneration.scala" />
       <change beforePath="$PROJECT_DIR$/code examples/test.c" afterPath="$PROJECT_DIR$/code examples/test.c" />
-      <change beforePath="$PROJECT_DIR$/out/production/C_Compiler/Main/Main.class" afterPath="$PROJECT_DIR$/out/production/C_Compiler/Main/Main.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/C_Compiler/IntermediateCodeGeneration/IntermediateCodeGenerator$.class" afterPath="$PROJECT_DIR$/out/production/C_Compiler/IntermediateCodeGeneration/IntermediateCodeGenerator$.class" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/target/" />
@@ -38,11 +38,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="IntermediateCodeGeneration.scala" pinned="false" current-in-tab="false">
+      <file leaf-file-name="IntermediateCodeGeneration.scala" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/IntermediateCodeGeneration.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="123">
-              <caret line="160" column="58" lean-forward="false" selection-start-line="160" selection-start-column="58" selection-end-line="160" selection-end-column="58" />
+            <state relative-caret-position="272">
+              <caret line="170" column="0" lean-forward="true" selection-start-line="170" selection-start-column="0" selection-end-line="170" selection-end-column="0" />
               <folding>
                 <element signature="e#36#58#0" expanded="true" />
               </folding>
@@ -70,11 +70,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test.c" pinned="false" current-in-tab="true">
+      <file leaf-file-name="test.c" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/code examples/test.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="14" column="13" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="23" selection-end-column="12" />
+            <state relative-caret-position="18">
+              <caret line="1" column="11" lean-forward="false" selection-start-line="1" selection-start-column="11" selection-end-line="1" selection-end-column="11" />
               <folding />
             </state>
           </provider>
@@ -112,7 +112,6 @@
       <find>System.out</find>
       <find>Console</find>
       <find>declare</find>
-      <find>To_valueContext</find>
       <find>&quot;t</find>
       <find>numericalID_to_ID</find>
       <find>replace</find>
@@ -120,14 +119,16 @@
       <find>assignment = false</find>
       <find>assignment =</find>
       <find>pepe</find>
+      <find>TODO</find>
+      <find>To_valueContext</find>
     </findStrings>
     <replaceStrings>
       <replace>MathTuple</replace>
       <replace>nextID != 0</replace>
       <replace>unappliedOp</replace>
       <replace>operand1</replace>
-      <replace>t</replace>
       <replace>assignment = -1</replace>
+      <replace>t</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -165,8 +166,8 @@
         <option value="$PROJECT_DIR$/C_Compiler/src/Visitor/Visitor.java" />
         <option value="$PROJECT_DIR$/C_Compiler/src/Main/Main.java" />
         <option value="$PROJECT_DIR$/C_Compiler/src/Rules/Utils.java" />
-        <option value="$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/IntermediateCodeGeneration.scala" />
         <option value="$PROJECT_DIR$/code examples/test.c" />
+        <option value="$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/IntermediateCodeGeneration.scala" />
       </list>
     </option>
   </component>
@@ -497,7 +498,14 @@
       <option name="project" value="LOCAL" />
       <updated>1518567592742</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Nested calls are now supported.&#10;&#10;&#10;int main(void);&#10;int plusOne(int);&#10;&#10;int plusOne(int a){&#10;    return a + 1;&#10;}&#10;&#10;int byTwo(int);&#10;int byTwo(int f){&#10;    return f + 2;&#10;}&#10;int main(int z){&#10;&#10;    double insideMain = 1;&#10;&#10;&#10;    plusOne(plusOne(byTwo(z)));&#10;&#10;&#10;}&#10;&#10;int z = 0;&#10;z = main(z);&#10;&#10;&#10;becomes THIS:&#10;&#10;&#10;value z:= digit 0&#10;value insideMain:= digit 1&#10;t4:=z+2&#10;t5:=t4+1&#10;t6:=t5+1&#10;value z:= t6">
+      <created>1518578691066</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1518578691066</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TodoView">
@@ -521,7 +529,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32970452" sideWeight="0.50278884" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32988048" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.43234837" sideWeight="0.49721116" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3903577" sideWeight="0.49721116" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32970452" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.7013997" sideWeight="0.49402392" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -609,7 +617,9 @@
     <MESSAGE value="Even though the migration had been successfull, not the last version was migrated, but an older one.&#10;&#10;This version can transform this:&#10;&#10;500 + 9 + ((1 * 3) + (2* 3)) + 5 *11 * 12 + 100 + 120 + 300&#10;&#10;into this:&#10;&#10;&#10;t1:=500+9&#10;t2:=2*3&#10;t3:=1*3&#10;t4:=t3+t2&#10;t5:=t1+t4&#10;t6:=5*11&#10;t7:=t6*12&#10;t8:=t5+t7&#10;t9:=t8+100&#10;t10:=t9+120&#10;t11:=t10+300" />
     <MESSAGE value="Started advancing on the other remaining parts of intermediate code generation.&#10;&#10;This&#10;&#10;&#10;int main(void);&#10;&#10;int main(void){&#10;&#10;    double y = 0, x = 1;&#10;&#10;    y = (999 + (1 + (2 + 3) + (4 + 5) + 6 + 7 * 8*9)) + 1000;&#10;    x = y + 1;&#10;&#10;    if (x == 2){&#10;        x ++;&#10;    }&#10;&#10;&#10;}&#10;&#10;&#10;&#10;Becomes this&#10;&#10;&#10;y := digit 0&#10;x := digit 1&#10;t2:=2+3&#10;t3:=1+t2&#10;t4:=4+5&#10;t5:=t3+t4&#10;t6:=t5+6&#10;t7:=7*8&#10;t8:=t7*9&#10;t9:=t6+t8&#10;t10:=999+t9&#10;t11:=t10+1000&#10;y := t11&#10;&#10;t13:=y+1&#10;x := t13&#10;x := x+1" />
     <MESSAGE value="Advances have been made in the function call department.&#10;&#10;The target language is now functional. The parameters of function calls substitute their analogs in the function declaration.&#10;And the function declaration with the variables names already substituted goes on to substitute the function call.&#10;&#10;This leads to the following examples:&#10;&#10;&#10;&#10;int main(void);&#10;int aRandomMathOperation(int);&#10;&#10;int aRandomMathOperation(int a){&#10;    return a + 1 * 2 + 3;&#10;}&#10;&#10;int main(int z){&#10;&#10;    double y = 0, x = 1;&#10;&#10;&#10;    aRandomMathOperation(x);&#10;&#10;&#10;}&#10;&#10;int xx = 1 * 2 + 3;&#10;int z = 0;&#10;z = aRandomMathOperation(xx);&#10;z = main(z);&#10;&#10;&#10;which translates into THIS:&#10;&#10;&#10;&#10;t2:=1*2&#10;t3:=t2+3&#10;xx:=t3&#10;z:= 0&#10;t6:=1*2&#10;t7:=xx+t6&#10;t8:=t7+3&#10;z:= t8&#10;y:= 0&#10;x:= 1&#10;t12:=1*2&#10;t13:=x+t12&#10;t14:=t13+3&#10;z:= t14" />
-    <option name="LAST_COMMIT_MESSAGE" value="Advances have been made in the function call department.&#10;&#10;The target language is now functional. The parameters of function calls substitute their analogs in the function declaration.&#10;And the function declaration with the variables names already substituted goes on to substitute the function call.&#10;&#10;This leads to the following examples:&#10;&#10;&#10;&#10;int main(void);&#10;int aRandomMathOperation(int);&#10;&#10;int aRandomMathOperation(int a){&#10;    return a + 1 * 2 + 3;&#10;}&#10;&#10;int main(int z){&#10;&#10;    double y = 0, x = 1;&#10;&#10;&#10;    aRandomMathOperation(x);&#10;&#10;&#10;}&#10;&#10;int xx = 1 * 2 + 3;&#10;int z = 0;&#10;z = aRandomMathOperation(xx);&#10;z = main(z);&#10;&#10;&#10;which translates into THIS:&#10;&#10;&#10;&#10;t2:=1*2&#10;t3:=t2+3&#10;xx:=t3&#10;z:= 0&#10;t6:=1*2&#10;t7:=xx+t6&#10;t8:=t7+3&#10;z:= t8&#10;y:= 0&#10;x:= 1&#10;t12:=1*2&#10;t13:=x+t12&#10;t14:=t13+3&#10;z:= t14" />
+    <MESSAGE value="Nested calls are now supported.&#10;&#10;&#10;int main(void);&#10;int plusOne(int);&#10;&#10;int plusOne(int a){&#10;    return a + 1;&#10;}&#10;&#10;int byTwo(int);&#10;int byTwo(int f){&#10;    return f + 2;&#10;}&#10;int main(int z){&#10;&#10;    double insideMain = 1;&#10;&#10;&#10;    plusOne(plusOne(byTwo(z)));&#10;&#10;&#10;}&#10;&#10;int z = 0;&#10;z = main(z);&#10;&#10;&#10;becomes THIS:&#10;&#10;&#10;value z:= digit 0&#10;value insideMain:= digit 1&#10;t4:=z+2&#10;t5:=t4+1&#10;t6:=t5+1&#10;value z:= t6" />
+    <MESSAGE value="A simple mistake was causing functions with multiple parameter not to work correctly. Now that's been fixed.&#10;&#10;Their code was multiplied by the ammount of parameters, each time with one variable name correctly replaced.&#10;&#10;Now all the replacement are made and only then the line is added." />
+    <option name="LAST_COMMIT_MESSAGE" value="A simple mistake was causing functions with multiple parameter not to work correctly. Now that's been fixed.&#10;&#10;Their code was multiplied by the ammount of parameters, each time with one variable name correctly replaced.&#10;&#10;Now all the replacement are made and only then the line is added." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -935,14 +945,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/C_Compiler/src/Rules/EnterRules.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="123">
-          <caret line="103" column="60" lean-forward="false" selection-start-line="103" selection-start-column="45" selection-end-line="103" selection-end-column="60" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/C_Compiler/src/Rules/Utils.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
@@ -959,21 +961,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/IntermediateCodeGeneration.scala">
+    <entry file="file://$PROJECT_DIR$/C_Compiler/src/Rules/EnterRules.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="123">
-          <caret line="160" column="58" lean-forward="false" selection-start-line="160" selection-start-column="58" selection-end-line="160" selection-end-column="58" />
-          <folding>
-            <element signature="e#36#58#0" expanded="true" />
-          </folding>
+          <caret line="103" column="60" lean-forward="false" selection-start-line="103" selection-start-column="45" selection-end-line="103" selection-end-column="60" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/code examples/test.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="14" column="13" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="23" selection-end-column="12" />
+        <state relative-caret-position="18">
+          <caret line="1" column="11" lean-forward="false" selection-start-line="1" selection-start-column="11" selection-end-line="1" selection-end-column="11" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/IntermediateCodeGeneration.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="170" column="0" lean-forward="true" selection-start-line="170" selection-start-column="0" selection-end-line="170" selection-end-column="0" />
+          <folding>
+            <element signature="e#36#58#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
