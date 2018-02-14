@@ -1,0 +1,980 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="19dac47c-8abf-47ec-9a32-9f86d820737f" name="Default" comment="Apparently IntelliJ idea had a mind of its own when commiting, and I now have a big commit instead of many little ones. C'est la vie!">
+      <change beforePath="" afterPath="$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/Statement.scala" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/IntermediateCodeGeneration.scala" afterPath="$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/IntermediateCodeGeneration.scala" />
+      <change beforePath="$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/Quad.java" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/code examples/test.c" afterPath="$PROJECT_DIR$/code examples/test.c" />
+      <change beforePath="$PROJECT_DIR$/out/production/C_Compiler/IntermediateCodeGeneration/IntermediateCodeGenerator$.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/C_Compiler/IntermediateCodeGeneration/IntermediateCodeGenerator.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/C_Compiler/IntermediateCodeGeneration/Quad.class" afterPath="$PROJECT_DIR$/out/production/C_Compiler/IntermediateCodeGeneration/Quad.class" />
+    </list>
+    <ignored path="$PROJECT_DIR$/out/" />
+    <ignored path="$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/target/" />
+    <ignored path="$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/project/project/target/" />
+    <ignored path="$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/project/target/" />
+    <ignored path="$PROJECT_DIR$/C_Compiler/target/" />
+    <ignored path="$PROJECT_DIR$/C_Compiler/project/project/target/" />
+    <ignored path="$PROJECT_DIR$/C_Compiler/project/target/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$/C_Compiler">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="SBT">
+      <state>
+        <projects_view />
+      </state>
+    </system>
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="IntermediateCodeGeneration.scala" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/IntermediateCodeGeneration.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="477">
+              <caret line="97" column="1" lean-forward="true" selection-start-line="97" selection-start-column="1" selection-end-line="97" selection-end-column="1" />
+              <folding>
+                <element signature="e#36#58#0" expanded="true" />
+                <element signature="e#4439#5241#0" expanded="false" />
+                <element signature="e#5249#5758#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Statement.scala" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/Statement.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="72">
+              <caret line="4" column="1" lean-forward="true" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Visitor.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/C_Compiler/src/Visitor/Visitor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1098">
+              <caret line="65" column="33" lean-forward="false" selection-start-line="65" selection-start-column="33" selection-end-line="65" selection-end-column="33" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#3326#3327#0" expanded="true" />
+                <element signature="e#3362#3363#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/C_Compiler/src/Main/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="810">
+              <caret line="65" column="40" lean-forward="false" selection-start-line="65" selection-start-column="40" selection-end-line="65" selection-end-column="40" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Utils.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/C_Compiler/src/Rules/Utils.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1332">
+              <caret line="87" column="31" lean-forward="false" selection-start-line="87" selection-start-column="31" selection-end-line="87" selection-end-column="31" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EnterRules.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/C_Compiler/src/Rules/EnterRules.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="360">
+              <caret line="130" column="44" lean-forward="false" selection-start-line="130" selection-start-column="29" selection-end-line="130" selection-end-column="44" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test.c" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/code examples/test.c">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="360">
+              <caret line="20" column="16" lean-forward="false" selection-start-line="20" selection-start-column="16" selection-end-line="20" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Package Object" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>product</find>
+      <find>tuple =</find>
+      <find>operand22</find>
+      <find>t1</find>
+      <find>t4</find>
+      <find>parseProduct</find>
+      <find>ProgContext</find>
+      <find>IntermediateCodeGenerator</find>
+      <find>asscala</find>
+      <find>yay</find>
+      <find>enterF_d</find>
+      <find>println</find>
+      <find>System.out</find>
+      <find>Console</find>
+      <find>declare</find>
+      <find>&quot;t</find>
+      <find>numericalID_to_ID</find>
+      <find>to_value_TAC</find>
+      <find>assignment = false</find>
+      <find>assignment =</find>
+      <find>pepe</find>
+      <find>TODO</find>
+      <find>To_valueContext</find>
+      <find>code_block</find>
+      <find>t&quot;</find>
+      <find>ifnot</find>
+      <find>replace</find>
+      <find>toSeq</find>
+      <find>value</find>
+      <find>below</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>MathTuple</replace>
+      <replace>nextID != 0</replace>
+      <replace>unappliedOp</replace>
+      <replace>operand1</replace>
+      <replace>t</replace>
+      <replace>assignment = -1</replace>
+    </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GradleLocalSettings">
+    <option name="externalProjectsViewState">
+      <projects_view />
+    </option>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/IntermediateCodeGeneratorScala.scala" />
+        <option value="$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/MathExpressionParsers.java" />
+        <option value="$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/MathTupleScala.scala" />
+        <option value="$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/MathExpressionParsersScala.scala" />
+        <option value="$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/IntermediateCodeGenerator.scala" />
+        <option value="$PROJECT_DIR$/C_Compiler/src/Scope/ScopeUtils.java" />
+        <option value="$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/build.sbt" />
+        <option value="$PROJECT_DIR$/C_Compiler/build.sbt" />
+        <option value="$PROJECT_DIR$/C_Compiler/project/build.sbt" />
+        <option value="$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/parseGeneric.scala" />
+        <option value="$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/unappliedOp.scala" />
+        <option value="$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/MathExpr.scala" />
+        <option value="$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/package.scala" />
+        <option value="$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/Parseable.scala" />
+        <option value="$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/MyContext.scala" />
+        <option value="$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/MathTuple.scala" />
+        <option value="$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/FourCases.scala" />
+        <option value="$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/MathExpressionParsers.scala" />
+        <option value="$PROJECT_DIR$/C_Compiler/src/Scope/Scope.java" />
+        <option value="$PROJECT_DIR$/C_Compiler/src/Rules/EnterRules.java" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/C_Compiler/src/Visitor/Visitor.java" />
+        <option value="$PROJECT_DIR$/C_Compiler/src/Rules/Utils.java" />
+        <option value="$PROJECT_DIR$/C_Compiler/src/Main/Main.java" />
+        <option value="$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/Quad.scala" />
+        <option value="$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/Statement.scala" />
+        <option value="$PROJECT_DIR$/code examples/test.c" />
+        <option value="$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/IntermediateCodeGeneration.scala" />
+      </list>
+    </option>
+  </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand />
+      <select />
+    </treeState>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="75" />
+    <option name="y" value="44" />
+    <option name="width" value="1281" />
+    <option name="height" value="704" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="CompilationTechniques" type="b2602c69:ProjectViewProjectNode" />
+              <item name="C_Compiler" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CompilationTechniques" type="b2602c69:ProjectViewProjectNode" />
+              <item name="C_Compiler" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CompilationTechniques" type="b2602c69:ProjectViewProjectNode" />
+              <item name="C_Compiler" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="IntermediateCodeGeneration" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CompilationTechniques" type="b2602c69:ProjectViewProjectNode" />
+              <item name="C_Compiler" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CompilationTechniques" type="b2602c69:ProjectViewProjectNode" />
+              <item name="C_Compiler" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Rules" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CompilationTechniques" type="b2602c69:ProjectViewProjectNode" />
+              <item name="C_Compiler" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Visitor" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+      <pane id="AndroidView" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/code examples/test.c" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="ToolWindowMaven Projects.ShowToolbar" value="false" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Kotlin" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.Main">
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <module />
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="Main.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="Main.Main" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="C_Compiler" />
+      <envs />
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+    </configuration>
+    <configuration default="true" type="Remote" factoryName="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
+    </configuration>
+    <configuration name="Scala Console" type="ScalaScriptConsoleRunConfiguration" factoryName="Scala Console" temporary="true">
+      <module name="C_Compiler" />
+      <setting name="vmparams4" value="-Djline.terminal=NONE" />
+      <setting name="workingDirectory" value="$PROJECT_DIR$" />
+      <setting name="consoleArgs" value="-usejavacp" />
+    </configuration>
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
+    </configuration>
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
+      <module name="" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
+      <option name="PROGRAM_PARAMETERS" />
+      <predefined_log_file id="idea.log" enabled="true" />
+    </configuration>
+    <list size="2">
+      <item index="0" class="java.lang.String" itemvalue="Application.Main" />
+      <item index="1" class="java.lang.String" itemvalue="Scala Console.Scala Console" />
+    </list>
+    <recent_temporary>
+      <list size="2">
+        <item index="0" class="java.lang.String" itemvalue="Application.Main" />
+        <item index="1" class="java.lang.String" itemvalue="Scala Console.Scala Console" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SbtLocalSettings">
+    <option name="lastUpdateTimestamp" value="1518224945273" />
+    <option name="availableProjects">
+      <map>
+        <entry>
+          <key>
+            <ExternalProjectPojo>
+              <option name="name" value="c_compiler" />
+              <option name="path" value="$PROJECT_DIR$/C_Compiler" />
+            </ExternalProjectPojo>
+          </key>
+          <value>
+            <list>
+              <ExternalProjectPojo>
+                <option name="name" value="c_compiler" />
+                <option name="path" value="$PROJECT_DIR$/C_Compiler" />
+              </ExternalProjectPojo>
+              <ExternalProjectPojo>
+                <option name="name" value="c_compiler-build" />
+                <option name="path" value="$PROJECT_DIR$/C_Compiler/project" />
+              </ExternalProjectPojo>
+            </list>
+          </value>
+        </entry>
+        <entry>
+          <key>
+            <ExternalProjectPojo>
+              <option name="name" value="intermediatecodegeneration" />
+              <option name="path" value="$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration" />
+            </ExternalProjectPojo>
+          </key>
+          <value>
+            <list>
+              <ExternalProjectPojo>
+                <option name="name" value="intermediatecodegeneration" />
+                <option name="path" value="$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration" />
+              </ExternalProjectPojo>
+              <ExternalProjectPojo>
+                <option name="name" value="intermediatecodegeneration-build" />
+                <option name="path" value="$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/project" />
+              </ExternalProjectPojo>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="externalProjectsViewState">
+      <projects_view />
+    </option>
+    <option name="projectSyncType">
+      <map>
+        <entry key="$PROJECT_DIR$/C_Compiler" value="RE_IMPORT" />
+        <entry key="$PROJECT_DIR$/C_Compiler/project" value="RE_IMPORT" />
+        <entry key="$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration" value="RE_IMPORT" />
+        <entry key="$PROJECT_DIR$/../parser_combinators" value="PREVIEW" />
+      </map>
+    </option>
+  </component>
+  <component name="ScalaProjectSettings">
+    <option name="dontShowConversionDialog" value="true" />
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="19dac47c-8abf-47ec-9a32-9f86d820737f" name="Default" comment="" />
+      <created>1518213996138</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1518213996138</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Started migration to Scala.&#10;&#10;Why did I migrate to Scala:&#10;&#10;There are four combinations of math operands in a monoid. Be that monoid a sum, a product, or a factor.&#10;&#10;They were explained a few commits ago. &#10;&#10;The thing is that these 3 monoids share the general algorithm for parsing the four said cases.&#10;&#10;And I do not want to repeat myself. &#10;&#10;So, I started by using functions as parameters. Be it parseProduct, or parseFactor, they all would get passed as parameter for the generic function we will call parse.&#10;&#10;So, parse receives those functions and executes them. Right. But there was a problem. Those functions had different signatures. parseProduct would expect a ProductContext, while parseFactor a FactorContext. No problem, right? I would make them share a more generic signature, that would expect an object instead.&#10;&#10;That was already a bad smell.&#10;&#10;But the worse came during the moment to cast this objects to ProductContext or FactorContext. It was a mess. So, something smarter was much needed. A class that would be either of those.&#10;&#10;And that cannot be done without going to the procedurally generated code made by ANTLR. A minimal change on the grammar would override the changes. And for this problem, Scala was needed.">
+      <created>1518219122810</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1518219122810</updated>
+    </task>
+    <task id="LOCAL-00002" summary="IntelliJ had a lots of things to improve, lots of typos to fix.">
+      <created>1518219828588</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1518219828588</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Even though the migration had been successfull, not the last version was migrated, but an older one.&#10;&#10;This version can transform this:&#10;&#10;500 + 9 + ((1 * 3) + (2* 3)) + 5 *11 * 12 + 100 + 120 + 300&#10;&#10;into this:&#10;&#10;&#10;t1:=500+9&#10;t2:=2*3&#10;t3:=1*3&#10;t4:=t3+t2&#10;t5:=t1+t4&#10;t6:=5*11&#10;t7:=t6*12&#10;t8:=t5+t7&#10;t9:=t8+100&#10;t10:=t9+120&#10;t11:=t10+300">
+      <created>1518221101365</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1518221101365</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Started advancing on the other remaining parts of intermediate code generation.&#10;&#10;This&#10;&#10;&#10;int main(void);&#10;&#10;int main(void){&#10;&#10;    double y = 0, x = 1;&#10;&#10;    y = (999 + (1 + (2 + 3) + (4 + 5) + 6 + 7 * 8*9)) + 1000;&#10;    x = y + 1;&#10;&#10;    if (x == 2){&#10;        x ++;&#10;    }&#10;&#10;&#10;}&#10;&#10;&#10;&#10;Becomes this&#10;&#10;&#10;y := digit 0&#10;x := digit 1&#10;t2:=2+3&#10;t3:=1+t2&#10;t4:=4+5&#10;t5:=t3+t4&#10;t6:=t5+6&#10;t7:=7*8&#10;t8:=t7*9&#10;t9:=t6+t8&#10;t10:=999+t9&#10;t11:=t10+1000&#10;y := t11&#10;&#10;t13:=y+1&#10;x := t13&#10;x := x+1">
+      <created>1518476933926</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1518476933926</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Advances have been made in the function call department.&#10;&#10;The target language is now functional. The parameters of function calls substitute their analogs in the function declaration.&#10;And the function declaration with the variables names already substituted goes on to substitute the function call.&#10;&#10;This leads to the following examples:&#10;&#10;&#10;&#10;int main(void);&#10;int aRandomMathOperation(int);&#10;&#10;int aRandomMathOperation(int a){&#10;    return a + 1 * 2 + 3;&#10;}&#10;&#10;int main(int z){&#10;&#10;    double y = 0, x = 1;&#10;&#10;&#10;    aRandomMathOperation(x);&#10;&#10;&#10;}&#10;&#10;int xx = 1 * 2 + 3;&#10;int z = 0;&#10;z = aRandomMathOperation(xx);&#10;z = main(z);&#10;&#10;&#10;which translates into THIS:&#10;&#10;&#10;&#10;t2:=1*2&#10;t3:=t2+3&#10;xx:=t3&#10;z:= 0&#10;t6:=1*2&#10;t7:=xx+t6&#10;t8:=t7+3&#10;z:= t8&#10;y:= 0&#10;x:= 1&#10;t12:=1*2&#10;t13:=x+t12&#10;t14:=t13+3&#10;z:= t14">
+      <created>1518567592742</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1518567592742</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Nested calls are now supported.&#10;&#10;&#10;int main(void);&#10;int plusOne(int);&#10;&#10;int plusOne(int a){&#10;    return a + 1;&#10;}&#10;&#10;int byTwo(int);&#10;int byTwo(int f){&#10;    return f + 2;&#10;}&#10;int main(int z){&#10;&#10;    double insideMain = 1;&#10;&#10;&#10;    plusOne(plusOne(byTwo(z)));&#10;&#10;&#10;}&#10;&#10;int z = 0;&#10;z = main(z);&#10;&#10;&#10;becomes THIS:&#10;&#10;&#10;value z:= digit 0&#10;value insideMain:= digit 1&#10;t4:=z+2&#10;t5:=t4+1&#10;t6:=t5+1&#10;value z:= t6">
+      <created>1518578691066</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1518578691066</updated>
+    </task>
+    <task id="LOCAL-00007" summary="A simple mistake was causing functions with multiple parameter not to work correctly. Now that's been fixed.&#10;&#10;Their code was multiplied by the ammount of parameters, each time with one variable name correctly replaced.&#10;&#10;Now all the replacement are made and only then the line is added.">
+      <created>1518581683323</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1518581683323</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Now multiple returns via if-else conditions are supported.">
+      <created>1518582512334</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1518582512334</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Apparently IntelliJ idea had a mind of its own when commiting, and I now have a big commit instead of many little ones. C'est la vie!">
+      <created>1518582680507</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1518582680507</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
+    <servers />
+  </component>
+  <component name="TodoView" selected-index="4">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="65" y="-4" width="1301" height="772" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Tool Output" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="sbt" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32970452" sideWeight="0.50278884" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.32988048" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="ANTLR Preview" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.24940239" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39968896" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32970452" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2690513" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30326593" sideWeight="0.49721116" order="15" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32970452" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.7013997" sideWeight="0.49402392" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2057903" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="sbt-shell-toolwindow" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32970452" sideWeight="0.49721116" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32970452" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24940239" sideWeight="0.5" order="6" side_tool="false" content_ui="combo" />
+      <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32970452" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Started migration to Scala.&#10;&#10;Why did I migrate to Scala:&#10;&#10;There are four combinations of math operands in a monoid. Be that monoid a sum, a product, or a factor.&#10;&#10;They were explained a few commits ago. &#10;&#10;The thing is that these 3 monoids share the general algorithm for parsing the four said cases.&#10;&#10;And I do not want to repeat myself. &#10;&#10;So, I started by using functions as parameters. Be it parseProduct, or parseFactor, they all would get passed as parameter for the generic function we will call parse.&#10;&#10;So, parse receives those functions and executes them. Right. But there was a problem. Those functions had different signatures. parseProduct would expect a ProductContext, while parseFactor a FactorContext. No problem, right? I would make them share a more generic signature, that would expect an object instead.&#10;&#10;That was already a bad smell.&#10;&#10;But the worse came during the moment to cast this objects to ProductContext or FactorContext. It was a mess. So, something smarter was much needed. A class that would be either of those.&#10;&#10;And that cannot be done without going to the procedurally generated code made by ANTLR. A minimal change on the grammar would override the changes. And for this problem, Scala was needed." />
+    <MESSAGE value="IntelliJ had a lots of things to improve, lots of typos to fix." />
+    <MESSAGE value="Even though the migration had been successfull, not the last version was migrated, but an older one.&#10;&#10;This version can transform this:" />
+    <MESSAGE value="Even though the migration had been successfull, not the last version was migrated, but an older one.&#10;&#10;This version can transform this:&#10;&#10;500 + 9 + ((1 * 3) + (2* 3)) + 5 *11 * 12 + 100 + 120 + 300&#10;&#10;into this:&#10;&#10;&#10;t1:=500+9&#10;t2:=2*3&#10;t3:=1*3&#10;t4:=t3+t2&#10;t5:=t1+t4&#10;t6:=5*11&#10;t7:=t6*12&#10;t8:=t5+t7&#10;t9:=t8+100&#10;t10:=t9+120&#10;t11:=t10+300" />
+    <MESSAGE value="Started advancing on the other remaining parts of intermediate code generation.&#10;&#10;This&#10;&#10;&#10;int main(void);&#10;&#10;int main(void){&#10;&#10;    double y = 0, x = 1;&#10;&#10;    y = (999 + (1 + (2 + 3) + (4 + 5) + 6 + 7 * 8*9)) + 1000;&#10;    x = y + 1;&#10;&#10;    if (x == 2){&#10;        x ++;&#10;    }&#10;&#10;&#10;}&#10;&#10;&#10;&#10;Becomes this&#10;&#10;&#10;y := digit 0&#10;x := digit 1&#10;t2:=2+3&#10;t3:=1+t2&#10;t4:=4+5&#10;t5:=t3+t4&#10;t6:=t5+6&#10;t7:=7*8&#10;t8:=t7*9&#10;t9:=t6+t8&#10;t10:=999+t9&#10;t11:=t10+1000&#10;y := t11&#10;&#10;t13:=y+1&#10;x := t13&#10;x := x+1" />
+    <MESSAGE value="Advances have been made in the function call department.&#10;&#10;The target language is now functional. The parameters of function calls substitute their analogs in the function declaration.&#10;And the function declaration with the variables names already substituted goes on to substitute the function call.&#10;&#10;This leads to the following examples:&#10;&#10;&#10;&#10;int main(void);&#10;int aRandomMathOperation(int);&#10;&#10;int aRandomMathOperation(int a){&#10;    return a + 1 * 2 + 3;&#10;}&#10;&#10;int main(int z){&#10;&#10;    double y = 0, x = 1;&#10;&#10;&#10;    aRandomMathOperation(x);&#10;&#10;&#10;}&#10;&#10;int xx = 1 * 2 + 3;&#10;int z = 0;&#10;z = aRandomMathOperation(xx);&#10;z = main(z);&#10;&#10;&#10;which translates into THIS:&#10;&#10;&#10;&#10;t2:=1*2&#10;t3:=t2+3&#10;xx:=t3&#10;z:= 0&#10;t6:=1*2&#10;t7:=xx+t6&#10;t8:=t7+3&#10;z:= t8&#10;y:= 0&#10;x:= 1&#10;t12:=1*2&#10;t13:=x+t12&#10;t14:=t13+3&#10;z:= t14" />
+    <MESSAGE value="Nested calls are now supported.&#10;&#10;&#10;int main(void);&#10;int plusOne(int);&#10;&#10;int plusOne(int a){&#10;    return a + 1;&#10;}&#10;&#10;int byTwo(int);&#10;int byTwo(int f){&#10;    return f + 2;&#10;}&#10;int main(int z){&#10;&#10;    double insideMain = 1;&#10;&#10;&#10;    plusOne(plusOne(byTwo(z)));&#10;&#10;&#10;}&#10;&#10;int z = 0;&#10;z = main(z);&#10;&#10;&#10;becomes THIS:&#10;&#10;&#10;value z:= digit 0&#10;value insideMain:= digit 1&#10;t4:=z+2&#10;t5:=t4+1&#10;t6:=t5+1&#10;value z:= t6" />
+    <MESSAGE value="A simple mistake was causing functions with multiple parameter not to work correctly. Now that's been fixed.&#10;&#10;Their code was multiplied by the ammount of parameters, each time with one variable name correctly replaced.&#10;&#10;Now all the replacement are made and only then the line is added." />
+    <MESSAGE value="Now multiple returns via if-else conditions are supported." />
+    <MESSAGE value="Apparently IntelliJ idea had a mind of its own when commiting, and I now have a big commit instead of many little ones. C'est la vie!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Apparently IntelliJ idea had a mind of its own when commiting, and I now have a big commit instead of many little ones. C'est la vie!" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="3" />
+    </breakpoint-manager>
+    <watches-manager />
+  </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/IntermediateCodeGeneration.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-950">
+          <caret line="8" column="57" lean-forward="true" selection-start-line="8" selection-start-column="57" selection-end-line="8" selection-end-column="57" />
+          <folding>
+            <element signature="e#36#58#0" expanded="true" />
+            <element signature="e#4439#5241#0" expanded="false" />
+            <element signature="e#5249#5758#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/MathTuple.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="6" column="16" lean-forward="false" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/MathExpr.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/C_Compiler/src/C_ANTLR/C.g4">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-87">
+          <caret line="77" column="58" lean-forward="false" selection-start-line="77" selection-start-column="45" selection-end-line="77" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code examples/test.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="9" lean-forward="false" selection-start-line="2" selection-start-column="9" selection-end-line="2" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/FourCases.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="642">
+          <caret line="109" column="46" lean-forward="false" selection-start-line="109" selection-start-column="44" selection-end-line="109" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/Parseable.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-309">
+          <caret line="6" column="6" lean-forward="false" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/MyContext.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="113">
+          <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="22" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/MathExpressionParsers.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="133" column="13" lean-forward="false" selection-start-line="133" selection-start-column="13" selection-end-line="133" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/MathExpressionParsers.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" column="7" lean-forward="false" selection-start-line="4" selection-start-column="7" selection-end-line="4" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/C_Compiler/project/build.sbt" />
+    <entry file="file://$PROJECT_DIR$/C_Compiler/build.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/IntermediateCodeGenerator.scala" />
+    <entry file="file://$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/MathTuple.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" column="45" lean-forward="false" selection-start-line="4" selection-start-column="45" selection-end-line="4" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/C_Compiler/project/build.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/C_Compiler/C_Compiler.iml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="13" column="9" lean-forward="false" selection-start-line="13" selection-start-column="9" selection-end-line="13" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/IntermediateCodeGenerator.java" />
+    <entry file="file://$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/MathTuple.java" />
+    <entry file="file://$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/MathExpressionParsers.java" />
+    <entry file="file://$PROJECT_DIR$/C_Compiler/src/Scope/ScopeUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="62">
+          <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/build.sbt" />
+    <entry file="file://$PROJECT_DIR$/C_Compiler/build.sbt" />
+    <entry file="file://$PROJECT_DIR$/C_Compiler/project/build.sbt" />
+    <entry file="file://$PROJECT_DIR$/C_Compiler/build.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/C_Compiler/project/build.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/IntermediateCodeGenerator.scala" />
+    <entry file="file://$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/parseGeneric.scala" />
+    <entry file="jar://$PROJECT_DIR$/C_Compiler/lib/antlr-4.5-complete.jar!/org/antlr/v4/runtime/ParserRuleContext.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/C_Compiler/dist/lib/antlr-4.5-complete.jar!/org/antlr/v4/runtime/ParserRuleContext.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/unappliedOp.scala" />
+    <entry file="file://$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/MathExpr.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="5" column="22" lean-forward="true" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/Parseable.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-309">
+          <caret line="6" column="6" lean-forward="false" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/FourCases.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="642">
+          <caret line="109" column="45" lean-forward="false" selection-start-line="109" selection-start-column="45" selection-end-line="109" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/C_Compiler/src/Scope/Scope.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="129">
+          <caret line="28" column="0" lean-forward="true" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/MyContext.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="113">
+          <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="22" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" column="5" lean-forward="false" selection-start-line="4" selection-start-column="5" selection-end-line="4" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/C_Compiler/src/C_ANTLR/CParser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="102" column="35" lean-forward="false" selection-start-line="102" selection-start-column="24" selection-end-line="102" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/C_Compiler/src/C_ANTLR/CBaseListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="127">
+          <caret line="18" column="26" lean-forward="false" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/MathExpressionParsers.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1669">
+          <caret line="147" column="38" lean-forward="true" selection-start-line="147" selection-start-column="38" selection-end-line="147" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/C_Compiler/src/Rules/Utils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1332">
+          <caret line="87" column="31" lean-forward="false" selection-start-line="87" selection-start-column="31" selection-end-line="87" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/C_Compiler/src/C_ANTLR/C.g4">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-385">
+          <caret line="67" column="48" lean-forward="false" selection-start-line="67" selection-start-column="48" selection-end-line="67" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/C_Compiler/src/Main/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="810">
+          <caret line="65" column="40" lean-forward="false" selection-start-line="65" selection-start-column="40" selection-end-line="65" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/C_Compiler/src/Visitor/Visitor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1098">
+          <caret line="65" column="33" lean-forward="false" selection-start-line="65" selection-start-column="33" selection-end-line="65" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3326#3327#0" expanded="true" />
+            <element signature="e#3362#3363#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/C_Compiler/src/Rules/CErrorException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/Quad.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="15" column="17" lean-forward="false" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/C_Compiler/src/Rules/EnterRules.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="130" column="44" lean-forward="false" selection-start-line="130" selection-start-column="29" selection-end-line="130" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/MathTuple.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="9" column="10" lean-forward="true" selection-start-line="9" selection-start-column="10" selection-end-line="9" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/package.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code examples/test.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="20" column="16" lean-forward="false" selection-start-line="20" selection-start-column="16" selection-end-line="20" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/Statement.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" column="1" lean-forward="true" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/IntermediateCodeGeneration.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="477">
+          <caret line="97" column="1" lean-forward="true" selection-start-line="97" selection-start-column="1" selection-end-line="97" selection-end-column="1" />
+          <folding>
+            <element signature="e#36#58#0" expanded="true" />
+            <element signature="e#4439#5241#0" expanded="false" />
+            <element signature="e#5249#5758#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

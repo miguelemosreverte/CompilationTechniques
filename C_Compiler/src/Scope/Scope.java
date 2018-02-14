@@ -27,7 +27,7 @@ public class Scope {
         this.parent = parent;
     }
 
-    private Scope getScope(String identification) {
+    public Scope getScope(String identification) {
         if (identifications.contains(identification)) {
             return this;
         }

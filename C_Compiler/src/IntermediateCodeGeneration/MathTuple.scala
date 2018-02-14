@@ -4,6 +4,7 @@ class MathTuple {
 
   var acumulatedIntermediateCode: String = ""
   var ID: Integer = 0
+  var operand1ID: Integer = 0
 
   def this(acumulatedIntermediateCode: String, ID: Integer) {
     this()
@@ -12,8 +13,10 @@ class MathTuple {
   }
 
 
-  private[IntermediateCodeGeneration] def set_acumulatedIntermediateCode(code: String) = new MathTuple(this.acumulatedIntermediateCode + code, this.ID)
+  private[IntermediateCodeGeneration] def set_acumulatedIntermediateCode(code: String) = this.acumulatedIntermediateCode += code
 
-  private[IntermediateCodeGeneration] def set_ID(ID: Integer) = new MathTuple(this.acumulatedIntermediateCode, ID)
+  private[IntermediateCodeGeneration] def set_ID(ID: Integer) = this.ID = ID
+
+  private[IntermediateCodeGeneration] def set_operand1ID(ID: Integer) = this.operand1ID = ID
 
 }

@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="TP1_Lemos">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/C_Compiler/dist/TP1_Lemos.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
