@@ -11,6 +11,8 @@ import IntermediateCodeGeneration.IntermediateCodeGenerator;
 import Rules.CErrorException;
 import Rules.EnterRules;
 
+import java.io.Console;
+
 /**
  *
  * @author Migue
@@ -18,6 +20,7 @@ import Rules.EnterRules;
 public class Visitor extends CBaseListener {
 
     VisitorHelper VisitorHelperInstance = new VisitorHelper();
+    private CParser.ProgContext programContext;
 
     public Visitor() {
     }
@@ -26,7 +29,6 @@ public class Visitor extends CBaseListener {
     public void enterVariable_declaration(CParser.Variable_declarationContext ctx) {
 
         EnterRules.enterVariable_declaration(ctx);
-        IntermediateCodeGenerator.enterVariable_declaration(ctx);
 
     }
 
@@ -55,18 +57,13 @@ public class Visitor extends CBaseListener {
     public void enterAssignation(CParser.AssignationContext ctx) throws CErrorException {
 
         EnterRules.enterAssignation(ctx);
-        IntermediateCodeGenerator.enterAssignation(ctx);
 
     }
 
     @Override
     public void enterF_d(CParser.F_dContext ctx) {
         EnterRules.enterF_d(ctx, () -> enterScope(ctx));
-    }
-
-    @Override
-    public void enterIf_condition(CParser.If_conditionContext ctx) {
-        enterScope(ctx);
+        IntermediateCodeGenerator.enterF_d(ctx);
     }
 
     @Override
@@ -88,6 +85,7 @@ public class Visitor extends CBaseListener {
     public void exitCode_block(CParser.Code_blockContext ctx) {
         EnterRules.leaveScope(ctx);
     }
+
 
     private void enterScope(CParser.For_loopContext ctx) {
         if (ctx.code_block() != null) {
@@ -130,9 +128,15 @@ public class Visitor extends CBaseListener {
         System.out.println(EnterRules.printSymbolsTable());
 
     }
-    
+
+
+    @Override
+    public void enterProg(CParser.ProgContext ctx) {
+        programContext = ctx;
+    }
     
     public void printIntermediateCode() {
+        IntermediateCodeGenerator.enterProg(programContext);
         IntermediateCodeGenerator.printIntermediateCode();
 
     }
