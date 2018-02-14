@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="19dac47c-8abf-47ec-9a32-9f86d820737f" name="Default" comment="A simple mistake was causing functions with multiple parameter not to work correctly. Now that's been fixed.&#10;&#10;Their code was multiplied by the ammount of parameters, each time with one variable name correctly replaced.&#10;&#10;Now all the replacement are made and only then the line is added.">
+    <list default="true" id="19dac47c-8abf-47ec-9a32-9f86d820737f" name="Default" comment="Now multiple returns via if-else conditions are supported.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/IntermediateCodeGeneration.scala" afterPath="$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/IntermediateCodeGeneration.scala" />
       <change beforePath="$PROJECT_DIR$/code examples/test.c" afterPath="$PROJECT_DIR$/code examples/test.c" />
       <change beforePath="$PROJECT_DIR$/out/production/C_Compiler/IntermediateCodeGeneration/IntermediateCodeGenerator$.class" afterPath="$PROJECT_DIR$/out/production/C_Compiler/IntermediateCodeGeneration/IntermediateCodeGenerator$.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/C_Compiler/IntermediateCodeGeneration/IntermediateCodeGenerator.class" afterPath="$PROJECT_DIR$/out/production/C_Compiler/IntermediateCodeGeneration/IntermediateCodeGenerator.class" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/target/" />
@@ -41,8 +42,8 @@
       <file leaf-file-name="IntermediateCodeGeneration.scala" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/IntermediateCodeGeneration.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="170" column="0" lean-forward="true" selection-start-line="170" selection-start-column="0" selection-end-line="170" selection-end-column="0" />
+            <state relative-caret-position="200">
+              <caret line="237" column="60" lean-forward="false" selection-start-line="237" selection-start-column="60" selection-end-line="237" selection-end-column="60" />
               <folding>
                 <element signature="e#36#58#0" expanded="true" />
               </folding>
@@ -63,8 +64,8 @@
       <file leaf-file-name="EnterRules.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/C_Compiler/src/Rules/EnterRules.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="123">
-              <caret line="103" column="60" lean-forward="false" selection-start-line="103" selection-start-column="45" selection-end-line="103" selection-end-column="60" />
+            <state relative-caret-position="102">
+              <caret line="130" column="44" lean-forward="false" selection-start-line="130" selection-start-column="29" selection-end-line="130" selection-end-column="44" />
               <folding />
             </state>
           </provider>
@@ -73,8 +74,8 @@
       <file leaf-file-name="test.c" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/code examples/test.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="18">
-              <caret line="1" column="11" lean-forward="false" selection-start-line="1" selection-start-column="11" selection-end-line="1" selection-end-column="11" />
+            <state relative-caret-position="270">
+              <caret line="15" column="14" lean-forward="true" selection-start-line="15" selection-start-column="14" selection-end-line="15" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -91,7 +92,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>enterVariable_declaration</find>
       <find>MathTuple[String, Integer]</find>
       <find>shrinkableList</find>
       <find>nextID == 0</find>
@@ -121,14 +121,15 @@
       <find>pepe</find>
       <find>TODO</find>
       <find>To_valueContext</find>
+      <find>code_block</find>
     </findStrings>
     <replaceStrings>
       <replace>MathTuple</replace>
       <replace>nextID != 0</replace>
       <replace>unappliedOp</replace>
       <replace>operand1</replace>
-      <replace>assignment = -1</replace>
       <replace>t</replace>
+      <replace>assignment = -1</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -164,9 +165,9 @@
         <option value="$PROJECT_DIR$/C_Compiler/src/Rules/EnterRules.java" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/C_Compiler/src/Visitor/Visitor.java" />
-        <option value="$PROJECT_DIR$/C_Compiler/src/Main/Main.java" />
         <option value="$PROJECT_DIR$/C_Compiler/src/Rules/Utils.java" />
         <option value="$PROJECT_DIR$/code examples/test.c" />
+        <option value="$PROJECT_DIR$/C_Compiler/src/Main/Main.java" />
         <option value="$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/IntermediateCodeGeneration.scala" />
       </list>
     </option>
@@ -505,7 +506,14 @@
       <option name="project" value="LOCAL" />
       <updated>1518578691066</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="A simple mistake was causing functions with multiple parameter not to work correctly. Now that's been fixed.&#10;&#10;Their code was multiplied by the ammount of parameters, each time with one variable name correctly replaced.&#10;&#10;Now all the replacement are made and only then the line is added.">
+      <created>1518581683323</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1518581683323</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TodoView">
@@ -619,7 +627,8 @@
     <MESSAGE value="Advances have been made in the function call department.&#10;&#10;The target language is now functional. The parameters of function calls substitute their analogs in the function declaration.&#10;And the function declaration with the variables names already substituted goes on to substitute the function call.&#10;&#10;This leads to the following examples:&#10;&#10;&#10;&#10;int main(void);&#10;int aRandomMathOperation(int);&#10;&#10;int aRandomMathOperation(int a){&#10;    return a + 1 * 2 + 3;&#10;}&#10;&#10;int main(int z){&#10;&#10;    double y = 0, x = 1;&#10;&#10;&#10;    aRandomMathOperation(x);&#10;&#10;&#10;}&#10;&#10;int xx = 1 * 2 + 3;&#10;int z = 0;&#10;z = aRandomMathOperation(xx);&#10;z = main(z);&#10;&#10;&#10;which translates into THIS:&#10;&#10;&#10;&#10;t2:=1*2&#10;t3:=t2+3&#10;xx:=t3&#10;z:= 0&#10;t6:=1*2&#10;t7:=xx+t6&#10;t8:=t7+3&#10;z:= t8&#10;y:= 0&#10;x:= 1&#10;t12:=1*2&#10;t13:=x+t12&#10;t14:=t13+3&#10;z:= t14" />
     <MESSAGE value="Nested calls are now supported.&#10;&#10;&#10;int main(void);&#10;int plusOne(int);&#10;&#10;int plusOne(int a){&#10;    return a + 1;&#10;}&#10;&#10;int byTwo(int);&#10;int byTwo(int f){&#10;    return f + 2;&#10;}&#10;int main(int z){&#10;&#10;    double insideMain = 1;&#10;&#10;&#10;    plusOne(plusOne(byTwo(z)));&#10;&#10;&#10;}&#10;&#10;int z = 0;&#10;z = main(z);&#10;&#10;&#10;becomes THIS:&#10;&#10;&#10;value z:= digit 0&#10;value insideMain:= digit 1&#10;t4:=z+2&#10;t5:=t4+1&#10;t6:=t5+1&#10;value z:= t6" />
     <MESSAGE value="A simple mistake was causing functions with multiple parameter not to work correctly. Now that's been fixed.&#10;&#10;Their code was multiplied by the ammount of parameters, each time with one variable name correctly replaced.&#10;&#10;Now all the replacement are made and only then the line is added." />
-    <option name="LAST_COMMIT_MESSAGE" value="A simple mistake was causing functions with multiple parameter not to work correctly. Now that's been fixed.&#10;&#10;Their code was multiplied by the ammount of parameters, each time with one variable name correctly replaced.&#10;&#10;Now all the replacement are made and only then the line is added." />
+    <MESSAGE value="Now multiple returns via if-else conditions are supported." />
+    <option name="LAST_COMMIT_MESSAGE" value="Now multiple returns via if-else conditions are supported." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -937,14 +946,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/C_Compiler/src/Main/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-192">
-          <caret line="59" column="0" lean-forward="false" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/C_Compiler/src/Rules/Utils.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
@@ -963,24 +964,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/C_Compiler/src/Rules/EnterRules.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="123">
-          <caret line="103" column="60" lean-forward="false" selection-start-line="103" selection-start-column="45" selection-end-line="103" selection-end-column="60" />
+        <state relative-caret-position="102">
+          <caret line="130" column="44" lean-forward="false" selection-start-line="130" selection-start-column="29" selection-end-line="130" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/C_Compiler/src/Main/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="68" column="20" lean-forward="false" selection-start-line="68" selection-start-column="20" selection-end-line="68" selection-end-column="20" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/code examples/test.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="1" column="11" lean-forward="false" selection-start-line="1" selection-start-column="11" selection-end-line="1" selection-end-column="11" />
+        <state relative-caret-position="270">
+          <caret line="15" column="14" lean-forward="true" selection-start-line="15" selection-start-column="14" selection-end-line="15" selection-end-column="14" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/IntermediateCodeGeneration.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="170" column="0" lean-forward="true" selection-start-line="170" selection-start-column="0" selection-end-line="170" selection-end-column="0" />
+        <state relative-caret-position="200">
+          <caret line="237" column="60" lean-forward="false" selection-start-line="237" selection-start-column="60" selection-end-line="237" selection-end-column="60" />
           <folding>
             <element signature="e#36#58#0" expanded="true" />
           </folding>
