@@ -32,9 +32,10 @@ public class Main {
     public static void main(String args[]) {
         JFileChooser fc = new JFileChooser();
         //fc.showDialog(null, "Attach");
+        //File path = fc.getSelectedFile();
         File path = new File("/home/miguel/Desktop/CompilationTechniques/code examples/test.c");//fc.getSelectedFile();
 
-        
+
         try {
             //levantamos el archivo a procesar
             FileInputStream stream = new FileInputStream(path);
@@ -80,7 +81,7 @@ public class Main {
             
 
             visitor.printUnusedSymbols();
-            //visitor.printSymbolsTable();
+            visitor.printSymbolsTable();
             visitor.printIntermediateCode();
             
         } catch (IOException | RecognitionException e) {
