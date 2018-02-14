@@ -6,6 +6,7 @@
 \usepackage{url}
 \let\oldurl\url
 
+\usepackage{textcomp}
 \usepackage{tikz}
 \usetikzlibrary{positioning,shapes,shadows,arrows,arrows.meta}
 \newcommand*{\less}{\textless}
@@ -38,7 +39,7 @@
 
 \author{Miguel Lemos}
 \date{\today}
-\title{Compilation Techniques First Assignment}
+\title{Constraints liberate liberties constrain}
 
 \begin{document}
 	
@@ -47,8 +48,8 @@
 	\maketitle
 	
 	\begin{abstract}
-		As the first assignment of the Compilation Techniques course directed by the professor Maximiliano Andr\'{e}s Eschoyez a symbol table for the C language was implemented, using JAVA and the ANTLR Netbeans plugin.
-	\end{abstract}
+		As programmers, we tend to think of expressive power of a language or library as an unmitigated good.By making a prototype C  that is functional I want to show the contrary; that restraint and precision are usually better than power and flexibility.
+			\end{abstract}
 	
 	
 	
@@ -362,48 +363,43 @@
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	\section{Flattening trees}
-	In C, a function prototype, a function declaration, and a function call, all have parameters. The last replaces them with information, the second gives local names to that information to be used inside the function, and the first one can give the parameters names, or not. *See (16) for the parameter list and (16) for the function prototype rule.
+
 	
-	To avoid going back lets bring the figure 16: (16)\\
-	
-	VALID\_C\_TYPES   (\textsc{\char13},\textsc{\char13} VALID\_C\_TYPES )*
-	
-	\ \ \ \ \ \ \ \ \ \ \ \      \(\mid\) variable\_declaration
-	
-	\ \ \ \ \ \ \ \ \ \ \ \      \(\mid\)  parametersList \textsc{\char13},\textsc{\char13}  parametersList;\\
-	
-	Here it can be noted that a parameterList will not contain another parameterList inside while its parameters are all either a comma separated list of VALID\_C\_TYPES or a comma separated list of declarated variables, where the difference among them is that one is unnamed and the other one is.
-	
-	With this being said, an example could show the problem in detail:\\
-	
-	Let f\_p be a function prototype:\\
+	Let f\_p be a function prototype:          (26) \\
 	
 	f\_p(int, int, int a, int b, char);
 	
 	\newcommand*{\equal}{=}
 	\newcommand*{\comma}{,}
-	
-	\begin{forest}
-		[parameterList
-		[parameterList
-		[int]
-		[int]
-		]
-		[parameterList
-		[int a]
-		[int b]
-		]
-		
-		[parameterList
-		[
-		char
-		]
-		]
-		
-		]
-		
-	\end{forest}
+
+\begin{forest}
+[parameterList
+  [parameterList
+    [int]
+    [int]
+  ]
+  [parameterList
+    [int a]
+    [int b]
+  ]	
+  [parameterList
+    [char]	
+  ]
+]
+\end{forest}
 	
 	The problem starts when trying to get the list of parameters from the parameterList rule, where the data structure is not a list but a tree.
 	
@@ -454,11 +450,8 @@ List<String> flattenedParametersTypes = Arrays.asList(Parameters.toString().spli
 
 	\end{lstlisting}
 	
-	It is to be noted that the resulting array is reversed.
-	
-	
 	\section{The functional way}
-	Now, if there is a correct way of flattening a tree-based data structure, it is probably functional. Here is how I did it, using Java 8 streams, flatMap, filters and  collectors.\\
+	Now, if there is a correct way of flattening a tree-based data structure, it is probably functional.\\
 	
 	\begin{lstlisting}
 	List<String> flattenedParametersTypes = ctx.parametersList().children.stream()
@@ -473,7 +466,6 @@ List<String> flattenedParametersTypes = Arrays.asList(Parameters.toString().spli
 	 ); 
 	\end{lstlisting}
 	
-	\\It is to be noted that the resulting array is not reversed. \\
 	
 	Now if those were all the lines needed to perform the task, the functional way would have proven itself to be incredibly expressive. And it is, its just that the total ammount of lines is bigger than that because of the auxiliar function used. Which goes as follows:
 	
@@ -525,7 +517,7 @@ public static Stream<String> flattenParameters(ParseTree parameterListParseTree)
 }
 	\end{lstlisting}
 	
-	The final result of both implementations is an array that contains the types of the parameters in the way they are meant to be visualized, as a list: [int, int, int, char, char]
+	The final result of both implementations is an array that contains the types of the parameters in the way they are meant to be visualized, as a list: [int, int, int, char, char]. (*BFS returns a reversed list).
 
 	
 	
@@ -533,8 +525,393 @@ public static Stream<String> flattenParameters(ParseTree parameterListParseTree)
 	
 	
 	
+	\section{Intermediate code gen}
+	Again, if there is a correct way of translating an idiom to another, it is probably functional.\\
+	For mathematical expressions the following functions were initially proposed: \\
 	
-	\onecolumn
+	
+	parseMath \textrightarrow parseSum\\	
+	
+	parseSum \textrightarrow parseProduct\\	
+	
+	parseProduct \textrightarrow parseFactor\\	
+	
+	parseFactor\textrightarrow parseMath\\
+	
+	where the arrows means that a function on the left may call the one on the right for help. \\
+	
+	
+	
+	
+	\section{The four cases problem}
+	Given three monoids, be them\textsc{ sum}, \textsc{product}, and \textsc{factor}, all of them will operate with two operands on each side, and an operation at the center.	
+	These operands are mathematical operators.
+	\\Here is how I described them in my grammar: \\ \\
+	(27)\\
+	math\_operation   : sum ;\\	
+	sum   : product unapplied\_low\_op * ;\\
+	product   : factor unapplied\_medium\_op * ;\\ 
+	factor   : math\_operand unapplied\_high\_op *; \\
+	math\_operand   : digit \(\mid\)  ID \(\mid\) f\_c \(\mid\)  grouped; \\ \\
+	unapplied\_low\_op : \\ (MATH\_OP\_LOW\_PRIORITY product);\\
+	unapplied\_medium\_op : \\ (MATH\_OP\_MEDIUM\_PRIORITY factor);\\
+	unapplied\_high\_op : \\ (MATH\_OP\_HIGH\_PRIORITY math\_operand);\\ \\
+	MATH\_OP\_LOW\_PRIORITY : \textsc{\char13}+\textsc{\char13} \(\mid\) \textsc{\char13}-\textsc{\char13}; \\
+	MATH\_OP\_MEDIUM\_PRIORITY : \textsc{\char13}*\textsc{\char13} \(\mid\) \textsc{\char13}/\textsc{\char13}; \\
+	MATH\_OP\_HIGH\_PRIORITY : \textsc{\char13}\string^\textsc{\char13}; \\
+	
+	The only math operator that contains itself is the one called ''grouped''.
+	
+	This means that if we take into account the cases where a math operator is recursive or not, for each operand, we are left with four cases: \\  \\
+	\textsc{case \hspace{5mm}      left-operand  \hspace{5mm}   right-operand } \\
+	\textsc{ case 1:     non-recursive  \hspace{5mm}   non-recursive } \\
+	\textsc{ case 2:     recursive         \hspace{13mm}   non-recursive } \\
+	\textsc{ case 3:     non-recursive \hspace{5mm}    recursive } \\
+	\textsc{ case 4:     recursive         \hspace{13mm}   recursive} \\
+	
+	The non-recursive math operators can be translated with no effort. A transparent translation. For a monoid case 1, the translation would go as follows: \\
+	
+	given y \textsc{ = 1 + 2 } \\
+	
+	then  \\
+	
+	t0 \textsc{:= 1 + 2 } \\
+	
+	where 0 is the index of the intermediate code line, the index of a TAD (Three Address Code), thus t0.
+	
+	The recursive math operators can be translated with extra calculations. For a monoid case 2, the translation would go as follows: \\
+	
+	given y \textsc{ = (1 + 3) + 2 } \\
+	
+	then \\
+	
+	t0 \textsc{:= 1 + 3 } \\
+	
+	t1 \textsc{:=} t0 \textsc{+ 2 } \\
+	
+	Now because this problem will repeat itself for \textsc{ sum}, \textsc{product}, and \textsc{factor}, it makes little to no sense to write the solution for this problem on parseMath, parseSum, and parseProduct. \\ 
+	A single function is needed then, and a generic one.
+	
+	
+	
+	
+	
+	
+	\section{A generic solution}
+	
+	This function would need to have as parameter the functions to be used for parsing.\\
+	When parseSum would call this function, it would pass as parameter parseProduct.\\	
+	When parseProduct would call this function, it would pass as parameter parseFactor.
+	
+	
+	
+	\section{The carried ID problem}
+	
+	Say to have the following operation: 1 + 2  \\ 
+	This would be translated into:  t0 = 1 + 2 \\ 
+	\\ 
+	But this: (1 + 2) + (3+4) \\
+	Would get translated into this: \\
+	t0 := 3 + 4 \\
+	t1 := 1 + 2 \\
+	t2 := t0 + t1 \\
+	\\
+	The first case is a \textsc{case 1}, the second one is a \textsc{case 4}. \\
+	
+	Up until then there are no problems with ID carrying. Now let's see what happens with the following operation: \\
+	(1 + 2 + 3) + (4 + 5 + 6) \\
+	\\
+	t0 := 1 + 2 \\
+	t1 := t0 + 3 \\
+	t2 := 4 + 5 \\
+	t3 := t2 + 6 \\
+	t4 := t1 + t3 \\
+	
+	Here t4 uses not t2 in the first operand, but t1. And depending on the lenght of the right side calculation, the distance 
+	of the first operand can get further away.\\
+	
+	We can infer this problem, the carried ID problem, is a problem we are always going to have with the left operand. 
+	That we can achieve by always calculating the left operand first, and then the right one.
+	The relevant pseudo-code for the \textsc{case 4} would be then:
+	
+	
+	
+	leftOperand \textleftarrow parsedOperand
+	
+	leftOperandID \textleftarrow leftOperand.getID
+	
+	rightOperand \textleftarrow parsedOperand
+	
+	rightOperandID \textleftarrow rightOperand.getID
+	
+	TAD \textleftarrow ''leftOperandID op rightOperandID ''  \\
+	where TAD comes from \textsc{three address code}. and op could be a plus sign. \\
+	
+	Now, because we are dealing with \textsc{three address code} translation, we can assume that at any point
+	the worst case scenario would be to have one carried ID. If we were to translate to \textsc{four address code}
+	we would have two carried IDs. 
+	
+	Which generalizes to the following formula:
+	
+	\textsc{ N carried ID } for { N+2 address code }\\
+	where the 2 comes from the two adresses occupied by the operation and the  right operand.
+	
+	
+	
+	
+	
+	
+	
+	\section{The function call problem}
+	
+	In some TAD implementations function calls have their own special operand, were aside from the \textsc{GOTO} usage
+	other operands are used, such as\textsc{ PushParameter} and\textsc{ PopParameter}, where the next interpreter would
+	read those operands and implement them.
+	
+	The problem is that in order for a TAD implementation to make sense to the reader without the help of a higher
+	interpreter, it needs to lack extra interpretable operands.
+	
+	And so, I went for an added language restriction instead, that would negate make the need for added intepretation.
+	
+	By using the substitution principle, functions calls can be replaced by their content. And so functions are actually values.
+	
+	We can continue adding restrictions while we are at, and state that global state should be avoided at all cost, as functions
+	would operate with the parameters they are given, and nothing else. No secundary effects.
+	 Only input and then, deterministic output.
+	
+	This makes the language purely functional.
+	
+	
+	\section{Function parameters}
+	
+	In order to pass the values to the function, each time a function is called the parameters need to be 
+	explicitly instanciated with the values of the passed parameters.
+	\\
+	int sumPlus10(int x, int y)\{ \\
+	
+	int z = 10;
+	return x + y;\\
+	\}\\
+	int a = 1, b = 2; \\
+	a = sumPlus10(a,b)\\
+	\\
+	becomes: \\
+	a := 1 \\
+	b:= 2 \\
+	z:= 10 \\
+	a := a + b + z\\
+	
+	Where the body of the function is pasted above the assignation, and the return is pasted as the assignment.
+	
+	
+	\section{Multiple returns}
+	Given: \\
+	\\
+	int min(int x, int y)\{ \\
+	
+	if (x \textless  y) return x;
+	else return y; \\
+	\}\\
+	int a = 1, b = 2; \\
+	a = min(a,b)\\
+	\\
+	becomes: \\
+	a := 1 \\
+	b:= 2 \\
+	conditional0 := a \textless b\\
+	ifNot conditional goto L1\\
+		t0 := a\\
+	L1: \\
+		t0 := b\\
+		a := t0\\
+		
+		 
+	\section{Free Scala-like sintax}
+	
+	Now because of the usage of the substitution model used in languages like Scala, Lisp, and Haskell, the following three sintaxes are allowed: 
+	
+	
+	\begin{lstlisting}
+
+	int main(int z){
+		double insideMain = 1;
+		insideMain = aRandomMathOperation(z)
+		return insideMain
+	}
+	\end{lstlisting}
+	
+	
+	
+	\begin{lstlisting}
+
+	int main(int z){
+		double insideMain = 1;
+		insideMain = aRandomMathOperation(z)
+	}
+	\end{lstlisting}
+	
+	
+	\begin{lstlisting}
+
+	int main(int z){
+		double insideMain = 1;
+		 aRandomMathOperation(z)
+	}
+	\end{lstlisting}
+	
+	which given the following function call
+	
+	z = main(z)\\
+	
+	ends up, respectively, as 
+	
+	t0 := z + 1
+	
+	insideMain := t0
+	
+	z : t0\\
+	
+	or 
+	
+	t0 := z + 1
+	
+	insideMain := t0
+	
+	z := t0\\
+	
+	or 
+	
+	t0 := z + 1 
+	
+	z := t0 \\ 
+	
+	This is because functions and values become one and the same, where the compiler during a function call does 
+	a copy-paste of the function, replacing the names of the function variables with the ones given by the parameters
+	in the function call. A function becomes a macro ready to be placed where it is called, and because no secundary effects
+	are allowed, no extra considerations are needed.
+	Nesting functions becomes easy, and by closure variables from a higher context are available to the functions below.
+	
+	
+	\section{Nested calls}
+	
+	\begin{lstlisting}
+
+	int main(int z){
+		double insideMain = 1;
+		 addOne( addOne( addOne(z)));
+	}
+	\end{lstlisting}
+	
+	results in	
+	
+	z := 0
+	
+	insideMain := 1
+	
+	t0 := z + 1
+	
+	t1 := t0 + 1
+	
+	t2 := t1 + 1
+	
+	z := t6 \\
+	
+	and
+	
+	\begin{lstlisting}
+
+	int main(int z){
+		double insideMain = 1;
+		 addThree( addTwo( addOne(z)));
+	}
+	\end{lstlisting}
+	
+	 in	
+	
+	z := 0
+	
+	insideMain := 1
+	
+	t0 := z + 1
+	
+	t1 := t0 + 2
+	
+	t2 := t1 + 3
+	
+	z := t6 \\
+	
+	
+	
+	\section{A note on the erasure of loops}
+	
+	For-loops and while loops should have been erased from the sintax in favor of approaches that favor recursion.
+	
+	\section{Constant propagation}
+	
+	Given a constant asignation, say x = 1, then when another assignation is performed it is 
+	faster to repeat the constant asignment, instead of asigning the value of the reference.
+	
+	Going back to the three adress representation of the min function, it becomes apparent
+	that this change would improve a lot the resulting code: 
+	
+	
+	
+	\begin{lstlisting}
+		int min(int x, int y){ 
+	
+		if (x  <  y) return x;
+		else return y; 
+		}
+		int a = 1, b = 2; 
+		a = min(a,b)
+	
+	\end{lstlisting}
+	
+	which became: \\
+	a := 1 \\
+	b:= 2 \\
+	conditional0 := a \textless b\\
+	ifNot conditional goto L1\\
+		t0 := a\\
+	L1: \\
+		t0 := b\\
+		a := t0\\
+	
+	now becomes: \\
+	a := 1 \\
+	b:= 2 \\
+	conditional0 := a \textless b\\
+	ifNot conditional goto L1\\
+		t0 := 1\\
+	L1: \\
+		t0 := 2\\
+		a := t0\\
+		
+	on the first pass. \\
+	
+	On the second pass it now targets a := t0 as a viable candidate for optimization.\\
+	
+	However, this should not be: Given freedom, the optimizer would overwrite the reference to t0 two times.
+	One for the value 1, and then again for the value 2, leaving a:= 2 as a result.\\
+	
+	This is wrong, as a should reference the result of the function. \\
+	
+	The solution for this was the use of annotations. By leaving a note on top of a:=t0 that explains
+	it should be leaved unoptimized, it is then ignored, and it becomes dependant of the function return.
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	\onecolumn 
 	\begin{thebibliography}{9}
 		\bibitem{formalgrammar} 
 		\url{https://en.wikipedia.org/wiki/Formal_grammar}
