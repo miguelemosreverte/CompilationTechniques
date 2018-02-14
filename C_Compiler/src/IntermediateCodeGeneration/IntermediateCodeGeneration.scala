@@ -8,7 +8,10 @@ import java.util._
 
 import C_ANTLR.CParser.StatContext
 import IntermediateCodeGeneration.MathExpressionParsers.parseMath
-import org.antlr.v4.runtime.tree.TerminalNode
+import Rules.Utils
+import org.antlr.v4.runtime.tree.{ParseTree, TerminalNode}
+
+import scala.collection.mutable.ListBuffer
 
 object IntermediateCodeGenerator {
 
@@ -46,7 +49,7 @@ object IntermediateCodeGenerator {
       var code = ""
 
 
-      def to_value_TAC(ct: CParser.To_valueContext) : String = {
+      def to_value_TAC(assignment : Int, ct: CParser.To_valueContext) : String = {
         var code = ""
         if (ct.math_operation != null) {
           var mathTuple = new MathTuple("", globalIdentifier)
@@ -57,7 +60,7 @@ object IntermediateCodeGenerator {
         }
         val currentID = "\nvalue " +  numericalID_to_ID.getOrElse(globalIdentifier, "t" + globalIdentifier)
 
-        if (ct.f_c != null) code = fc_TAC(ct.f_c) + currentID + ":= t" + globalIdentifier
+        if (ct.f_c != null) code = fc_TAC(assignment, ct.f_c)
         if (ct.digit != null) code = currentID + ":= digit " + ct.getText
         if (ct.ID != null) code = currentID + ":= id " + ct.getText
 
@@ -77,7 +80,7 @@ object IntermediateCodeGenerator {
           globalIdentifier += 1
           numericalID_to_ID += ((globalIdentifier, ID))
           val globalIdentifier_before_evaluation = globalIdentifier
-          code += to_value_TAC(zipped._2)
+          code += to_value_TAC(assignment = -1, zipped._2)
           codeList.add(code)
           if (globalIdentifier_before_evaluation < globalIdentifier)
             codeList.add(ID + ":=" + "declarated t" + globalIdentifier)
@@ -97,16 +100,45 @@ object IntermediateCodeGenerator {
         var code = "" // "\nassign t" + globalIdentifier + " := " + ID
 
         numericalID_to_ID += ((globalIdentifier, ID))
-        if (ct.to_value() != null) code += to_value_TAC(ct.to_value)
+        if (ct.to_value() != null) code += to_value_TAC(assignment = globalIdentifier, ct.to_value)
         else code += ct.ID() + (if (ct.INCR_DECR().toString() == "++") "+1" else "-1")
         code + "\n"
       }
 
-      def fc_TAC(ct : CParser.F_cContext): String ={
+      def fc_TAC(assignment : Int, ct : CParser.F_cContext): String ={
+
+        var code = ""
 
         import collection.JavaConverters._
 
         val functionName : String = ct.ID().getText
+
+
+
+        def getAllParameters(input : CParser.InputParametersListContext) : Seq[CParser.To_valueContext] = {
+          var parameters = new ListBuffer[CParser.To_valueContext]()
+
+          import collection.JavaConverters._
+          if (! input.inputParametersList().isEmpty)
+            for (a <- input.inputParametersList().asScala.toSeq)
+              parameters.++=(getAllParameters(a).toList)
+
+          if (input.to_value() != null)
+            parameters.+=(input.to_value())
+          parameters
+        }
+        val parameters : Seq[CParser.To_valueContext] = getAllParameters(ct.inputParametersList()).toSeq
+        for (parameter <- parameters){
+          if (parameter.f_c() != null) {
+
+            //code += "\nevaluating parameter "+parameter.getText+" of function " + functionName
+            code += to_value_TAC(assignment = -1, parameter)
+          }
+          //code += to_value_TAC(parameter)
+
+        }
+
+
         val inputParameterNames: Seq[String] =
           Rules.Utils.getChildrenID(ct.inputParametersList()).asScala.toSeq
         val parameterNamesAsStatedInFunctionDeclaration: Seq[String] =
@@ -118,17 +150,25 @@ object IntermediateCodeGenerator {
 
         val functionDeclaration : CParser.F_dContext = functionDeclarationNamesToFunctionDeclarations.get(functionName)
 
-        var code = ""
         import collection.JavaConverters._
 
         for(stat <- functionDeclaration.code_block.stat().asScala.toSeq){
 
             var statement: String = stat_TAC(stat)
             for (substitution <- substitutions) {
-              code += statement.replace(substitution._1, substitution._2)
+              var replacement = substitution._2
+              if (functionDeclarationNamesToParameters.containsKey(substitution._2))
+                replacement = "t" + (globalIdentifier - 1)
+              statement= statement.replace(substitution._1, replacement)
             }
+            code += statement
+
 
         }
+        val currentID = "\nvalue " +  numericalID_to_ID.getOrElse(assignment, "never gonna happen")
+
+        if (assignment != -1)
+        code += currentID + ":= t" + globalIdentifier
         code
       }
 
@@ -155,18 +195,63 @@ object IntermediateCodeGenerator {
 
       def ret_TAC(context: CParser.RetContext) : String  = {
 
-        to_value_TAC(context.to_value())
+        to_value_TAC(assignment = -1, context.to_value())
+      }
+
+      def if_TAC(context: CParser.If_conditionContext): String ={
+
+
+        //context.logic_op()
+        var code = ""
+
+        def codeblock_TAC (codeblock: CParser.Code_blockContext) : String =  {
+
+          import collection.JavaConverters._
+          val stat =  codeblock.stat().asScala.toSeq
+
+          for (s <- stat)
+            code += stat_TAC(context.stat())
+          code
+        }
+
+        globalIdentifier += 1
+        //TODO parse logic_op to 3 address code
+        val conditionID = "condition"+globalIdentifier
+        code += "\n" + conditionID+":="+context.logic_op().getText
+        labelIdentifier += 1
+        code += "\nifNot("+conditionID+") goto L"+labelIdentifier+"\n"
+        if(context.code_block() != null){
+
+
+          code += codeblock_TAC(context.code_block())
+
+
+        }
+        else
+          code += stat_TAC(context.stat())
+        code += "\nL"+labelIdentifier+":"
+
+        if (context.else_condition() != null){
+          if (context.else_condition().code_block() != null)
+            code += codeblock_TAC(context.else_condition().code_block())
+          else
+            code += stat_TAC(context.else_condition().stat())
+        }
+        code
       }
 
       if (ctx.variable_declaration() != null) code += variable_declaration_TAC(ctx.variable_declaration())
 
       if (ctx.assignation() != null) code += assignation_TAC(ctx.assignation())
 
-      if (ctx.f_c() != null) code += fc_TAC(ctx.f_c())
+      if (ctx.f_c() != null) code += fc_TAC(assignment = -1, ctx.f_c())
 
       //if (ctx.f_d() != null) code += fd_TAC(ctx.f_d())
 
       if (ctx.ret() != null) code += ret_TAC(ctx.ret())
+
+
+      if (ctx.if_condition() != null) code += if_TAC(ctx.if_condition())
 
      /*
 
@@ -199,31 +284,5 @@ object IntermediateCodeGenerator {
 
 
 
-
-
-  def enterIf_condition(ctx: CParser.If_conditionContext): Unit = {
-    val codeList = new util.ArrayList[String]
-
-    globalIdentifier += 1
-    //TODO parse logic_op to 3 address code
-    val conditionID = "condition"+globalIdentifier
-    intermediateCode += "\n" + conditionID+":="+ctx.logic_op().getText
-    labelIdentifier += 1
-    intermediateCode += "\nifNot("+conditionID+") goto L"+labelIdentifier+"\n"
-    if(ctx.code_block() != null){
-
-      import collection.JavaConverters._
-      val stat =  ctx.code_block().stat().asScala.toSeq
-
-      //for (s <- stat)
-        //stat_TAC(s)
-
-    }
-    else
-      codeList.add(ctx.stat().toString)
-    intermediateCode += "\nL"+labelIdentifier+":"
-
-
-  }
 
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="19dac47c-8abf-47ec-9a32-9f86d820737f" name="Default" comment="Now multiple returns via if-else conditions are supported.">
+    <list default="true" id="19dac47c-8abf-47ec-9a32-9f86d820737f" name="Default" comment="Apparently IntelliJ idea had a mind of its own when commiting, and I now have a big commit instead of many little ones. C'est la vie!">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/IntermediateCodeGeneration.scala" afterPath="$PROJECT_DIR$/C_Compiler/src/IntermediateCodeGeneration/IntermediateCodeGeneration.scala" />
       <change beforePath="$PROJECT_DIR$/code examples/test.c" afterPath="$PROJECT_DIR$/code examples/test.c" />
@@ -513,10 +513,17 @@
       <option name="project" value="LOCAL" />
       <updated>1518581683323</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Now multiple returns via if-else conditions are supported.">
+      <created>1518582512334</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1518582512334</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
-  <component name="TodoView">
+  <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
       <is-autoscroll-to-source value="true" />
     </todo-panel>
@@ -628,7 +635,8 @@
     <MESSAGE value="Nested calls are now supported.&#10;&#10;&#10;int main(void);&#10;int plusOne(int);&#10;&#10;int plusOne(int a){&#10;    return a + 1;&#10;}&#10;&#10;int byTwo(int);&#10;int byTwo(int f){&#10;    return f + 2;&#10;}&#10;int main(int z){&#10;&#10;    double insideMain = 1;&#10;&#10;&#10;    plusOne(plusOne(byTwo(z)));&#10;&#10;&#10;}&#10;&#10;int z = 0;&#10;z = main(z);&#10;&#10;&#10;becomes THIS:&#10;&#10;&#10;value z:= digit 0&#10;value insideMain:= digit 1&#10;t4:=z+2&#10;t5:=t4+1&#10;t6:=t5+1&#10;value z:= t6" />
     <MESSAGE value="A simple mistake was causing functions with multiple parameter not to work correctly. Now that's been fixed.&#10;&#10;Their code was multiplied by the ammount of parameters, each time with one variable name correctly replaced.&#10;&#10;Now all the replacement are made and only then the line is added." />
     <MESSAGE value="Now multiple returns via if-else conditions are supported." />
-    <option name="LAST_COMMIT_MESSAGE" value="Now multiple returns via if-else conditions are supported." />
+    <MESSAGE value="Apparently IntelliJ idea had a mind of its own when commiting, and I now have a big commit instead of many little ones. C'est la vie!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Apparently IntelliJ idea had a mind of its own when commiting, and I now have a big commit instead of many little ones. C'est la vie!" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
