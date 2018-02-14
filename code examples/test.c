@@ -1,22 +1,22 @@
 
-int main(void);
-int aRandomMathOperation(int);
+int min(int, int);
+int plusOne(int);
 
-int aRandomMathOperation(int a){
-    return a + 1 * 2 + 3;
+int plusOne(int a){
+    return a + 1;
 }
 
-int main(int z){
+int byTwo(int);
+int byTwo(int f){
+    return f + 2;
+}
+int min(int x, int y){
 
-    double y = 0, x = 1;
 
-
-    aRandomMathOperation(x);
+    if (x < y) return x; else return y;
 
 
 }
 
-int xx = 1 * 2 + 3;
-int z = 0;
-z = aRandomMathOperation(xx);
-z = main(z);
+int a = 1, b = 2;
+a = min(a,b);
